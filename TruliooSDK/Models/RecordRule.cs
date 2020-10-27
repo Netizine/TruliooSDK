@@ -6,8 +6,8 @@ namespace TruliooSDK.Models
     public class RecordRule : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string ruleName;
-        private string note;
+        private string _ruleName;
+        private string _note;
 
         /// <summary>
         /// Name of RecordRule.
@@ -15,10 +15,10 @@ namespace TruliooSDK.Models
         [JsonProperty("RuleName")]
         public string RuleName 
         { 
-            get => ruleName;
+            get => _ruleName;
             set 
             {
-                ruleName = value;
+                _ruleName = value;
                 OnPropertyChanged("RuleName");
             }
         }
@@ -29,10 +29,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Note")]
         public string Note 
         { 
-            get => note;
+            get => _note;
             set 
             {
-                note = value;
+                _note = value;
                 OnPropertyChanged("Note");
             }
         }

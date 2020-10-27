@@ -7,12 +7,12 @@ namespace TruliooSDK.Models
     public class DatasourceResult : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string datasourceStatus;
-        private string datasourceName;
-        private List<DatasourceField> datasourceFields;
-        private List<AppendedField> appendedFields;
-        private List<ServiceError> errors;
-        private List<string> fieldGroups;
+        private string _datasourceStatus;
+        private string _datasourceName;
+        private List<DatasourceField> _datasourceFields;
+        private List<AppendedField> _appendedFields;
+        private List<ServiceError> _errors;
+        private List<string> _fieldGroups;
 
         /// <summary>
         /// TODO: Write general description for this method
@@ -20,10 +20,10 @@ namespace TruliooSDK.Models
         [JsonProperty("DatasourceStatus")]
         public string DatasourceStatus 
         { 
-            get => datasourceStatus;
+            get => _datasourceStatus;
             set 
             {
-                datasourceStatus = value;
+                _datasourceStatus = value;
                 OnPropertyChanged("DatasourceStatus");
             }
         }
@@ -34,10 +34,10 @@ namespace TruliooSDK.Models
         [JsonProperty("DatasourceName")]
         public string DatasourceName 
         { 
-            get => datasourceName;
+            get => _datasourceName;
             set 
             {
-                datasourceName = value;
+                _datasourceName = value;
                 OnPropertyChanged("DatasourceName");
             }
         }
@@ -48,10 +48,10 @@ namespace TruliooSDK.Models
         [JsonProperty("DatasourceFields")]
         public List<DatasourceField> DatasourceFields 
         { 
-            get => datasourceFields;
+            get => _datasourceFields;
             set 
             {
-                datasourceFields = value;
+                _datasourceFields = value;
                 OnPropertyChanged("DatasourceFields");
             }
         }
@@ -62,10 +62,10 @@ namespace TruliooSDK.Models
         [JsonProperty("AppendedFields")]
         public List<AppendedField> AppendedFields 
         { 
-            get => appendedFields;
+            get => _appendedFields;
             set 
             {
-                appendedFields = value;
+                _appendedFields = value;
                 OnPropertyChanged("AppendedFields");
             }
         }
@@ -76,10 +76,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Errors")]
         public List<ServiceError> Errors 
         { 
-            get => errors;
+            get => _errors;
             set 
             {
-                errors = value;
+                _errors = value;
                 OnPropertyChanged("Errors");
             }
         }
@@ -90,10 +90,10 @@ namespace TruliooSDK.Models
         [JsonProperty("FieldGroups")]
         public List<string> FieldGroups 
         { 
-            get => fieldGroups;
+            get => _fieldGroups;
             set 
             {
-                fieldGroups = value;
+                _fieldGroups = value;
                 OnPropertyChanged("FieldGroups");
             }
         }

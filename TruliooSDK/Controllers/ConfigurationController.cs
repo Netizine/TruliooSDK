@@ -4,7 +4,9 @@ using System.Text;
 using System.Threading.Tasks;
 using TruliooSDK.Exceptions;
 using TruliooSDK.Http.Client;
+using TruliooSDK.Http.Request;
 using TruliooSDK.Http.Response;
+using TruliooSDK.Models;
 using TruliooSDK.Utilities;
 
 namespace TruliooSDK.Controllers
@@ -25,9 +27,7 @@ namespace TruliooSDK.Controllers
             get
             {
                 lock (SyncObject)
-                {
                     if (null == _instance) _instance = new ConfigurationController();
-                }
                 return _instance;
             }
         }
@@ -38,11 +38,11 @@ namespace TruliooSDK.Controllers
         /// This method retrieves all the countries that are available to perform a verification. It returns an array of Alpha2 Country Codes
         /// </summary>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
-        /// <return>Returns the List<string> response from the API call</return>
+        /// <return>Returns the List{string} response from the API call</return>
         public List<string> GetCountryCodes(string configurationName)
         {
-            var t = GetCountryCodesAsync(configurationName);
-            APIHelper.RunTaskSynchronously(t);
+            Task<List<string>> t = GetCountryCodesAsync(configurationName);
+            TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
 
@@ -50,7 +50,7 @@ namespace TruliooSDK.Controllers
         /// This method retrieves all the countries that are available to perform a verification. It returns an array of Alpha2 Country Codes
         /// </summary>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
-        /// <return>Returns the List<string> response from the API call</return>
+        /// <return>Returns the List{string} response from the API call</return>
         public async Task<List<string>> GetCountryCodesAsync(string configurationName)
         {
             //validating required parameters
@@ -84,7 +84,7 @@ namespace TruliooSDK.Controllers
             };
 
             //prepare the API call request to fetch the response
-            var request = ClientInstance.Get(queryUrl,headers);
+            HttpRequest request = ClientInstance.Get(queryUrl,headers);
 
             //invoke request and get response
             var response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(request).ConfigureAwait(false);
@@ -108,11 +108,11 @@ namespace TruliooSDK.Controllers
         /// </summary>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
-        /// <return>Returns the List<Models.DataFields> response from the API call</return>
-        public List<Models.DataFields> GetTestEntities(string configurationName, string countryCode)
+        /// <return>Returns the List{Models.DataFields} response from the API call</return>
+        public List<DataFields> GetTestEntities(string configurationName, string countryCode)
         {
-            var t = GetTestEntitiesAsync(configurationName, countryCode);
-            APIHelper.RunTaskSynchronously(t);
+            Task<List<DataFields>> t = GetTestEntitiesAsync(configurationName, countryCode);
+            TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
 
@@ -121,8 +121,8 @@ namespace TruliooSDK.Controllers
         /// </summary>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
-        /// <return>Returns the List<Models.DataFields> response from the API call</return>
-        public async Task<List<Models.DataFields>> GetTestEntitiesAsync(string configurationName, string countryCode)
+        /// <return>Returns the List{Models.DataFields} response from the API call</return>
+        public async Task<List<DataFields>> GetTestEntitiesAsync(string configurationName, string countryCode)
         {
             //validating required parameters
             if (null == configurationName)
@@ -159,7 +159,7 @@ namespace TruliooSDK.Controllers
             };
 
             //prepare the API call request to fetch the response
-            var request = ClientInstance.Get(queryUrl,headers);
+            HttpRequest request = ClientInstance.Get(queryUrl,headers);
 
             //invoke request and get response
             var response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(request).ConfigureAwait(false);
@@ -170,7 +170,7 @@ namespace TruliooSDK.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<List<Models.DataFields>>(response.Body);
+                return APIHelper.JsonDeserialize<List<DataFields>>(response.Body);
             }
             catch (Exception ex)
             {
@@ -186,8 +186,8 @@ namespace TruliooSDK.Controllers
         /// <return>Returns the object response from the API call</return>
         public object GetFields(string countryCode, string configurationName)
         {
-            var t = GetFieldsAsync(countryCode, configurationName);
-            APIHelper.RunTaskSynchronously(t);
+            Task<object> t = GetFieldsAsync(countryCode, configurationName);
+            TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
 
@@ -233,7 +233,7 @@ namespace TruliooSDK.Controllers
             };
 
             //prepare the API call request to fetch the response
-            var request = ClientInstance.Get(queryUrl,headers);
+            HttpRequest request = ClientInstance.Get(queryUrl,headers);
 
             //invoke request and get response
             var response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(request).ConfigureAwait(false);
@@ -261,8 +261,8 @@ namespace TruliooSDK.Controllers
         /// <return>Returns the object response from the API call</return>
         public object GetRecommendedFields(string countryCode, string configurationName)
         {
-            var t = GetRecommendedFieldsAsync(countryCode, configurationName);
-            APIHelper.RunTaskSynchronously(t);
+            Task<object> t = GetRecommendedFieldsAsync(countryCode, configurationName);
+            TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
 
@@ -309,7 +309,7 @@ namespace TruliooSDK.Controllers
             };
 
             //prepare the API call request to fetch the response
-            var request = ClientInstance.Get(queryUrl,headers);
+            HttpRequest request = ClientInstance.Get(queryUrl,headers);
 
             //invoke request and get response
             var response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(request).ConfigureAwait(false);
@@ -335,11 +335,11 @@ namespace TruliooSDK.Controllers
         /// </summary>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
-        /// <return>Returns the List<string> response from the API call</return>
+        /// <return> Returns the List{string} response from the API call</return>
         public List<string> GetConsents(string countryCode, string configurationName)
         {
-            var t = GetConsentsAsync( countryCode, configurationName);
-            APIHelper.RunTaskSynchronously(t);
+            Task<List<string>> t = GetConsentsAsync( countryCode, configurationName);
+            TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
 
@@ -350,7 +350,7 @@ namespace TruliooSDK.Controllers
         /// </summary>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
-        /// <return>Returns the List<string> response from the API call</return>
+        /// <return> Returns the List{string} response from the API call</return>
         public async Task<List<string>> GetConsentsAsync(string countryCode, string configurationName)
         {
             //validating required parameters
@@ -388,7 +388,7 @@ namespace TruliooSDK.Controllers
             };
 
             //prepare the API call request to fetch the response
-            var request = ClientInstance.Get(queryUrl,headers);
+            HttpRequest request = ClientInstance.Get(queryUrl,headers);
 
             //invoke request and get response
             var response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(request).ConfigureAwait(false);
@@ -416,11 +416,11 @@ namespace TruliooSDK.Controllers
         /// </summary>
         /// <param name="countryCode">Required parameter: Call CountryCodes to get the countries available to you.</param>
         /// <param name="configurationName">Required parameter: Identity Verification</param>
-        /// <return>Returns the List<Models.Consent> response from the API call</return>
-        public List<Models.Consent> GetDetailedConsents(string countryCode, string configurationName)
+        /// <return>Returns the List{Models.Consent} response from the API call</return>
+        public List<Consent> GetDetailedConsents(string countryCode, string configurationName)
         {
-            var t = GetDetailedConsentsAsync(countryCode, configurationName);
-            APIHelper.RunTaskSynchronously(t);
+            Task<List<Consent>> t = GetDetailedConsentsAsync(countryCode, configurationName);
+            TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
 
@@ -432,8 +432,8 @@ namespace TruliooSDK.Controllers
         /// </summary>
         /// <param name="countryCode">Required parameter: Call CountryCodes to get the countries available to you.</param>
         /// <param name="configurationName">Required parameter: Identity Verification</param>
-        /// <return>Returns the List<Models.Consent> response from the API call</return>
-        public async Task<List<Models.Consent>> GetDetailedConsentsAsync(string countryCode, string configurationName)
+        /// <return> Returns the List{Models.Consent} response from the API call</return>
+        public async Task<List<Consent>> GetDetailedConsentsAsync(string countryCode, string configurationName)
         {
             //validating required parameters
             if (null == countryCode)
@@ -470,7 +470,7 @@ namespace TruliooSDK.Controllers
             };
 
             //prepare the API call request to fetch the response
-            var request = ClientInstance.Get(queryUrl,headers);
+            HttpRequest request = ClientInstance.Get(queryUrl,headers);
 
             //invoke request and get response
             var response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(request).ConfigureAwait(false);
@@ -481,7 +481,7 @@ namespace TruliooSDK.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<List<Models.Consent>>(response.Body);
+                return APIHelper.JsonDeserialize<List<Consent>>(response.Body);
             }
             catch (Exception ex)
             {
@@ -493,11 +493,11 @@ namespace TruliooSDK.Controllers
         /// Gets the provinces states or other subdivisions for a country, mostly matches ISO 3166-2
         /// </summary>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
-        /// <return>Returns the List<Models.CountrySubdivision> response from the API call</return>
-        public List<Models.CountrySubdivision> GetCountrySubdivisions(string countryCode)
+        /// <return>Returns the List{Models.CountrySubdivision} response from the API call</return>
+        public List<CountrySubdivision> GetCountrySubdivisions(string countryCode)
         {
-            var t = GetCountrySubdivisionsAsync(countryCode);
-            APIHelper.RunTaskSynchronously(t);
+            Task<List<CountrySubdivision>> t = GetCountrySubdivisionsAsync(countryCode);
+            TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
 
@@ -505,8 +505,8 @@ namespace TruliooSDK.Controllers
         /// Gets the provinces states or other subdivisions for a country, mostly matches ISO 3166-2
         /// </summary>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
-        /// <return>Returns the List<Models.CountrySubdivision> response from the API call</return>
-        public async Task<List<Models.CountrySubdivision>> GetCountrySubdivisionsAsync(string countryCode)
+        /// <return>Returns the List{Models.CountrySubdivision} response from the API call</return>
+        public async Task<List<CountrySubdivision>> GetCountrySubdivisionsAsync(string countryCode)
         {
             //validating required parameters
             if (null == countryCode)
@@ -539,7 +539,7 @@ namespace TruliooSDK.Controllers
             };
 
             //prepare the API call request to fetch the response
-            var request = ClientInstance.Get(queryUrl,headers);
+            HttpRequest request = ClientInstance.Get(queryUrl,headers);
 
             //invoke request and get response
             var response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(request).ConfigureAwait(false);
@@ -550,7 +550,7 @@ namespace TruliooSDK.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<List<Models.CountrySubdivision>>(response.Body);
+                return APIHelper.JsonDeserialize<List<CountrySubdivision>>(response.Body);
             }
             catch (Exception ex)
             {
@@ -559,25 +559,25 @@ namespace TruliooSDK.Controllers
         }
 
         /// <summary>
-        /// Gets datasource groups configured for your product and country.
+        /// Gets data source groups configured for your product and country.
         /// </summary>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
-        /// <return>Returns the List<Models.NormalizedDatasourceGroupCountry> response from the API call</return>
-        public List<Models.NormalizedDatasourceGroupCountry> GetDataSources(string configurationName, string countryCode)
+        /// <return>Returns the List{Models.NormalizedDataSourceGroupCountry} response from the API call</return>
+        public List<NormalizedDataSourceGroupCountry> GetDataSources(string configurationName, string countryCode)
         {
-            var t = GetDataSourcesAsync(configurationName, countryCode);
-            APIHelper.RunTaskSynchronously(t);
+            Task<List<NormalizedDataSourceGroupCountry>> t = GetDataSourcesAsync(configurationName, countryCode);
+            TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Gets datasource groups configured for your product and country.
+        /// Gets data source groups configured for your product and country.
         /// </summary>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
-        /// <return>Returns the List<Models.NormalizedDatasourceGroupCountry> response from the API call</return>
-        public async Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSourcesAsync(string configurationName, string countryCode)
+        /// <return>Returns the List{Models.NormalizedDataSourceGroupCountry} response from the API call</return>
+        public async Task<List<NormalizedDataSourceGroupCountry>> GetDataSourcesAsync(string configurationName, string countryCode)
         {
             //validating required parameters
             if (null == configurationName)
@@ -614,7 +614,7 @@ namespace TruliooSDK.Controllers
             };
 
             //prepare the API call request to fetch the response
-            var request = ClientInstance.Get(queryUrl,headers);
+            HttpRequest request = ClientInstance.Get(queryUrl,headers);
 
             //invoke request and get response
             var response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(request).ConfigureAwait(false);
@@ -625,7 +625,7 @@ namespace TruliooSDK.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<List<Models.NormalizedDatasourceGroupCountry>>(response.Body);
+                return APIHelper.JsonDeserialize<List<NormalizedDataSourceGroupCountry>>(response.Body);
             }
             catch (Exception ex)
             {

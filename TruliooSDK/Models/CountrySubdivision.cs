@@ -5,9 +5,9 @@ namespace TruliooSDK.Models
     public class CountrySubdivision : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string name;
-        private string code;
-        private string parentCode;
+        private string _name;
+        private string _code;
+        private string _parentCode;
 
         /// <summary>
         /// Name of the area, in english or one of the languages of the country
@@ -15,10 +15,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Name")]
         public string Name 
         { 
-            get => name;
+            get => _name;
             set 
             {
-                name = value;
+                _name = value;
                 OnPropertyChanged("Name");
             }
         }
@@ -29,10 +29,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Code")]
         public string Code 
         { 
-            get => code;
+            get => _code;
             set 
             {
-                code = value;
+                _code = value;
                 OnPropertyChanged("Code");
             }
         }
@@ -43,10 +43,10 @@ namespace TruliooSDK.Models
         [JsonProperty("ParentCode")]
         public string ParentCode 
         { 
-            get => parentCode;
+            get => _parentCode;
             set 
             {
-                parentCode = value;
+                _parentCode = value;
                 OnPropertyChanged("ParentCode");
             }
         }

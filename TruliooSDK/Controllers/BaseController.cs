@@ -27,9 +27,7 @@ namespace TruliooSDK.Controllers
             set
             {
                 lock (SyncObject)
-                {
                     if (value is IHttpClient client) _clientInstance = client;
-                }
             }
         }
         #endregion shared http client instance

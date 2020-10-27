@@ -7,11 +7,11 @@ namespace TruliooSDK.Models
     public class Record : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string transactionRecordId;
-        private string recordStatus;
-        private List<DatasourceResult> datasourceResults;
-        private List<ServiceError> errors;
-        private RecordRule rule;
+        private string _transactionRecordId;
+        private string _recordStatus;
+        private List<DatasourceResult> _datasourceResults;
+        private List<ServiceError> _errors;
+        private RecordRule _rule;
 
         /// <summary>
         /// The TransactionRecordID, this is the ID you will use to fetch the transaction again.
@@ -19,10 +19,10 @@ namespace TruliooSDK.Models
         [JsonProperty("TransactionRecordID")]
         public string TransactionRecordId 
         { 
-            get => transactionRecordId;
+            get => _transactionRecordId;
             set 
             {
-                transactionRecordId = value;
+                _transactionRecordId = value;
                 OnPropertyChanged("TransactionRecordID");
             }
         }
@@ -33,10 +33,10 @@ namespace TruliooSDK.Models
         [JsonProperty("RecordStatus")]
         public string RecordStatus 
         { 
-            get => recordStatus;
+            get => _recordStatus;
             set 
             {
-                recordStatus = value;
+                _recordStatus = value;
                 OnPropertyChanged("RecordStatus");
             }
         }
@@ -47,10 +47,10 @@ namespace TruliooSDK.Models
         [JsonProperty("DatasourceResults")]
         public List<DatasourceResult> DatasourceResults 
         { 
-            get => datasourceResults;
+            get => _datasourceResults;
             set 
             {
-                datasourceResults = value;
+                _datasourceResults = value;
                 OnPropertyChanged("DatasourceResults");
             }
         }
@@ -61,10 +61,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Errors")]
         public List<ServiceError> Errors 
         { 
-            get => errors;
+            get => _errors;
             set 
             {
-                errors = value;
+                _errors = value;
                 OnPropertyChanged("Errors");
             }
         }
@@ -75,10 +75,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Rule")]
         public RecordRule Rule 
         { 
-            get => rule;
+            get => _rule;
             set 
             {
-                rule = value;
+                _rule = value;
                 OnPropertyChanged("Rule");
             }
         }

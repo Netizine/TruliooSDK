@@ -7,27 +7,28 @@ namespace TruliooSDK.Models
     public class VerifyRequest : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private bool? acceptTruliooTermsAndConditions;
-        private string callBackUrl;
-        private int? timeout;
-        private bool? cleansedAddress;
-        private string configurationName;
-        private List<string> consentForDataSources;
-        private string countryCode;
-        private string customerReferenceId;
-        private DataFields dataFields;
-        private bool? verboseMode;
+        private bool? _acceptTruliooTermsAndConditions;
+        private string _callBackUrl;
+        private int? _timeout;
+        private bool? _cleansedAddress;
+        private string _configurationName;
+        private List<string> _consentForDataSources;
+        private string _countryCode;
+        private string _customerReferenceId;
+        private DataFields _dataFields;
+        private bool? _verboseMode;
 
         /// <summary>
-        /// Indicate that Trulioo terms and conditions are accepted.\nThe Verification request will be executed only if the value of this header is passed as 'true'.
+        /// Indicate that Trulioo terms and conditions are accepted.
+        /// The Verification request will be executed only if the value of this header is passed as 'true'.
         /// </summary>
         [JsonProperty("AcceptTruliooTermsAndConditions")]
         public bool? AcceptTruliooTermsAndConditions 
         { 
-            get => acceptTruliooTermsAndConditions;
+            get => _acceptTruliooTermsAndConditions;
             set 
             {
-                acceptTruliooTermsAndConditions = value;
+                _acceptTruliooTermsAndConditions = value;
                 OnPropertyChanged("AcceptTruliooTermsAndConditions");
             }
         }
@@ -38,10 +39,10 @@ namespace TruliooSDK.Models
         [JsonProperty("CallBackUrl")]
         public string CallBackUrl 
         { 
-            get => callBackUrl;
+            get => _callBackUrl;
             set 
             {
-                callBackUrl = value;
+                _callBackUrl = value;
                 OnPropertyChanged("CallBackUrl");
             }
         }
@@ -52,10 +53,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Timeout")]
         public int? Timeout 
         { 
-            get => timeout;
+            get => _timeout;
             set 
             {
-                timeout = value;
+                _timeout = value;
                 OnPropertyChanged("Timeout");
             }
         }
@@ -66,24 +67,25 @@ namespace TruliooSDK.Models
         [JsonProperty("CleansedAddress")]
         public bool? CleansedAddress 
         { 
-            get => cleansedAddress;
+            get => _cleansedAddress;
             set 
             {
-                cleansedAddress = value;
+                _cleansedAddress = value;
                 OnPropertyChanged("CleansedAddress");
             }
         }
 
         /// <summary>
-        /// Indicate the configuration used for the verification. Currently only 'Identity Verification' is supported.\nDefault value will be "Identity Verification"
+        /// Indicate the configuration used for the verification. Currently only 'Identity Verification' is supported.
+        /// Default value will be "Identity Verification"
         /// </summary>
         [JsonProperty("ConfigurationName")]
         public string ConfigurationName 
         { 
-            get => configurationName;
+            get => _configurationName;
             set 
             {
-                configurationName = value;
+                _configurationName = value;
                 OnPropertyChanged("ConfigurationName");
             }
         }
@@ -94,10 +96,10 @@ namespace TruliooSDK.Models
         [JsonProperty("ConsentForDataSources")]
         public List<string> ConsentForDataSources 
         { 
-            get => consentForDataSources;
+            get => _consentForDataSources;
             set 
             {
-                consentForDataSources = value;
+                _consentForDataSources = value;
                 OnPropertyChanged("ConsentForDataSources");
             }
         }
@@ -108,10 +110,10 @@ namespace TruliooSDK.Models
         [JsonProperty("CountryCode")]
         public string CountryCode 
         { 
-            get => countryCode;
+            get => _countryCode;
             set 
             {
-                countryCode = value;
+                _countryCode = value;
                 OnPropertyChanged("CountryCode");
             }
         }
@@ -122,10 +124,10 @@ namespace TruliooSDK.Models
         [JsonProperty("CustomerReferenceID")]
         public string CustomerReferenceId 
         { 
-            get => customerReferenceId;
+            get => _customerReferenceId;
             set 
             {
-                customerReferenceId = value;
+                _customerReferenceId = value;
                 OnPropertyChanged("CustomerReferenceID");
             }
         }
@@ -136,10 +138,10 @@ namespace TruliooSDK.Models
         [JsonProperty("DataFields")]
         public DataFields DataFields 
         { 
-            get => dataFields;
+            get => _dataFields;
             set 
             {
-                dataFields = value;
+                _dataFields = value;
                 OnPropertyChanged("DataFields");
             }
         }
@@ -150,10 +152,10 @@ namespace TruliooSDK.Models
         [JsonProperty("VerboseMode")]
         public bool? VerboseMode 
         { 
-            get => verboseMode;
+            get => _verboseMode;
             set 
             {
-                verboseMode = value;
+                _verboseMode = value;
                 OnPropertyChanged("VerboseMode");
             }
         }

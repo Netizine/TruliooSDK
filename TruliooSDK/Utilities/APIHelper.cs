@@ -73,7 +73,7 @@ namespace TruliooSDK.Utilities
                 return;
 
             //iterate and replace parameters
-            foreach (var pair in parameters)
+            foreach (KeyValuePair<string, object> pair in parameters)
             {
                 string replaceValue;
 
@@ -125,7 +125,7 @@ namespace TruliooSDK.Utilities
             var hasParams = (IndexOf(queryBuilder, "?") > 0);
 
             //iterate and append parameters
-            foreach (var pair in parameters)
+            foreach (KeyValuePair<string, object> pair in parameters)
             {
                 //ignore null values
                 if (pair.Value == null)
@@ -207,7 +207,7 @@ namespace TruliooSDK.Utilities
             var url = queryBuilder.ToString();
 
             //ensure that the urls are absolute
-            var match = Regex.Match(url, "^https?://[^/]+");
+            Match match = Regex.Match(url, "^https?://[^/]+");
             if (!match.Success)
                 throw new ArgumentException("Invalid Url format.");
 
@@ -261,7 +261,7 @@ namespace TruliooSDK.Utilities
 
             //append all elements in the array into a string
             var index = 0;
-            foreach (var element in array)
+            foreach (object element in array)
                 builder.AppendFormat(format, GetElementValue(element, urlEncode), separator, index++);
             //remove the last separator, if appended
             if ((builder.Length > 1) && (builder[builder.Length - 1] == separator))
@@ -310,8 +310,8 @@ namespace TruliooSDK.Utilities
                     return keys;
                 case JObject jObject:
                 {
-                    var valueAccept = jObject;
-                    foreach (var property in valueAccept.Properties())
+                    JObject valueAccept = jObject;
+                    foreach (JProperty property in valueAccept.Properties())
                     {
                         var pKey = property.Name;
                         object pValue = property.Value;
@@ -323,12 +323,12 @@ namespace TruliooSDK.Utilities
                 }
                 case IList list:
                 {
-                    var enumerator = list.GetEnumerator();
+                    IEnumerator enumerator = list.GetEnumerator();
 
                     var hasNested = false;
                     while (enumerator.MoveNext())
                     {
-                        var subValue = enumerator.Current;
+                        object subValue = enumerator.Current;
                         if (subValue != null && (subValue is JObject || subValue is IList || subValue is IDictionary || !(subValue.GetType().Namespace.StartsWith("System"))))
                         {
                             hasNested = true;
@@ -346,7 +346,7 @@ namespace TruliooSDK.Utilities
                         else if (!hasNested && arrayDeserializationFormat == ArrayDeserialization.Plain)
                             fullSubName = name;
                     
-                        var subValue = enumerator.Current;
+                        object subValue = enumerator.Current;
                         if (subValue == null) continue;
                         PrepareFormFieldsFromObject(fullSubName, subValue, keys, propInfo,arrayDeserializationFormat);
                         i++;
@@ -359,16 +359,16 @@ namespace TruliooSDK.Utilities
                     break;
                 case Enum _:
                 {
-                    var thisAssembly = typeof(APIHelper).GetTypeInfo().Assembly;
+                    Assembly thisAssembly = typeof(APIHelper).GetTypeInfo().Assembly;
                     var enumTypeName = value.GetType().FullName;
-                    var enumHelperType = thisAssembly.GetType($"{enumTypeName}Helper");
+                    Type enumHelperType = thisAssembly.GetType($"{enumTypeName}Helper");
                     object enumValue = (int) value;
 
                     if (enumHelperType != null)
                     {
                         //this enum has an associated helper, use that to load the value
 
-                        var enumHelperMethod = enumHelperType.GetRuntimeMethod("ToValue", new[] { value.GetType() });
+                        MethodInfo enumHelperMethod = enumHelperType.GetRuntimeMethod("ToValue", new[] { value.GetType() });
 
                         if (enumHelperMethod != null)
                             enumValue = enumHelperMethod.Invoke(null, new[] {value});
@@ -379,11 +379,11 @@ namespace TruliooSDK.Utilities
                 }
                 case IDictionary dictionary:
                 {
-                    var obj = dictionary;
-                    foreach (var sName in obj.Keys)
+                    IDictionary obj = dictionary;
+                    foreach (object sName in obj.Keys)
                     {
                         var subName = sName.ToString();
-                        var subValue = obj[subName];
+                        object subValue = obj[subName];
                         var fullSubName = string.IsNullOrWhiteSpace(name) ? subName : name + '[' + subName + ']';
                         PrepareFormFieldsFromObject(fullSubName, subValue, keys, propInfo,arrayDeserializationFormat);
                     }
@@ -396,9 +396,9 @@ namespace TruliooSDK.Utilities
                     {
                         //Custom object Iterate through its properties
 
-                        var enumerator = value.GetType().GetRuntimeProperties().GetEnumerator();
+                        IEnumerator<PropertyInfo> enumerator = value.GetType().GetRuntimeProperties().GetEnumerator();
                         PropertyInfo pInfo = null;
-                        var t = new JsonPropertyAttribute().GetType();
+                        Type t = new JsonPropertyAttribute().GetType();
                         while (enumerator.MoveNext())
                         {
                             pInfo = enumerator.Current;
@@ -406,7 +406,7 @@ namespace TruliooSDK.Utilities
                             var jsonProperty = (JsonPropertyAttribute) pInfo.GetCustomAttributes(t, true).FirstOrDefault();
                             var subName = (jsonProperty != null) ? jsonProperty.PropertyName : pInfo.Name;
                             var fullSubName = string.IsNullOrWhiteSpace(name) ? subName : name + '[' + subName + ']';
-                            var subValue = pInfo.GetValue(value, null);
+                            object subValue = pInfo.GetValue(value, null);
                             PrepareFormFieldsFromObject(fullSubName, subValue, keys, pInfo,arrayDeserializationFormat);
                         }
                     }
@@ -419,7 +419,7 @@ namespace TruliooSDK.Utilities
                         if(propInfo!=null)
                             pInfo = propInfo.GetCustomAttributes(true);
                         if (pInfo != null)
-                            foreach (var attr in pInfo)
+                            foreach (object attr in pInfo)
                                 if (attr is JsonConverterAttribute converterAttr)
                                     convertedValue =
                                         JsonSerialize(time,
@@ -430,9 +430,7 @@ namespace TruliooSDK.Utilities
                         keys.Add(new KeyValuePair<string, object>(name, (convertedValue) ?? time.ToString(DateTimeFormat))); 
                     }
                     else
-                    {
                         keys.Add(new KeyValuePair<string, object>(name,value));
-                    }
 
                     break;
                 }
@@ -447,26 +445,8 @@ namespace TruliooSDK.Utilities
         /// <param name="dictionary2"></param>
         public static void Add(this Dictionary<string, object> dictionary, Dictionary<string, object> dictionary2)
         {
-            foreach (var kvp in dictionary2) dictionary[kvp.Key] = kvp.Value;
+            foreach (KeyValuePair<string, object> kvp in dictionary2) dictionary[kvp.Key] = kvp.Value;
         }
 
-        /// <summary>
-        /// Runs asynchronous tasks synchronously and throws the first caught exception
-        /// </summary>
-        /// <param name="t">The task to be run synchronously</param>
-        public static void RunTaskSynchronously(Task t)
-        {
-            try
-            {
-                Task.WaitAll(t);
-            }
-            catch (AggregateException e)
-            {
-                if (e.InnerExceptions.Count > 0)
-                    throw e.InnerExceptions[0];
-                else
-                    throw;
-            }
-        }
     }
 }

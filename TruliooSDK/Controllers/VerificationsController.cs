@@ -4,7 +4,9 @@ using System.Text;
 using System.Threading.Tasks;
 using TruliooSDK.Exceptions;
 using TruliooSDK.Http.Client;
+using TruliooSDK.Http.Request;
 using TruliooSDK.Http.Response;
+using TruliooSDK.Models;
 using TruliooSDK.Utilities;
 
 namespace TruliooSDK.Controllers
@@ -25,9 +27,7 @@ namespace TruliooSDK.Controllers
             get
             {
                 lock (SyncObject)
-                {
                     if (null == _instance) _instance = new VerificationsController();
-                }
                 return _instance;
             }
         }
@@ -41,10 +41,10 @@ namespace TruliooSDK.Controllers
         /// </summary>
         /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the Models.VerifyResult response from the API call</return>
-        public Models.VerifyResult CreateVerify(Models.VerifyRequest body)
+        public VerifyResult CreateVerify(VerifyRequest body)
         {
-            var t = CreateVerifyAsync(body);
-            APIHelper.RunTaskSynchronously(t);
+            Task<VerifyResult> t = CreateVerifyAsync(body);
+            TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
 
@@ -55,7 +55,7 @@ namespace TruliooSDK.Controllers
         /// </summary>
         /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the Models.VerifyResult response from the API call</return>
-        public async Task<Models.VerifyResult> CreateVerifyAsync(Models.VerifyRequest body)
+        public async Task<VerifyResult> CreateVerifyAsync(VerifyRequest body)
         {
             //validating required parameters
             if (null == body)
@@ -91,7 +91,7 @@ namespace TruliooSDK.Controllers
             var json = APIHelper.JsonSerialize(body);
 
             //prepare the API call request to fetch the response
-            var request = ClientInstance.PostBody(queryUrl, headers, json);
+            HttpRequest request = ClientInstance.PostBody(queryUrl, headers, json);
 
             //invoke request and get response
             var response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(request).ConfigureAwait(false);
@@ -102,7 +102,7 @@ namespace TruliooSDK.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<Models.VerifyResult>(response.Body);
+                return APIHelper.JsonDeserialize<VerifyResult>(response.Body);
             }
             catch (Exception ex)
             {
@@ -116,10 +116,10 @@ namespace TruliooSDK.Controllers
         /// </summary>
         /// <param name="id">Required parameter: The TransactionRecordID from the Verify response, this will be a GUID</param>
         /// <return>Returns the Models.TransactionRecordResult response from the API call</return>
-        public Models.TransactionRecordResult GetTransactionRecord(string id)
+        public TransactionRecordResult GetTransactionRecord(string id)
         {
-            var t = GetTransactionRecordAsync(id);
-            APIHelper.RunTaskSynchronously(t);
+            Task<TransactionRecordResult> t = GetTransactionRecordAsync(id);
+            TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
 
@@ -129,7 +129,7 @@ namespace TruliooSDK.Controllers
         /// </summary>
         /// <param name="id">Required parameter: The TransactionRecordID from the Verify response, this will be a GUID</param>
         /// <return>Returns the Models.TransactionRecordResult response from the API call</return>
-        public async Task<Models.TransactionRecordResult> GetTransactionRecordAsync(string id)
+        public async Task<TransactionRecordResult> GetTransactionRecordAsync(string id)
         {
             //validating required parameters
             if (null == id)
@@ -162,7 +162,7 @@ namespace TruliooSDK.Controllers
             };
 
             //prepare the API call request to fetch the response
-            var request = ClientInstance.Get(queryUrl,headers);
+            HttpRequest request = ClientInstance.Get(queryUrl,headers);
 
             //invoke request and get response
             var response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(request).ConfigureAwait(false);
@@ -173,7 +173,7 @@ namespace TruliooSDK.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<Models.TransactionRecordResult>(response.Body);
+                return APIHelper.JsonDeserialize<TransactionRecordResult>(response.Body);
             }
             catch (Exception ex)
             {

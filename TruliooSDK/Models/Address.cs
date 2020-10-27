@@ -5,18 +5,18 @@ namespace TruliooSDK.Models
     public class Address : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string unitNumber;
-        private string buildingNumber;
-        private string buildingName;
-        private string streetName;
-        private string streetType;
-        private string city;
-        private string suburb;
-        private string stateProvinceCode;
-        private string postalCode;
-        private string address1;
-        private string addressType;
-        private string stateProvince;
+        private string _unitNumber;
+        private string _buildingNumber;
+        private string _buildingName;
+        private string _streetName;
+        private string _streetType;
+        private string _city;
+        private string _suburb;
+        private string _stateProvinceCode;
+        private string _postalCode;
+        private string _address1;
+        private string _addressType;
+        private string _stateProvince;
 
         /// <summary>
         /// Flat/Unit/Apartment number of address
@@ -24,10 +24,10 @@ namespace TruliooSDK.Models
         [JsonProperty("UnitNumber")]
         public string UnitNumber 
         { 
-            get => unitNumber;
+            get => _unitNumber;
             set 
             {
-                unitNumber = value;
+                _unitNumber = value;
                 OnPropertyChanged("UnitNumber");
             }
         }
@@ -38,10 +38,10 @@ namespace TruliooSDK.Models
         [JsonProperty("BuildingNumber")]
         public string BuildingNumber 
         { 
-            get => buildingNumber;
+            get => _buildingNumber;
             set 
             {
-                buildingNumber = value;
+                _buildingNumber = value;
                 OnPropertyChanged("BuildingNumber");
             }
         }
@@ -52,10 +52,10 @@ namespace TruliooSDK.Models
         [JsonProperty("BuildingName")]
         public string BuildingName 
         { 
-            get => buildingName;
+            get => _buildingName;
             set 
             {
-                buildingName = value;
+                _buildingName = value;
                 OnPropertyChanged("BuildingName");
             }
         }
@@ -66,10 +66,10 @@ namespace TruliooSDK.Models
         [JsonProperty("StreetName")]
         public string StreetName 
         { 
-            get => streetName;
+            get => _streetName;
             set 
             {
-                streetName = value;
+                _streetName = value;
                 OnPropertyChanged("StreetName");
             }
         }
@@ -80,10 +80,10 @@ namespace TruliooSDK.Models
         [JsonProperty("StreetType")]
         public string StreetType 
         { 
-            get => streetType;
+            get => _streetType;
             set 
             {
-                streetType = value;
+                _streetType = value;
                 OnPropertyChanged("StreetType");
             }
         }
@@ -94,10 +94,10 @@ namespace TruliooSDK.Models
         [JsonProperty("City")]
         public string City 
         { 
-            get => city;
+            get => _city;
             set 
             {
-                city = value;
+                _city = value;
                 OnPropertyChanged("City");
             }
         }
@@ -108,10 +108,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Suburb")]
         public string Suburb 
         { 
-            get => suburb;
+            get => _suburb;
             set 
             {
-                suburb = value;
+                _suburb = value;
                 OnPropertyChanged("Suburb");
             }
         }
@@ -122,10 +122,10 @@ namespace TruliooSDK.Models
         [JsonProperty("StateProvinceCode")]
         public string StateProvinceCode 
         { 
-            get => stateProvinceCode;
+            get => _stateProvinceCode;
             set 
             {
-                stateProvinceCode = value;
+                _stateProvinceCode = value;
                 OnPropertyChanged("StateProvinceCode");
             }
         }
@@ -136,10 +136,10 @@ namespace TruliooSDK.Models
         [JsonProperty("PostalCode")]
         public string PostalCode 
         { 
-            get => postalCode;
+            get => _postalCode;
             set 
             {
-                postalCode = value;
+                _postalCode = value;
                 OnPropertyChanged("PostalCode");
             }
         }
@@ -150,10 +150,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Address1")]
         public string Address1 
         { 
-            get => address1;
+            get => _address1;
             set 
             {
-                address1 = value;
+                _address1 = value;
                 OnPropertyChanged("Address1");
             }
         }
@@ -164,10 +164,10 @@ namespace TruliooSDK.Models
         [JsonProperty("AddressType")]
         public string AddressType 
         { 
-            get => addressType;
+            get => _addressType;
             set 
             {
-                addressType = value;
+                _addressType = value;
                 OnPropertyChanged("AddressType");
             }
         }
@@ -178,10 +178,10 @@ namespace TruliooSDK.Models
         [JsonProperty("StateProvince")]
         public string StateProvince 
         { 
-            get => stateProvince;
+            get => _stateProvince;
             set 
             {
-                stateProvince = value;
+                _stateProvince = value;
                 OnPropertyChanged("StateProvince");
             }
         }

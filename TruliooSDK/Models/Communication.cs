@@ -5,10 +5,10 @@ namespace TruliooSDK.Models
     public class Communication : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string mobileNumber;
-        private string telephone;
-        private string telephone2;
-        private string emailAddress;
+        private string _mobileNumber;
+        private string _telephone;
+        private string _telephone2;
+        private string _emailAddress;
 
         /// <summary>
         /// Mobile phone number of the individual to be verified.
@@ -16,10 +16,10 @@ namespace TruliooSDK.Models
         [JsonProperty("MobileNumber")]
         public string MobileNumber 
         { 
-            get => mobileNumber;
+            get => _mobileNumber;
             set 
             {
-                mobileNumber = value;
+                _mobileNumber = value;
                 OnPropertyChanged("MobileNumber");
             }
         }
@@ -30,10 +30,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Telephone")]
         public string Telephone 
         { 
-            get => telephone;
+            get => _telephone;
             set 
             {
-                telephone = value;
+                _telephone = value;
                 OnPropertyChanged("Telephone");
             }
         }
@@ -44,10 +44,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Telephone2")]
         public string Telephone2 
         { 
-            get => telephone2;
+            get => _telephone2;
             set 
             {
-                telephone2 = value;
+                _telephone2 = value;
                 OnPropertyChanged("Telephone2");
             }
         }
@@ -58,10 +58,10 @@ namespace TruliooSDK.Models
         [JsonProperty("EmailAddress")]
         public string EmailAddress 
         { 
-            get => emailAddress;
+            get => _emailAddress;
             set 
             {
-                emailAddress = value;
+                _emailAddress = value;
                 OnPropertyChanged("EmailAddress");
             }
         }

@@ -14,7 +14,7 @@ namespace TruliooSDK.Http.Client
     public class HTTPClient : IHttpClient
     {
         public static IHttpClient SharedClient { get; set; }
-        private readonly HttpClient client = new HttpClient();
+        private readonly HttpClient _client = new HttpClient();
 		
 
         static HTTPClient()
@@ -24,7 +24,7 @@ namespace TruliooSDK.Http.Client
 
         public void SetTimeout(TimeSpan timeout)
         {
-            client.Timeout = timeout;
+            _client.Timeout = timeout;
         }
 
 
@@ -32,8 +32,8 @@ namespace TruliooSDK.Http.Client
 
         public HttpResponse ExecuteAsString(HttpRequest request)
         {
-            var t = ExecuteAsStringAsync(request);
-            APIHelper.RunTaskSynchronously(t);
+            Task<HttpResponse> t = ExecuteAsStringAsync(request);
+            TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
 
@@ -42,7 +42,7 @@ namespace TruliooSDK.Http.Client
             //raise the on before request event
             RaiseOnBeforeHttpRequestEvent(request);
 
-            var responseMessage = await HttpResponseMessageAsync(request).ConfigureAwait(false);
+            HttpResponseMessage responseMessage = await HttpResponseMessageAsync(request).ConfigureAwait(false);
 
             HttpResponse response = new HttpStringResponse
             {
@@ -59,8 +59,8 @@ namespace TruliooSDK.Http.Client
 
         public HttpResponse ExecuteAsBinary(HttpRequest request)
         {
-            var t = ExecuteAsBinaryAsync(request);
-            APIHelper.RunTaskSynchronously(t);
+            Task<HttpResponse> t = ExecuteAsBinaryAsync(request);
+            TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
 
@@ -69,7 +69,7 @@ namespace TruliooSDK.Http.Client
             //raise the on before request event
             RaiseOnBeforeHttpRequestEvent(request);
 
-            var responseMessage = await HttpResponseMessageAsync(request).ConfigureAwait(false);
+            HttpResponseMessage responseMessage = await HttpResponseMessageAsync(request).ConfigureAwait(false);
 
             var response = new HttpResponse
             {
@@ -193,12 +193,12 @@ namespace TruliooSDK.Http.Client
                 RequestUri = new Uri(request.QueryUrl),
                 Method = request.HttpMethod,
             };
-            foreach (var headers in request.Headers) requestMessage.Headers.TryAddWithoutValidation(headers.Key, headers.Value);
+            foreach (KeyValuePair<string, string> headers in request.Headers) requestMessage.Headers.TryAddWithoutValidation(headers.Key, headers.Value);
 
 
             if (!string.IsNullOrEmpty(request.Username))
             {
-                var byteArray = Encoding.UTF8.GetBytes(request.Username + ":" + request.Password);
+                byte[] byteArray = Encoding.UTF8.GetBytes(request.Username + ":" + request.Password);
                 requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic",
                     Convert.ToBase64String(byteArray));
             }
@@ -235,7 +235,7 @@ namespace TruliooSDK.Http.Client
                 else if (request.FormParameters != null && request.FormParameters.Any(f => f.Value is FileStreamInfo))
                 {
                     var formContent = new MultipartFormDataContent();
-                    foreach (var param in request.FormParameters)
+                    foreach (KeyValuePair<string, object> param in request.FormParameters)
                         if (param.Value is FileStreamInfo fileInfo)
                         {
                             var fileContent = new StreamContent(fileInfo.FileStream);
@@ -257,18 +257,18 @@ namespace TruliooSDK.Http.Client
                 else if (request.FormParameters != null)
                 {
                     var parameters = new List<KeyValuePair<string, string>>();
-                    foreach (var param in request.FormParameters) parameters.Add(new KeyValuePair<string, string>(param.Key, param.Value.ToString()));
+                    foreach (KeyValuePair<string, object> param in request.FormParameters) parameters.Add(new KeyValuePair<string, string>(param.Key, param.Value.ToString()));
                     requestMessage.Content = new FormUrlEncodedContent(parameters);
                 }
             }
-            return await client.SendAsync(requestMessage).ConfigureAwait(false);
+            return await _client.SendAsync(requestMessage).ConfigureAwait(false);
         }
 
         private static Dictionary<string, string> GetCombinedResponseHeaders(HttpResponseMessage responseMessage)
         {
             var headers = responseMessage.Headers.ToDictionary(l => l.Key, k => k.Value.First());
             if (responseMessage.Content == null) return headers;
-            foreach (var contentHeader in responseMessage.Content.Headers)
+            foreach (KeyValuePair<string, IEnumerable<string>> contentHeader in responseMessage.Content.Headers)
             {
                 if (headers.ContainsKey(contentHeader.Key)) continue;
                 headers.Add(contentHeader.Key, contentHeader.Value.First());

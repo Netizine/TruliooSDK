@@ -6,9 +6,9 @@ namespace TruliooSDK.Models
     public class DatasourceField : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string fieldName;
-        private string status;
-        private string fieldGroup;
+        private string _fieldName;
+        private string _status;
+        private string _fieldGroup;
 
         /// <summary>
         /// TODO: Write general description for this method
@@ -16,10 +16,10 @@ namespace TruliooSDK.Models
         [JsonProperty("FieldName")]
         public string FieldName 
         { 
-            get => fieldName;
+            get => _fieldName;
             set 
             {
-                fieldName = value;
+                _fieldName = value;
                 OnPropertyChanged("FieldName");
             }
         }
@@ -30,10 +30,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Status")]
         public string Status 
         { 
-            get => status;
+            get => _status;
             set 
             {
-                status = value;
+                _status = value;
                 OnPropertyChanged("Status");
             }
         }
@@ -44,10 +44,10 @@ namespace TruliooSDK.Models
         [JsonProperty("FieldGroup")]
         public string FieldGroup 
         { 
-            get => fieldGroup;
+            get => _fieldGroup;
             set 
             {
-                fieldGroup = value;
+                _fieldGroup = value;
                 OnPropertyChanged("FieldGroup");
             }
         }

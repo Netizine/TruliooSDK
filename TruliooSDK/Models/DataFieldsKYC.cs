@@ -6,13 +6,13 @@ namespace TruliooSDK.Models
     public class DataFieldsKYC : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private PersonInfo personInfo;
-        private Location location;
-        private Communication communication;
-        private DriverLicence driverLicence;
-        private List<NationalId> nationalIds;
-        private Passport passport;
-        private Dictionary<string, string> countrySpecific;
+        private PersonInfo _personInfo;
+        private Location _location;
+        private Communication _communication;
+        private DriverLicence _driverLicence;
+        private List<NationalId> _nationalIds;
+        private Passport _passport;
+        private Dictionary<string, string> _countrySpecific;
 
         /// <summary>
         /// Personal Information
@@ -20,10 +20,10 @@ namespace TruliooSDK.Models
         [JsonProperty("PersonInfo")]
         public PersonInfo PersonInfo 
         { 
-            get => personInfo;
+            get => _personInfo;
             set 
             {
-                personInfo = value;
+                _personInfo = value;
                 OnPropertyChanged("PersonInfo");
             }
         }
@@ -34,10 +34,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Location")]
         public Location Location 
         { 
-            get => location;
+            get => _location;
             set 
             {
-                location = value;
+                _location = value;
                 OnPropertyChanged("Location");
             }
         }
@@ -48,10 +48,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Communication")]
         public Communication Communication 
         { 
-            get => communication;
+            get => _communication;
             set 
             {
-                communication = value;
+                _communication = value;
                 OnPropertyChanged("Communication");
             }
         }
@@ -62,10 +62,10 @@ namespace TruliooSDK.Models
         [JsonProperty("DriverLicence")]
         public DriverLicence DriverLicence 
         { 
-            get => driverLicence;
+            get => _driverLicence;
             set 
             {
-                driverLicence = value;
+                _driverLicence = value;
                 OnPropertyChanged("DriverLicence");
             }
         }
@@ -78,10 +78,10 @@ namespace TruliooSDK.Models
         [JsonProperty("NationalIds")]
         public List<NationalId> NationalIds 
         { 
-            get => nationalIds;
+            get => _nationalIds;
             set 
             {
-                nationalIds = value;
+                _nationalIds = value;
                 OnPropertyChanged("NationalIds");
             }
         }
@@ -92,10 +92,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Passport")]
         public Passport Passport 
         { 
-            get => passport;
+            get => _passport;
             set 
             {
-                passport = value;
+                _passport = value;
                 OnPropertyChanged("Passport");
             }
         }
@@ -111,10 +111,10 @@ namespace TruliooSDK.Models
         [JsonProperty("CountrySpecific")]
         public Dictionary<string, string> CountrySpecific 
         { 
-            get => countrySpecific;
+            get => _countrySpecific;
             set 
             {
-                countrySpecific = value;
+                _countrySpecific = value;
                 OnPropertyChanged("CountrySpecific");
             }
         }

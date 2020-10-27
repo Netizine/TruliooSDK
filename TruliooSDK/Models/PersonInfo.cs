@@ -6,17 +6,17 @@ namespace TruliooSDK.Models
     public class PersonInfo : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string firstGivenName;
-        private string middleName;
-        private string firstSurName;
-        private string secondSurname;
-        private string iSoLatin1Name;
-        private int? dayOfBirth;
-        private int? monthOfBirth;
-        private int? yearOfBirth;
-        private int? minimumAge;
-        private string gender;
-        private PersonInfoAdditionalFields additionalFields;
+        private string _firstGivenName;
+        private string _middleName;
+        private string _firstSurName;
+        private string _secondSurname;
+        private string _iSoLatin1Name;
+        private int? _dayOfBirth;
+        private int? _monthOfBirth;
+        private int? _yearOfBirth;
+        private int? _minimumAge;
+        private string _gender;
+        private PersonInfoAdditionalFields _additionalFields;
 
         /// <summary>
         /// First name of the individual to be verified. Dual purpose First Name or Initial.
@@ -24,10 +24,10 @@ namespace TruliooSDK.Models
         [JsonProperty("FirstGivenName")]
         public string FirstGivenName 
         { 
-            get => firstGivenName;
+            get => _firstGivenName;
             set 
             {
-                firstGivenName = value;
+                _firstGivenName = value;
                 OnPropertyChanged("FirstGivenName");
             }
         }
@@ -38,10 +38,10 @@ namespace TruliooSDK.Models
         [JsonProperty("MiddleName")]
         public string MiddleName 
         { 
-            get => middleName;
+            get => _middleName;
             set 
             {
-                middleName = value;
+                _middleName = value;
                 OnPropertyChanged("MiddleName");
             }
         }
@@ -52,10 +52,10 @@ namespace TruliooSDK.Models
         [JsonProperty("FirstSurName")]
         public string FirstSurName 
         { 
-            get => firstSurName;
+            get => _firstSurName;
             set 
             {
-                firstSurName = value;
+                _firstSurName = value;
                 OnPropertyChanged("FirstSurName");
             }
         }
@@ -66,10 +66,10 @@ namespace TruliooSDK.Models
         [JsonProperty("SecondSurname")]
         public string SecondSurname 
         { 
-            get => secondSurname;
+            get => _secondSurname;
             set 
             {
-                secondSurname = value;
+                _secondSurname = value;
                 OnPropertyChanged("SecondSurname");
             }
         }
@@ -80,10 +80,10 @@ namespace TruliooSDK.Models
         [JsonProperty("ISOLatin1Name")]
         public string ISOLatin1Name 
         { 
-            get => iSoLatin1Name;
+            get => _iSoLatin1Name;
             set 
             {
-                iSoLatin1Name = value;
+                _iSoLatin1Name = value;
                 OnPropertyChanged("ISOLatin1Name");
             }
         }
@@ -94,10 +94,10 @@ namespace TruliooSDK.Models
         [JsonProperty("DayOfBirth")]
         public int? DayOfBirth 
         { 
-            get => dayOfBirth;
+            get => _dayOfBirth;
             set 
             {
-                dayOfBirth = value;
+                _dayOfBirth = value;
                 OnPropertyChanged("DayOfBirth");
             }
         }
@@ -108,10 +108,10 @@ namespace TruliooSDK.Models
         [JsonProperty("MonthOfBirth")]
         public int? MonthOfBirth 
         { 
-            get => monthOfBirth;
+            get => _monthOfBirth;
             set 
             {
-                monthOfBirth = value;
+                _monthOfBirth = value;
                 OnPropertyChanged("MonthOfBirth");
             }
         }
@@ -122,10 +122,10 @@ namespace TruliooSDK.Models
         [JsonProperty("YearOfBirth")]
         public int? YearOfBirth 
         { 
-            get => yearOfBirth;
+            get => _yearOfBirth;
             set 
             {
-                yearOfBirth = value;
+                _yearOfBirth = value;
                 OnPropertyChanged("YearOfBirth");
             }
         }
@@ -136,10 +136,10 @@ namespace TruliooSDK.Models
         [JsonProperty("MinimumAge")]
         public int? MinimumAge 
         { 
-            get => minimumAge;
+            get => _minimumAge;
             set 
             {
-                minimumAge = value;
+                _minimumAge = value;
                 OnPropertyChanged("MinimumAge");
             }
         }
@@ -150,10 +150,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Gender")]
         public string Gender 
         { 
-            get => gender;
+            get => _gender;
             set 
             {
-                gender = value;
+                _gender = value;
                 OnPropertyChanged("Gender");
             }
         }
@@ -164,10 +164,10 @@ namespace TruliooSDK.Models
         [JsonProperty("AdditionalFields")]
         public PersonInfoAdditionalFields AdditionalFields 
         { 
-            get => additionalFields;
+            get => _additionalFields;
             set 
             {
-                additionalFields = value;
+                _additionalFields = value;
                 OnPropertyChanged("AdditionalFields");
             }
         }

@@ -6,7 +6,7 @@ namespace TruliooSDK.Models
     public class LocationAdditionalFields : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string address1;
+        private string _address1;
 
         /// <summary>
         /// Address1 is available in certain countries. It can be used to pass a compiled address field instead of sending individual address attributes (such as UnitNumber, BuidlingNumber, BuildingName, StreetName and StreetType). 
@@ -16,10 +16,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Address1")]
         public string Address1 
         { 
-            get => address1;
+            get => _address1;
             set 
             {
-                address1 = value;
+                _address1 = value;
                 OnPropertyChanged("Address1");
             }
         }

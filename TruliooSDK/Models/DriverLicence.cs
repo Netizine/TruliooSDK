@@ -6,11 +6,11 @@ namespace TruliooSDK.Models
     public class DriverLicence : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string number;
-        private string state;
-        private int? dayOfExpiry;
-        private int? monthOfExpiry;
-        private int? yearOfExpiry;
+        private string _number;
+        private string _state;
+        private int? _dayOfExpiry;
+        private int? _monthOfExpiry;
+        private int? _yearOfExpiry;
 
         /// <summary>
         /// Driver's Licence Number of the individual to be verified.
@@ -18,10 +18,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Number")]
         public string Number 
         { 
-            get => number;
+            get => _number;
             set 
             {
-                number = value;
+                _number = value;
                 OnPropertyChanged("Number");
             }
         }
@@ -32,10 +32,10 @@ namespace TruliooSDK.Models
         [JsonProperty("State")]
         public string State 
         { 
-            get => state;
+            get => _state;
             set 
             {
-                state = value;
+                _state = value;
                 OnPropertyChanged("State");
             }
         }
@@ -46,10 +46,10 @@ namespace TruliooSDK.Models
         [JsonProperty("DayOfExpiry")]
         public int? DayOfExpiry 
         { 
-            get => dayOfExpiry;
+            get => _dayOfExpiry;
             set 
             {
-                dayOfExpiry = value;
+                _dayOfExpiry = value;
                 OnPropertyChanged("DayOfExpiry");
             }
         }
@@ -60,10 +60,10 @@ namespace TruliooSDK.Models
         [JsonProperty("MonthOfExpiry")]
         public int? MonthOfExpiry 
         { 
-            get => monthOfExpiry;
+            get => _monthOfExpiry;
             set 
             {
-                monthOfExpiry = value;
+                _monthOfExpiry = value;
                 OnPropertyChanged("MonthOfExpiry");
             }
         }
@@ -74,10 +74,10 @@ namespace TruliooSDK.Models
         [JsonProperty("YearOfExpiry")]
         public int? YearOfExpiry 
         { 
-            get => yearOfExpiry;
+            get => _yearOfExpiry;
             set 
             {
-                yearOfExpiry = value;
+                _yearOfExpiry = value;
                 OnPropertyChanged("YearOfExpiry");
             }
         }

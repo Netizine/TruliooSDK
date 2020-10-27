@@ -5,8 +5,8 @@ namespace TruliooSDK.Models
     public class AppendedField : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string fieldName;
-        private string data;
+        private string _fieldName;
+        private string _data;
 
         /// <summary>
         /// TODO: Write general description for this method
@@ -14,10 +14,10 @@ namespace TruliooSDK.Models
         [JsonProperty("FieldName")]
         public string FieldName 
         { 
-            get => fieldName;
+            get => _fieldName;
             set 
             {
-                fieldName = value;
+                _fieldName = value;
                 OnPropertyChanged("FieldName");
             }
         }
@@ -28,10 +28,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Data")]
         public string Data 
         { 
-            get => data;
+            get => _data;
             set 
             {
-                data = value;
+                _data = value;
                 OnPropertyChanged("Data");
             }
         }

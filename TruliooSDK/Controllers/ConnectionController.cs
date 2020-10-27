@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TruliooSDK.Exceptions;
 using TruliooSDK.Http.Client;
+using TruliooSDK.Http.Request;
 using TruliooSDK.Http.Response;
 using TruliooSDK.Utilities;
 
@@ -25,9 +26,7 @@ namespace TruliooSDK.Controllers
             get
             {
                 lock (SyncObject)
-                {
                     if (null == _instance) _instance = new ConnectionController();
-                }
                 return _instance;
             }
         }
@@ -40,8 +39,8 @@ namespace TruliooSDK.Controllers
         /// <return>Returns the string response from the API call</return>
         public string GetTestAuthentication()
         {
-            var t = GetTestAuthenticationAsync();
-            APIHelper.RunTaskSynchronously(t);
+            Task<string> t = GetTestAuthenticationAsync();
+            TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
 
@@ -74,7 +73,7 @@ namespace TruliooSDK.Controllers
 
 
             //prepare the API call request to fetch the response
-            var request = ClientInstance.Get(queryUrl,headers);
+            HttpRequest request = ClientInstance.Get(queryUrl,headers);
 
             //invoke request and get response
             var response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(request).ConfigureAwait(false);

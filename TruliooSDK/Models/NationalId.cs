@@ -6,12 +6,12 @@ namespace TruliooSDK.Models
     public class NationalId : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string number;
-        private string type;
-        private string districtOfIssue;
-        private string cityOfIssue;
-        private string provinceOfIssue;
-        private string countyOfIssue;
+        private string _number;
+        private string _type;
+        private string _districtOfIssue;
+        private string _cityOfIssue;
+        private string _provinceOfIssue;
+        private string _countyOfIssue;
 
         /// <summary>
         /// TODO: Write general description for this method
@@ -19,10 +19,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Number")]
         public string Number 
         { 
-            get => number;
+            get => _number;
             set 
             {
-                number = value;
+                _number = value;
                 OnPropertyChanged("Number");
             }
         }
@@ -33,10 +33,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Type")]
         public string Type 
         { 
-            get => type;
+            get => _type;
             set 
             {
-                type = value;
+                _type = value;
                 OnPropertyChanged("Type");
             }
         }
@@ -47,10 +47,10 @@ namespace TruliooSDK.Models
         [JsonProperty("DistrictOfIssue")]
         public string DistrictOfIssue 
         { 
-            get => districtOfIssue;
+            get => _districtOfIssue;
             set 
             {
-                districtOfIssue = value;
+                _districtOfIssue = value;
                 OnPropertyChanged("DistrictOfIssue");
             }
         }
@@ -61,10 +61,10 @@ namespace TruliooSDK.Models
         [JsonProperty("CityOfIssue")]
         public string CityOfIssue 
         { 
-            get => cityOfIssue;
+            get => _cityOfIssue;
             set 
             {
-                cityOfIssue = value;
+                _cityOfIssue = value;
                 OnPropertyChanged("CityOfIssue");
             }
         }
@@ -75,10 +75,10 @@ namespace TruliooSDK.Models
         [JsonProperty("ProvinceOfIssue")]
         public string ProvinceOfIssue 
         { 
-            get => provinceOfIssue;
+            get => _provinceOfIssue;
             set 
             {
-                provinceOfIssue = value;
+                _provinceOfIssue = value;
                 OnPropertyChanged("ProvinceOfIssue");
             }
         }
@@ -89,10 +89,10 @@ namespace TruliooSDK.Models
         [JsonProperty("CountyOfIssue")]
         public string CountyOfIssue 
         { 
-            get => countyOfIssue;
+            get => _countyOfIssue;
             set 
             {
-                countyOfIssue = value;
+                _countyOfIssue = value;
                 OnPropertyChanged("CountyOfIssue");
             }
         }

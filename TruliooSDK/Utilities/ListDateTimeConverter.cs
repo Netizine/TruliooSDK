@@ -13,11 +13,11 @@ namespace TruliooSDK.Utilities
         }
         public ListDateTimeConverter(Type converter)
         {
-            this.Converter = (JsonConverter)Activator.CreateInstance(converter);
+            Converter = (JsonConverter)Activator.CreateInstance(converter);
         }
         public ListDateTimeConverter(Type converter,string format)
         {
-            this.Converter = (JsonConverter)Activator.CreateInstance(converter,format);
+            Converter = (JsonConverter)Activator.CreateInstance(converter,format);
         }
         public JsonConverter Converter { get; set; }
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

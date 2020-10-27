@@ -6,8 +6,8 @@ namespace TruliooSDK.Models
     public class NormalizedDatasourceField : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string fieldName;
-        private string type;
+        private string _fieldName;
+        private string _type;
 
         /// <summary>
         /// Field Name
@@ -15,10 +15,10 @@ namespace TruliooSDK.Models
         [JsonProperty("FieldName")]
         public string FieldName 
         { 
-            get => fieldName;
+            get => _fieldName;
             set 
             {
-                fieldName = value;
+                _fieldName = value;
                 OnPropertyChanged("FieldName");
             }
         }
@@ -29,10 +29,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Type")]
         public string Type 
         { 
-            get => type;
+            get => _type;
             set 
             {
-                type = value;
+                _type = value;
                 OnPropertyChanged("Type");
             }
         }

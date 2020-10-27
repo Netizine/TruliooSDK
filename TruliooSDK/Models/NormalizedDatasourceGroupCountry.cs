@@ -4,18 +4,18 @@ using Newtonsoft.Json;
 
 namespace TruliooSDK.Models
 {
-    public class NormalizedDatasourceGroupCountry : BaseModel 
+    public class NormalizedDataSourceGroupCountry : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string name;
-        private string description;
-        private List<NormalizedDatasourceField> requiredFields;
-        private List<NormalizedDatasourceField> optionalFields;
-        private List<NormalizedDatasourceField> appendedFields;
-        private List<NormalizedDatasourceField> outputFields;
-        private string sourceType;
-        private string updateFrequency;
-        private string coverage;
+        private string _name;
+        private string _description;
+        private List<NormalizedDatasourceField> _requiredFields;
+        private List<NormalizedDatasourceField> _optionalFields;
+        private List<NormalizedDatasourceField> _appendedFields;
+        private List<NormalizedDatasourceField> _outputFields;
+        private string _sourceType;
+        private string _updateFrequency;
+        private string _coverage;
 
         /// <summary>
         /// Name
@@ -23,10 +23,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Name")]
         public string Name 
         { 
-            get => name;
+            get => _name;
             set 
             {
-                name = value;
+                _name = value;
                 OnPropertyChanged("Name");
             }
         }
@@ -37,10 +37,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Description")]
         public string Description 
         { 
-            get => description;
+            get => _description;
             set 
             {
-                description = value;
+                _description = value;
                 OnPropertyChanged("Description");
             }
         }
@@ -51,10 +51,10 @@ namespace TruliooSDK.Models
         [JsonProperty("RequiredFields")]
         public List<NormalizedDatasourceField> RequiredFields 
         { 
-            get => requiredFields;
+            get => _requiredFields;
             set 
             {
-                requiredFields = value;
+                _requiredFields = value;
                 OnPropertyChanged("RequiredFields");
             }
         }
@@ -65,10 +65,10 @@ namespace TruliooSDK.Models
         [JsonProperty("OptionalFields")]
         public List<NormalizedDatasourceField> OptionalFields 
         { 
-            get => optionalFields;
+            get => _optionalFields;
             set 
             {
-                optionalFields = value;
+                _optionalFields = value;
                 OnPropertyChanged("OptionalFields");
             }
         }
@@ -79,10 +79,10 @@ namespace TruliooSDK.Models
         [JsonProperty("AppendedFields")]
         public List<NormalizedDatasourceField> AppendedFields 
         { 
-            get => appendedFields;
+            get => _appendedFields;
             set 
             {
-                appendedFields = value;
+                _appendedFields = value;
                 OnPropertyChanged("AppendedFields");
             }
         }
@@ -93,10 +93,10 @@ namespace TruliooSDK.Models
         [JsonProperty("OutputFields")]
         public List<NormalizedDatasourceField> OutputFields 
         { 
-            get => outputFields;
+            get => _outputFields;
             set 
             {
-                outputFields = value;
+                _outputFields = value;
                 OnPropertyChanged("OutputFields");
             }
         }
@@ -107,10 +107,10 @@ namespace TruliooSDK.Models
         [JsonProperty("SourceType")]
         public string SourceType 
         { 
-            get => sourceType;
+            get => _sourceType;
             set 
             {
-                sourceType = value;
+                _sourceType = value;
                 OnPropertyChanged("SourceType");
             }
         }
@@ -121,10 +121,10 @@ namespace TruliooSDK.Models
         [JsonProperty("UpdateFrequency")]
         public string UpdateFrequency 
         { 
-            get => updateFrequency;
+            get => _updateFrequency;
             set 
             {
-                updateFrequency = value;
+                _updateFrequency = value;
                 OnPropertyChanged("UpdateFrequency");
             }
         }
@@ -135,10 +135,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Coverage")]
         public string Coverage 
         { 
-            get => coverage;
+            get => _coverage;
             set 
             {
-                coverage = value;
+                _coverage = value;
                 OnPropertyChanged("Coverage");
             }
         }

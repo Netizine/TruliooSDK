@@ -6,19 +6,19 @@ namespace TruliooSDK.Models
     public class Location : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string buildingNumber;
-        private string buildingName;
-        private string unitNumber;
-        private string streetName;
-        private string streetType;
-        private string city;
-        private string suburb;
-        private string county;
-        private string stateProvinceCode;
-        private string country;
-        private string postalCode;
-        private string pOBox;
-        private LocationAdditionalFields additionalFields;
+        private string _buildingNumber;
+        private string _buildingName;
+        private string _unitNumber;
+        private string _streetName;
+        private string _streetType;
+        private string _city;
+        private string _suburb;
+        private string _county;
+        private string _stateProvinceCode;
+        private string _country;
+        private string _postalCode;
+        private string _pOBox;
+        private LocationAdditionalFields _additionalFields;
 
         /// <summary>
         /// House / Civic / Building number of home address.
@@ -26,10 +26,10 @@ namespace TruliooSDK.Models
         [JsonProperty("BuildingNumber")]
         public string BuildingNumber 
         { 
-            get => buildingNumber;
+            get => _buildingNumber;
             set 
             {
-                buildingNumber = value;
+                _buildingNumber = value;
                 OnPropertyChanged("BuildingNumber");
             }
         }
@@ -40,10 +40,10 @@ namespace TruliooSDK.Models
         [JsonProperty("BuildingName")]
         public string BuildingName 
         { 
-            get => buildingName;
+            get => _buildingName;
             set 
             {
-                buildingName = value;
+                _buildingName = value;
                 OnPropertyChanged("BuildingName");
             }
         }
@@ -54,10 +54,10 @@ namespace TruliooSDK.Models
         [JsonProperty("UnitNumber")]
         public string UnitNumber 
         { 
-            get => unitNumber;
+            get => _unitNumber;
             set 
             {
-                unitNumber = value;
+                _unitNumber = value;
                 OnPropertyChanged("UnitNumber");
             }
         }
@@ -68,10 +68,10 @@ namespace TruliooSDK.Models
         [JsonProperty("StreetName")]
         public string StreetName 
         { 
-            get => streetName;
+            get => _streetName;
             set 
             {
-                streetName = value;
+                _streetName = value;
                 OnPropertyChanged("StreetName");
             }
         }
@@ -82,10 +82,10 @@ namespace TruliooSDK.Models
         [JsonProperty("StreetType")]
         public string StreetType 
         { 
-            get => streetType;
+            get => _streetType;
             set 
             {
-                streetType = value;
+                _streetType = value;
                 OnPropertyChanged("StreetType");
             }
         }
@@ -96,10 +96,10 @@ namespace TruliooSDK.Models
         [JsonProperty("City")]
         public string City 
         { 
-            get => city;
+            get => _city;
             set 
             {
-                city = value;
+                _city = value;
                 OnPropertyChanged("City");
             }
         }
@@ -110,10 +110,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Suburb")]
         public string Suburb 
         { 
-            get => suburb;
+            get => _suburb;
             set 
             {
-                suburb = value;
+                _suburb = value;
                 OnPropertyChanged("Suburb");
             }
         }
@@ -124,10 +124,10 @@ namespace TruliooSDK.Models
         [JsonProperty("County")]
         public string County 
         { 
-            get => county;
+            get => _county;
             set 
             {
-                county = value;
+                _county = value;
                 OnPropertyChanged("County");
             }
         }
@@ -138,10 +138,10 @@ namespace TruliooSDK.Models
         [JsonProperty("StateProvinceCode")]
         public string StateProvinceCode 
         { 
-            get => stateProvinceCode;
+            get => _stateProvinceCode;
             set 
             {
-                stateProvinceCode = value;
+                _stateProvinceCode = value;
                 OnPropertyChanged("StateProvinceCode");
             }
         }
@@ -152,10 +152,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Country")]
         public string Country 
         { 
-            get => country;
+            get => _country;
             set 
             {
-                country = value;
+                _country = value;
                 OnPropertyChanged("Country");
             }
         }
@@ -166,10 +166,10 @@ namespace TruliooSDK.Models
         [JsonProperty("PostalCode")]
         public string PostalCode 
         { 
-            get => postalCode;
+            get => _postalCode;
             set 
             {
-                postalCode = value;
+                _postalCode = value;
                 OnPropertyChanged("PostalCode");
             }
         }
@@ -180,10 +180,10 @@ namespace TruliooSDK.Models
         [JsonProperty("POBox")]
         public string PoBox 
         { 
-            get => pOBox;
+            get => _pOBox;
             set 
             {
-                pOBox = value;
+                _pOBox = value;
                 OnPropertyChanged("POBox");
             }
         }
@@ -194,10 +194,10 @@ namespace TruliooSDK.Models
         [JsonProperty("AdditionalFields")]
         public LocationAdditionalFields AdditionalFields 
         { 
-            get => additionalFields;
+            get => _additionalFields;
             set 
             {
-                additionalFields = value;
+                _additionalFields = value;
                 OnPropertyChanged("AdditionalFields");
             }
         }

@@ -5,9 +5,9 @@ namespace TruliooSDK.Models
     public class Consent : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string name;
-        private string text;
-        private string url;
+        private string _name;
+        private string _text;
+        private string _url;
 
         /// <summary>
         /// Name of the data source requiring consent
@@ -15,10 +15,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Name")]
         public string Name 
         { 
-            get => name;
+            get => _name;
             set 
             {
-                name = value;
+                _name = value;
                 OnPropertyChanged("Name");
             }
         }
@@ -29,10 +29,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Text")]
         public string Text 
         { 
-            get => text;
+            get => _text;
             set 
             {
-                text = value;
+                _text = value;
                 OnPropertyChanged("Text");
             }
         }
@@ -43,10 +43,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Url")]
         public string Url 
         { 
-            get => url;
+            get => _url;
             set 
             {
-                url = value;
+                _url = value;
                 OnPropertyChanged("Url");
             }
         }

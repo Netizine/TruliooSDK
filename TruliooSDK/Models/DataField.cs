@@ -5,9 +5,9 @@ namespace TruliooSDK.Models
     public class DataField : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string fieldName;
-        private string fieldValue;
-        private string fieldGroup;
+        private string _fieldName;
+        private string _fieldValue;
+        private string _fieldGroup;
 
         /// <summary>
         /// TODO: Write general description for this method
@@ -15,10 +15,10 @@ namespace TruliooSDK.Models
         [JsonProperty("FieldName")]
         public string FieldName 
         { 
-            get => fieldName;
+            get => _fieldName;
             set 
             {
-                fieldName = value;
+                _fieldName = value;
                 OnPropertyChanged("FieldName");
             }
         }
@@ -29,10 +29,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Value")]
         public string Value 
         { 
-            get => fieldValue;
+            get => _fieldValue;
             set 
             {
-                fieldValue = value;
+                _fieldValue = value;
                 OnPropertyChanged("Value");
             }
         }
@@ -43,10 +43,10 @@ namespace TruliooSDK.Models
         [JsonProperty("FieldGroup")]
         public string FieldGroup 
         { 
-            get => fieldGroup;
+            get => _fieldGroup;
             set 
             {
-                fieldGroup = value;
+                _fieldGroup = value;
                 OnPropertyChanged("FieldGroup");
             }
         }

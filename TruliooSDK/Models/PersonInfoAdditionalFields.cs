@@ -6,7 +6,7 @@ namespace TruliooSDK.Models
     public class PersonInfoAdditionalFields : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string fullName;
+        private string _fullName;
 
         /// <summary>
         /// Full name of the individual to be verified.
@@ -14,10 +14,10 @@ namespace TruliooSDK.Models
         [JsonProperty("FullName")]
         public string FullName 
         { 
-            get => fullName;
+            get => _fullName;
             set 
             {
-                fullName = value;
+                _fullName = value;
                 OnPropertyChanged("FullName");
             }
         }

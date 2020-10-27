@@ -9,13 +9,13 @@ namespace TruliooSDK.Models
     public class VerifyResult : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string transactionId;
-        private DateTime? uploadedDt;
-        private string countryCode;
-        private string productName;
-        private Record record;
-        private string customerReferenceId;
-        private List<ServiceError> errors;
+        private string _transactionId;
+        private DateTime? _uploadedDt;
+        private string _countryCode;
+        private string _productName;
+        private Record _record;
+        private string _customerReferenceId;
+        private List<ServiceError> _errors;
 
         /// <summary>
         /// The id for the transaction it will be a GUID.
@@ -23,10 +23,10 @@ namespace TruliooSDK.Models
         [JsonProperty("TransactionID")]
         public string TransactionId 
         { 
-            get => transactionId;
+            get => _transactionId;
             set 
             {
-                transactionId = value;
+                _transactionId = value;
                 OnPropertyChanged("TransactionID");
             }
         }
@@ -38,10 +38,10 @@ namespace TruliooSDK.Models
         [JsonProperty("UploadedDt")]
         public DateTime? UploadedDt 
         { 
-            get => uploadedDt;
+            get => _uploadedDt;
             set 
             {
-                uploadedDt = value;
+                _uploadedDt = value;
                 OnPropertyChanged("UploadedDt");
             }
         }
@@ -52,10 +52,10 @@ namespace TruliooSDK.Models
         [JsonProperty("CountryCode")]
         public string CountryCode 
         { 
-            get => countryCode;
+            get => _countryCode;
             set 
             {
-                countryCode = value;
+                _countryCode = value;
                 OnPropertyChanged("CountryCode");
             }
         }
@@ -66,10 +66,10 @@ namespace TruliooSDK.Models
         [JsonProperty("ProductName")]
         public string ProductName 
         { 
-            get => productName;
+            get => _productName;
             set 
             {
-                productName = value;
+                _productName = value;
                 OnPropertyChanged("ProductName");
             }
         }
@@ -80,10 +80,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Record")]
         public Record Record 
         { 
-            get => record;
+            get => _record;
             set 
             {
-                record = value;
+                _record = value;
                 OnPropertyChanged("Record");
             }
         }
@@ -94,10 +94,10 @@ namespace TruliooSDK.Models
         [JsonProperty("CustomerReferenceID")]
         public string CustomerReferenceId 
         { 
-            get => customerReferenceId;
+            get => _customerReferenceId;
             set 
             {
-                customerReferenceId = value;
+                _customerReferenceId = value;
                 OnPropertyChanged("CustomerReferenceID");
             }
         }
@@ -108,10 +108,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Errors")]
         public List<ServiceError> Errors 
         { 
-            get => errors;
+            get => _errors;
             set 
             {
-                errors = value;
+                _errors = value;
                 OnPropertyChanged("Errors");
             }
         }

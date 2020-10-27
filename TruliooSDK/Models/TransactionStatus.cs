@@ -8,11 +8,11 @@ namespace TruliooSDK.Models
     public class TransactionStatus : BaseModel 
     {
         // These fields hold the values for the public properties.
-        private string transactionId;
-        private string transactionRecordId;
-        private string status;
-        private DateTime? uploadedDt;
-        private bool? isTimedOut;
+        private string _transactionId;
+        private string _transactionRecordId;
+        private string _status;
+        private DateTime? _uploadedDt;
+        private bool? _isTimedOut;
 
         /// <summary>
         /// Transaction ID of the transaction.
@@ -20,10 +20,10 @@ namespace TruliooSDK.Models
         [JsonProperty("TransactionId")]
         public string TransactionId 
         { 
-            get => transactionId;
+            get => _transactionId;
             set 
             {
-                transactionId = value;
+                _transactionId = value;
                 OnPropertyChanged("TransactionId");
             }
         }
@@ -34,10 +34,10 @@ namespace TruliooSDK.Models
         [JsonProperty("TransactionRecordId")]
         public string TransactionRecordId 
         { 
-            get => transactionRecordId;
+            get => _transactionRecordId;
             set 
             {
-                transactionRecordId = value;
+                _transactionRecordId = value;
                 OnPropertyChanged("TransactionRecordId");
             }
         }
@@ -48,10 +48,10 @@ namespace TruliooSDK.Models
         [JsonProperty("Status")]
         public string Status 
         { 
-            get => status;
+            get => _status;
             set 
             {
-                status = value;
+                _status = value;
                 OnPropertyChanged("Status");
             }
         }
@@ -63,10 +63,10 @@ namespace TruliooSDK.Models
         [JsonProperty("UploadedDt")]
         public DateTime? UploadedDt 
         { 
-            get => uploadedDt;
+            get => _uploadedDt;
             set 
             {
-                uploadedDt = value;
+                _uploadedDt = value;
                 OnPropertyChanged("UploadedDt");
             }
         }
@@ -77,10 +77,10 @@ namespace TruliooSDK.Models
         [JsonProperty("IsTimedOut")]
         public bool? IsTimedOut 
         { 
-            get => isTimedOut;
+            get => _isTimedOut;
             set 
             {
-                isTimedOut = value;
+                _isTimedOut = value;
                 OnPropertyChanged("IsTimedOut");
             }
         }

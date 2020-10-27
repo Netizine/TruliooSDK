@@ -18,7 +18,6 @@ namespace TruliooSDK.Utilities
 
             var attempts = -1;
             do
-            {
                 try
                 {
                     attempts++;
@@ -32,7 +31,7 @@ namespace TruliooSDK.Utilities
 
                     await Task.Delay(delay).ConfigureAwait(false);
                 }
-            } while (true);
+            while (true);
         }
     }
 }
