@@ -38,7 +38,7 @@ TruliooSDKClient client = new TruliooSDKClient(hostingEnvironment, xTruliooApiKe
 * [ConfigurationController](#configuration_controller)
 * [VerificationsController](#verifications_controller)
 
-## <a name="connection_controller"></a>![Class: ](https://apidocs.io/img/class.png "TruliooSDK.Standard.Controllers.ConnectionController") ConnectionController
+## <a name="connection_controller"></a>![Class: ]("TruliooSDK.Standard.Controllers.ConnectionController") ConnectionController
 
 ### Get singleton instance
 
@@ -48,7 +48,7 @@ The singleton instance of the ``` ConnectionController ``` class can be accessed
 IConnectionController connection = client.Connection;
 ```
 
-### <a name="get_test_authentication"></a>![Method: ](https://apidocs.io/img/method.png "TruliooSDK.Standard.Controllers.ConnectionController.GetTestAuthentication") GetTestAuthentication
+### <a name="get_test_authentication"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConnectionController.GetTestAuthentication") GetTestAuthentication
 
 > This method enables you to check if your credentials are valid. You will need to use ApiKeyAuth authentication to ensure a successful response.
 
@@ -86,7 +86,7 @@ string result = await connection.GetTestAuthentication(mode);
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="configuration_controller"></a>![Class: ](https://apidocs.io/img/class.png "TruliooSDK.Standard.Controllers.ConfigurationController") ConfigurationController
+## <a name="configuration_controller"></a>![Class: ]("TruliooSDK.Standard.Controllers.ConfigurationController") ConfigurationController
 
 ### Get singleton instance
 
@@ -96,7 +96,7 @@ The singleton instance of the ``` ConfigurationController ``` class can be acces
 IConfigurationController configuration = client.Configuration;
 ```
 
-### <a name="get_country_codes"></a>![Method: ](https://apidocs.io/img/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetCountryCodes") GetCountryCodes
+### <a name="get_country_codes"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetCountryCodes") GetCountryCodes
 
 > This method retrieves all the countries that are available to perform a verification. It returns an array of Alpha2 Country Codes
 
@@ -134,7 +134,7 @@ List<string> result = await configuration.GetCountryCodes(mode, configurationNam
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_test_entities"></a>![Method: ](https://apidocs.io/img/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetTestEntities") GetTestEntities
+### <a name="get_test_entities"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetTestEntities") GetTestEntities
 
 > Gets the test entities configured for your product and country.
 
@@ -174,7 +174,7 @@ List<Models.DataFields> result = await configuration.GetTestEntities(mode, confi
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_fields"></a>![Method: ](https://apidocs.io/img/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetFields") GetFields
+### <a name="get_fields"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetFields") GetFields
 
 > Generates json schema for the API, the schema is dynamic based on the country and configuration you are using json-schema.org
 
@@ -214,7 +214,7 @@ object result = await configuration.GetFields(mode, countryCode, configurationNa
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_recommended_fields"></a>![Method: ](https://apidocs.io/img/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetRecommendedFields") GetRecommendedFields
+### <a name="get_recommended_fields"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetRecommendedFields") GetRecommendedFields
 
 > Generates json schema for the API, the schema is dynamic based on the recommendedFields country and account you are using.
 > 
@@ -256,7 +256,7 @@ object result = await configuration.GetRecommendedFields(mode, countryCode, conf
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_consents"></a>![Method: ](https://apidocs.io/img/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetConsents") GetConsents
+### <a name="get_consents"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetConsents") GetConsents
 
 > This method retrieves the consents required for the data sources currently configured in your account configuration. 
 > 
@@ -300,7 +300,7 @@ List<string> result = await configuration.GetConsents(mode, countryCode, configu
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_detailed_consents"></a>![Method: ](https://apidocs.io/img/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetDetailedConsents") GetDetailedConsents
+### <a name="get_detailed_consents"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetDetailedConsents") GetDetailedConsents
 
 > This method retrieves details about consents required for data sources currently configured in your account configuration. 
 > 
@@ -346,7 +346,7 @@ List<Models.Consent> result = await configuration.GetDetailedConsents(mode, coun
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_country_subdivisions"></a>![Method: ](https://apidocs.io/img/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetCountrySubdivisions") GetCountrySubdivisions
+### <a name="get_country_subdivisions"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetCountrySubdivisions") GetCountrySubdivisions
 
 > Gets the provinces states or other subdivisions for a country, mostly matches ISO 3166-2
 
@@ -384,7 +384,7 @@ List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisi
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_datasources"></a>![Method: ](https://apidocs.io/img/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetDatasources") GetDatasources
+### <a name="get_datasources"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetDatasources") GetDatasources
 
 > Gets datasource groups configured for your product and country.
 
@@ -426,7 +426,7 @@ List<Models.NormalizedDatasourceGroupCountry> result = await configuration.GetDa
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="verifications_controller"></a>![Class: ](https://apidocs.io/img/class.png "TruliooSDK.Standard.Controllers.VerificationsController") VerificationsController
+## <a name="verifications_controller"></a>![Class: ]("TruliooSDK.Standard.Controllers.VerificationsController") VerificationsController
 
 ### Get singleton instance
 
@@ -436,7 +436,7 @@ The singleton instance of the ``` VerificationsController ``` class can be acces
 IVerificationsController verifications = client.Verifications;
 ```
 
-### <a name="create_verify"></a>![Method: ](https://apidocs.io/img/method.png "TruliooSDK.Standard.Controllers.VerificationsController.CreateVerify") CreateVerify
+### <a name="create_verify"></a>![Method: ]("TruliooSDK.Standard.Controllers.VerificationsController.CreateVerify") CreateVerify
 
 > Calling this method will perform a verification. If your account includes address cleansing set the CleansedAddress flag to get
 > 
@@ -478,7 +478,7 @@ Models.VerifyResult result = await verifications.CreateVerify(mode, body);
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_transaction_record"></a>![Method: ](https://apidocs.io/img/method.png "TruliooSDK.Standard.Controllers.VerificationsController.GetTransactionRecord") GetTransactionRecord
+### <a name="get_transaction_record"></a>![Method: ]("TruliooSDK.Standard.Controllers.VerificationsController.GetTransactionRecord") GetTransactionRecord
 
 > This method is used to retrieve the request and results of a verification performed using the verify method. 
 > 
