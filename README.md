@@ -1,6 +1,8 @@
 # Getting started
 
-Trulioo SDK
+Unofficial Trulioo C# SDK
+
+[Official SDK](https://github.com/Trulioo/sdk-csharp-v1 "Official SDK")
 
 ## How to Use
 
