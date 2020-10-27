@@ -24,10 +24,10 @@ API client can be initialized as following.
 
 ```csharp
 // Configuration parameters and credentials
-Configuration.Environment hostingEnvironment = TruliooSDK.Configuration.Environment.Trial;
+Mode mode = Mode.Trial; // free trial or live
 string xTruliooApiKey = "xTruliooApiKey"; // Trulioo Api Key
 
-TruliooSDKClient client = new TruliooSDKClient(hostingEnvironment, xTruliooApiKey);
+TruliooSDKClient client = new TruliooSDK.TruliooSDKClient(mode, xTruliooApiKey);
 ```
 
 
@@ -40,7 +40,7 @@ TruliooSDKClient client = new TruliooSDKClient(hostingEnvironment, xTruliooApiKe
 * [ConfigurationController](#configuration_controller)
 * [VerificationsController](#verifications_controller)
 
-## <a name="connection_controller"></a>![Class: ]("TruliooSDK.Standard.Controllers.ConnectionController") ConnectionController
+## <a name="connection_controller"></a>![Class: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/class.png "TruliooSDK.Standard.Controllers.ConnectionController") ConnectionController
 
 ### Get singleton instance
 
@@ -50,28 +50,20 @@ The singleton instance of the ``` ConnectionController ``` class can be accessed
 IConnectionController connection = client.Connection;
 ```
 
-### <a name="get_test_authentication"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConnectionController.GetTestAuthentication") GetTestAuthentication
+### <a name="get_test_authentication"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConnectionController.GetTestAuthentication") GetTestAuthentication
 
 > This method enables you to check if your credentials are valid. You will need to use ApiKeyAuth authentication to ensure a successful response.
 
 
 ```csharp
-Task<string> GetTestAuthentication(string mode)
+Task<string> GetTestAuthentication()
 ```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 
 
 #### Example Usage
 
 ```csharp
-string mode = "trial";
-
-string result = await connection.GetTestAuthentication(mode);
+string result = await connection.GetTestAuthentication();
 
 ```
 
@@ -98,7 +90,7 @@ The singleton instance of the ``` ConfigurationController ``` class can be acces
 IConfigurationController configuration = client.Configuration;
 ```
 
-### <a name="get_country_codes"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetCountryCodes") GetCountryCodes
+### <a name="get_country_codes"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetCountryCodes") GetCountryCodes
 
 > This method retrieves all the countries that are available to perform a verification. It returns an array of Alpha2 Country Codes
 
@@ -111,17 +103,15 @@ Task<List<string>> GetCountryCodes(string mode, string configurationName)
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
 
 
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string configurationName = "Identity Verification";
 
-List<string> result = await configuration.GetCountryCodes(mode, configurationName);
+List<string> result = await configuration.GetCountryCodes(configurationName);
 
 ```
 
@@ -136,7 +126,7 @@ List<string> result = await configuration.GetCountryCodes(mode, configurationNam
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_test_entities"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetTestEntities") GetTestEntities
+### <a name="get_test_entities"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetTestEntities") GetTestEntities
 
 > Gets the test entities configured for your product and country.
 
@@ -149,7 +139,6 @@ Task<List<Models.DataFields>> GetTestEntities(string mode, string configurationN
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
 | countryCode |  ``` Required ```  | Country alpha2 code |
 
@@ -157,11 +146,10 @@ Task<List<Models.DataFields>> GetTestEntities(string mode, string configurationN
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string configurationName = "Identity Verification";
 string countryCode = "countryCode";
 
-List<Models.DataFields> result = await configuration.GetTestEntities(mode, configurationName, countryCode);
+List<Models.DataFields> result = await configuration.GetTestEntities(configurationName, countryCode);
 
 ```
 
@@ -176,7 +164,7 @@ List<Models.DataFields> result = await configuration.GetTestEntities(mode, confi
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_fields"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetFields") GetFields
+### <a name="get_fields"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetFields") GetFields
 
 > Generates json schema for the API, the schema is dynamic based on the country and configuration you are using json-schema.org
 
@@ -189,7 +177,6 @@ Task<object> GetFields(string mode, string countryCode, string configurationName
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | countryCode |  ``` Required ```  | Country alpha2 code |
 | configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
 
@@ -197,11 +184,10 @@ Task<object> GetFields(string mode, string countryCode, string configurationName
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string countryCode = "countryCode";
 string configurationName = "Identity Verification";
 
-object result = await configuration.GetFields(mode, countryCode, configurationName);
+object result = await configuration.GetFields(countryCode, configurationName);
 
 ```
 
@@ -216,7 +202,7 @@ object result = await configuration.GetFields(mode, countryCode, configurationNa
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_recommended_fields"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetRecommendedFields") GetRecommendedFields
+### <a name="get_recommended_fields"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetRecommendedFields") GetRecommendedFields
 
 > Generates json schema for the API, the schema is dynamic based on the recommendedFields country and account you are using.
 > 
@@ -231,7 +217,6 @@ Task<object> GetRecommendedFields(string mode, string countryCode, string config
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | countryCode |  ``` Required ```  | Country alpha2 code |
 | configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
 
@@ -239,11 +224,10 @@ Task<object> GetRecommendedFields(string mode, string countryCode, string config
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string countryCode = "countryCode";
 string configurationName = "Identity Verification";
 
-object result = await configuration.GetRecommendedFields(mode, countryCode, configurationName);
+object result = await configuration.GetRecommendedFields(countryCode, configurationName);
 
 ```
 
@@ -258,7 +242,7 @@ object result = await configuration.GetRecommendedFields(mode, countryCode, conf
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_consents"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetConsents") GetConsents
+### <a name="get_consents"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png  "TruliooSDK.Standard.Controllers.ConfigurationController.GetConsents") GetConsents
 
 > This method retrieves the consents required for the data sources currently configured in your account configuration. 
 > 
@@ -275,7 +259,6 @@ Task<List<string>> GetConsents(string mode, string countryCode, string configura
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | countryCode |  ``` Required ```  | Country alpha2 code |
 | configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
 
@@ -283,11 +266,10 @@ Task<List<string>> GetConsents(string mode, string countryCode, string configura
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string countryCode = "countryCode";
 string configurationName = "Identity Verification";
 
-List<string> result = await configuration.GetConsents(mode, countryCode, configurationName);
+List<string> result = await configuration.GetConsents(countryCode, configurationName);
 
 ```
 
@@ -302,7 +284,7 @@ List<string> result = await configuration.GetConsents(mode, countryCode, configu
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_detailed_consents"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetDetailedConsents") GetDetailedConsents
+### <a name="get_detailed_consents"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetDetailedConsents") GetDetailedConsents
 
 > This method retrieves details about consents required for data sources currently configured in your account configuration. 
 > 
@@ -321,7 +303,6 @@ Task<List<Models.Consent>> GetDetailedConsents(string mode, string countryCode, 
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | countryCode |  ``` Required ```  | Call CountryCodes to get the countries available to you. |
 | configurationName |  ``` Required ```  ``` DefaultValue ```  | Identity Verification |
 
@@ -329,11 +310,10 @@ Task<List<Models.Consent>> GetDetailedConsents(string mode, string countryCode, 
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string countryCode = "countryCode";
 string configurationName = "Identity Verification";
 
-List<Models.Consent> result = await configuration.GetDetailedConsents(mode, countryCode, configurationName);
+List<Models.Consent> result = await configuration.GetDetailedConsents(countryCode, configurationName);
 
 ```
 
@@ -348,7 +328,7 @@ List<Models.Consent> result = await configuration.GetDetailedConsents(mode, coun
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_country_subdivisions"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetCountrySubdivisions") GetCountrySubdivisions
+### <a name="get_country_subdivisions"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetCountrySubdivisions") GetCountrySubdivisions
 
 > Gets the provinces states or other subdivisions for a country, mostly matches ISO 3166-2
 
@@ -361,17 +341,15 @@ Task<List<Models.CountrySubdivision>> GetCountrySubdivisions(string mode, string
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | countryCode |  ``` Required ```  | Country alpha2 code |
 
 
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string countryCode = "countryCode";
 
-List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisions(mode, countryCode);
+List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisions(countryCode);
 
 ```
 
@@ -386,7 +364,7 @@ List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisi
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_datasources"></a>![Method: ]("TruliooSDK.Standard.Controllers.ConfigurationController.GetDatasources") GetDatasources
+### <a name="get_datasources"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetDatasources") GetDatasources
 
 > Gets datasource groups configured for your product and country.
 
@@ -399,7 +377,6 @@ Task<List<Models.NormalizedDatasourceGroupCountry>> GetDatasources(string mode, 
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
 | countryCode |  ``` Required ```  | Country alpha2 code |
 
@@ -407,11 +384,10 @@ Task<List<Models.NormalizedDatasourceGroupCountry>> GetDatasources(string mode, 
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string configurationName = "Identity Verification";
 string countryCode = "countryCode";
 
-List<Models.NormalizedDatasourceGroupCountry> result = await configuration.GetDatasources(mode, configurationName, countryCode);
+List<Models.NormalizedDatasourceGroupCountry> result = await configuration.GetDatasources(configurationName, countryCode);
 
 ```
 
@@ -438,7 +414,7 @@ The singleton instance of the ``` VerificationsController ``` class can be acces
 IVerificationsController verifications = client.Verifications;
 ```
 
-### <a name="create_verify"></a>![Method: ]("TruliooSDK.Standard.Controllers.VerificationsController.CreateVerify") CreateVerify
+### <a name="create_verify"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.VerificationsController.CreateVerify") CreateVerify
 
 > Calling this method will perform a verification. If your account includes address cleansing set the CleansedAddress flag to get
 > 
@@ -455,17 +431,15 @@ Task<Models.VerifyResult> CreateVerify(string mode, Models.VerifyRequest body)
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | body |  ``` Required ```  | TODO: Add a parameter description |
 
 
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 var body = new Models.VerifyRequest();
 
-Models.VerifyResult result = await verifications.CreateVerify(mode, body);
+Models.VerifyResult result = await verifications.CreateVerify(body);
 
 ```
 
@@ -480,7 +454,7 @@ Models.VerifyResult result = await verifications.CreateVerify(mode, body);
 | 500 | An error happened on the server without a specific message. |
 
 
-### <a name="get_transaction_record"></a>![Method: ]("TruliooSDK.Standard.Controllers.VerificationsController.GetTransactionRecord") GetTransactionRecord
+### <a name="get_transaction_record"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.VerificationsController.GetTransactionRecord") GetTransactionRecord
 
 > This method is used to retrieve the request and results of a verification performed using the verify method. 
 > 
@@ -495,17 +469,15 @@ Task<Models.TransactionRecordResult> GetTransactionRecord(string mode, string id
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | id |  ``` Required ```  | The TransactionRecordID from the Verify response, this will be a GUID |
 
 
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string id = "id";
 
-Models.TransactionRecordResult result = await verifications.GetTransactionRecord(mode, id);
+Models.TransactionRecordResult result = await verifications.GetTransactionRecord(id);
 
 ```
 
