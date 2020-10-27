@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>TruliooSDK</id>
+    <version>0.2.0</version>
+    <title>TruliooSDK</title>
+    <authors>Trulioo</authors>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Trulioo C# SDK</description>
+    <summary />
+    <releaseNotes />
+    <copyright>Copyright 2020</copyright>
+    <language>en-US</language>
+        <dependencies>
+        </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\TruliooSDK.dll" target="lib\TruliooSDK.dll" />
+  </files>
+</package>
