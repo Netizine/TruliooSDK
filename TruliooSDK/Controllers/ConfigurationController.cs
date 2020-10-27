@@ -37,12 +37,11 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// This method retrieves all the countries that are available to perform a verification. It returns an array of Alpha2 Country Codes
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <return>Returns the List<string> response from the API call</return>
-        public List<string> GetCountryCodes(string mode, string configurationName)
+        public List<string> GetCountryCodes(string configurationName)
         {
-            var t = GetCountryCodesAsync(mode, configurationName);
+            var t = GetCountryCodesAsync(configurationName);
             APIHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -50,15 +49,11 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// This method retrieves all the countries that are available to perform a verification. It returns an array of Alpha2 Country Codes
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <return>Returns the List<string> response from the API call</return>
-        public async Task<List<string>> GetCountryCodesAsync(string mode, string configurationName)
+        public async Task<List<string>> GetCountryCodesAsync(string configurationName)
         {
             //validating required parameters
-            if (null == mode)
-                throw new ArgumentNullException(nameof(mode), "The parameter \"mode\" is a required parameter and cannot be null.");
-
             if (null == configurationName)
                 throw new ArgumentNullException(nameof(configurationName), "The parameter \"configurationName\" is a required parameter and cannot be null.");
 
@@ -72,7 +67,7 @@ namespace TruliooSDK.Controllers
             //process optional template parameters
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
-                { "mode", mode },
+                { "mode", Configuration.Mode.ToFriendlyString() },
                 { "configurationName", configurationName }
             });
 
@@ -111,13 +106,12 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Gets the test entities configured for your product and country.
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
         /// <return>Returns the List<Models.DataFields> response from the API call</return>
-        public List<Models.DataFields> GetTestEntities(string mode, string configurationName, string countryCode)
+        public List<Models.DataFields> GetTestEntities(string configurationName, string countryCode)
         {
-            var t = GetTestEntitiesAsync(mode, configurationName, countryCode);
+            var t = GetTestEntitiesAsync(configurationName, countryCode);
             APIHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -125,16 +119,12 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Gets the test entities configured for your product and country.
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
         /// <return>Returns the List<Models.DataFields> response from the API call</return>
-        public async Task<List<Models.DataFields>> GetTestEntitiesAsync(string mode, string configurationName, string countryCode)
+        public async Task<List<Models.DataFields>> GetTestEntitiesAsync(string configurationName, string countryCode)
         {
             //validating required parameters
-            if (null == mode)
-                throw new ArgumentNullException(nameof(mode), "The parameter \"mode\" is a required parameter and cannot be null.");
-
             if (null == configurationName)
                 throw new ArgumentNullException(nameof(configurationName), "The parameter \"configurationName\" is a required parameter and cannot be null.");
 
@@ -151,7 +141,7 @@ namespace TruliooSDK.Controllers
             //process optional template parameters
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
-                { "mode", mode },
+                { "mode", Configuration.Mode.ToFriendlyString() },
                 { "configurationName", configurationName },
                 { "countryCode", countryCode }
             });
@@ -191,13 +181,12 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Generates json schema for the API, the schema is dynamic based on the country and configuration you are using json-schema.org
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <return>Returns the object response from the API call</return>
-        public object GetFields(string mode, string countryCode, string configurationName)
+        public object GetFields(string countryCode, string configurationName)
         {
-            var t = GetFieldsAsync(mode, countryCode, configurationName);
+            var t = GetFieldsAsync(countryCode, configurationName);
             APIHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -205,16 +194,12 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Generates json schema for the API, the schema is dynamic based on the country and configuration you are using json-schema.org
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <return>Returns the object response from the API call</return>
-        public async Task<object> GetFieldsAsync(string mode, string countryCode, string configurationName)
+        public async Task<object> GetFieldsAsync(string countryCode, string configurationName)
         {
             //validating required parameters
-            if (null == mode)
-                throw new ArgumentNullException(nameof(mode), "The parameter \"mode\" is a required parameter and cannot be null.");
-
             if (null == countryCode)
                 throw new ArgumentNullException(nameof(countryCode), "The parameter \"countryCode\" is a required parameter and cannot be null.");
 
@@ -231,7 +216,7 @@ namespace TruliooSDK.Controllers
             //process optional template parameters
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
-                { "mode", mode },
+                { "mode", Configuration.Mode.ToFriendlyString() },
                 { "countryCode", countryCode },
                 { "configurationName", configurationName }
             });
@@ -271,13 +256,12 @@ namespace TruliooSDK.Controllers
         /// Generates json schema for the API, the schema is dynamic based on the recommendedFields country and account you are using.
         /// http://json-schema.org/documentation.html
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <return>Returns the object response from the API call</return>
-        public object GetRecommendedFields(string mode, string countryCode, string configurationName)
+        public object GetRecommendedFields(string countryCode, string configurationName)
         {
-            var t = GetRecommendedFieldsAsync(mode, countryCode, configurationName);
+            var t = GetRecommendedFieldsAsync(countryCode, configurationName);
             APIHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -286,16 +270,12 @@ namespace TruliooSDK.Controllers
         /// Generates json schema for the API, the schema is dynamic based on the recommendedFields country and account you are using.
         /// http://json-schema.org/documentation.html
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <return>Returns the object response from the API call</return>
-        public async Task<object> GetRecommendedFieldsAsync(string mode, string countryCode, string configurationName)
+        public async Task<object> GetRecommendedFieldsAsync(string countryCode, string configurationName)
         {
             //validating required parameters
-            if (null == mode)
-                throw new ArgumentNullException(nameof(mode), "The parameter \"mode\" is a required parameter and cannot be null.");
-
             if (null == countryCode)
                 throw new ArgumentNullException(nameof(countryCode), "The parameter \"countryCode\" is a required parameter and cannot be null.");
 
@@ -312,7 +292,7 @@ namespace TruliooSDK.Controllers
             //process optional template parameters
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
-                { "mode", mode },
+                { "mode", Configuration.Mode.ToFriendlyString() },
                 { "countryCode", countryCode },
                 { "configurationName", configurationName }
             });
@@ -353,13 +333,12 @@ namespace TruliooSDK.Controllers
         /// The response for this method contains a collection of string that Verify method's ConsentForDataSources field expects to perform a verification using those data sources. 
         /// Failure to provide an element from the string collection will lead to a 1005 service error
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <return>Returns the List<string> response from the API call</return>
-        public List<string> GetConsents(string mode, string countryCode, string configurationName)
+        public List<string> GetConsents(string countryCode, string configurationName)
         {
-            var t = GetConsentsAsync(mode, countryCode, configurationName);
+            var t = GetConsentsAsync( countryCode, configurationName);
             APIHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -369,16 +348,12 @@ namespace TruliooSDK.Controllers
         /// The response for this method contains a collection of string that Verify method's ConsentForDataSources field expects to perform a verification using those data sources. 
         /// Failure to provide an element from the string collection will lead to a 1005 service error
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <return>Returns the List<string> response from the API call</return>
-        public async Task<List<string>> GetConsentsAsync(string mode, string countryCode, string configurationName)
+        public async Task<List<string>> GetConsentsAsync(string countryCode, string configurationName)
         {
             //validating required parameters
-            if (null == mode)
-                throw new ArgumentNullException(nameof(mode), "The parameter \"mode\" is a required parameter and cannot be null.");
-
             if (null == countryCode)
                 throw new ArgumentNullException(nameof(countryCode), "The parameter \"countryCode\" is a required parameter and cannot be null.");
 
@@ -395,7 +370,7 @@ namespace TruliooSDK.Controllers
             //process optional template parameters
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
-                { "mode", mode },
+                { "mode", Configuration.Mode.ToFriendlyString() },
                 { "countryCode", countryCode },
                 { "configurationName", configurationName }
             });
@@ -439,13 +414,12 @@ namespace TruliooSDK.Controllers
         /// Each object contains the Name of the data source, Text outlining what the user is consenting to, and optionally a Url where the user can find more information about how their data will be used.  
         /// Failure to provide a Name from the object collection will lead to a 1005 service error.
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="countryCode">Required parameter: Call CountryCodes to get the countries available to you.</param>
         /// <param name="configurationName">Required parameter: Identity Verification</param>
         /// <return>Returns the List<Models.Consent> response from the API call</return>
-        public List<Models.Consent> GetDetailedConsents(string mode, string countryCode, string configurationName)
+        public List<Models.Consent> GetDetailedConsents(string countryCode, string configurationName)
         {
-            var t = GetDetailedConsentsAsync(mode, countryCode, configurationName);
+            var t = GetDetailedConsentsAsync(countryCode, configurationName);
             APIHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -456,16 +430,12 @@ namespace TruliooSDK.Controllers
         /// Each object contains the Name of the data source, Text outlining what the user is consenting to, and optionally a Url where the user can find more information about how their data will be used.  
         /// Failure to provide a Name from the object collection will lead to a 1005 service error.
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="countryCode">Required parameter: Call CountryCodes to get the countries available to you.</param>
         /// <param name="configurationName">Required parameter: Identity Verification</param>
         /// <return>Returns the List<Models.Consent> response from the API call</return>
-        public async Task<List<Models.Consent>> GetDetailedConsentsAsync(string mode, string countryCode, string configurationName)
+        public async Task<List<Models.Consent>> GetDetailedConsentsAsync(string countryCode, string configurationName)
         {
             //validating required parameters
-            if (null == mode)
-                throw new ArgumentNullException(nameof(mode), "The parameter \"mode\" is a required parameter and cannot be null.");
-
             if (null == countryCode)
                 throw new ArgumentNullException(nameof(countryCode), "The parameter \"countryCode\" is a required parameter and cannot be null.");
 
@@ -482,7 +452,7 @@ namespace TruliooSDK.Controllers
             //process optional template parameters
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
-                { "mode", mode },
+                { "mode", Configuration.Mode.ToFriendlyString() },
                 { "countryCode", countryCode },
                 { "configurationName", configurationName }
             });
@@ -522,12 +492,11 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Gets the provinces states or other subdivisions for a country, mostly matches ISO 3166-2
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
         /// <return>Returns the List<Models.CountrySubdivision> response from the API call</return>
-        public List<Models.CountrySubdivision> GetCountrySubdivisions(string mode, string countryCode)
+        public List<Models.CountrySubdivision> GetCountrySubdivisions(string countryCode)
         {
-            var t = GetCountrySubdivisionsAsync(mode, countryCode);
+            var t = GetCountrySubdivisionsAsync(countryCode);
             APIHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -535,15 +504,11 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Gets the provinces states or other subdivisions for a country, mostly matches ISO 3166-2
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
         /// <return>Returns the List<Models.CountrySubdivision> response from the API call</return>
-        public async Task<List<Models.CountrySubdivision>> GetCountrySubdivisionsAsync(string mode, string countryCode)
+        public async Task<List<Models.CountrySubdivision>> GetCountrySubdivisionsAsync(string countryCode)
         {
             //validating required parameters
-            if (null == mode)
-                throw new ArgumentNullException(nameof(mode), "The parameter \"mode\" is a required parameter and cannot be null.");
-
             if (null == countryCode)
                 throw new ArgumentNullException(nameof(countryCode), "The parameter \"countryCode\" is a required parameter and cannot be null.");
 
@@ -557,7 +522,7 @@ namespace TruliooSDK.Controllers
             //process optional template parameters
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
-                { "mode", mode },
+                { "mode", Configuration.Mode.ToFriendlyString() },
                 { "countryCode", countryCode }
             });
 
@@ -596,13 +561,12 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Gets datasource groups configured for your product and country.
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
         /// <return>Returns the List<Models.NormalizedDatasourceGroupCountry> response from the API call</return>
-        public List<Models.NormalizedDatasourceGroupCountry> GetDataSources(string mode, string configurationName, string countryCode)
+        public List<Models.NormalizedDatasourceGroupCountry> GetDataSources(string configurationName, string countryCode)
         {
-            var t = GetDataSourcesAsync(mode, configurationName, countryCode);
+            var t = GetDataSourcesAsync(configurationName, countryCode);
             APIHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -610,16 +574,12 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Gets datasource groups configured for your product and country.
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
         /// <param name="countryCode">Required parameter: Country alpha2 code</param>
         /// <return>Returns the List<Models.NormalizedDatasourceGroupCountry> response from the API call</return>
-        public async Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSourcesAsync(string mode, string configurationName, string countryCode)
+        public async Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSourcesAsync(string configurationName, string countryCode)
         {
             //validating required parameters
-            if (null == mode)
-                throw new ArgumentNullException(nameof(mode), "The parameter \"mode\" is a required parameter and cannot be null.");
-
             if (null == configurationName)
                 throw new ArgumentNullException(nameof(configurationName), "The parameter \"configurationName\" is a required parameter and cannot be null.");
 
@@ -636,7 +596,7 @@ namespace TruliooSDK.Controllers
             //process optional template parameters
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
-                { "mode", mode },
+                { "mode", Configuration.Mode.ToFriendlyString() },
                 { "configurationName", configurationName },
                 { "countryCode", countryCode }
             });

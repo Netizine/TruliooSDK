@@ -6,7 +6,6 @@ namespace TruliooSDK
 {
     public class TruliooSDKClient: ITruliooSDKClient
     {
-        public Configuration.Environment HostingEnvironment { get; }
 
         /// <summary>
         /// Singleton access to Connection controller
@@ -40,10 +39,9 @@ namespace TruliooSDK
         /// <summary>
         /// Client initialization constructor
         /// </summary>
-        public TruliooSDKClient(Configuration.Environment hostingEnvironment, string xTruliooApiKey)
+        public TruliooSDKClient(Mode mode, string xTruliooApiKey)
         {
-            HostingEnvironment = hostingEnvironment;
-            TruliooSDK.Configuration.HostingEnvironment = hostingEnvironment;
+            TruliooSDK.Configuration.Mode = mode;
             TruliooSDK.Configuration.XTruliooApiKey = xTruliooApiKey;
         }
         #endregion

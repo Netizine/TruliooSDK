@@ -88,7 +88,7 @@ string result = await connection.GetTestAuthentication(mode);
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="configuration_controller"></a>![Class: ]("TruliooSDK.Standard.Controllers.ConfigurationController") ConfigurationController
+## <a name="configuration_controller"></a>![Class: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/class.png "TruliooSDK.Standard.Controllers.ConfigurationController") ConfigurationController
 
 ### Get singleton instance
 
@@ -428,7 +428,7 @@ List<Models.NormalizedDatasourceGroupCountry> result = await configuration.GetDa
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="verifications_controller"></a>![Class: ]("TruliooSDK.Standard.Controllers.VerificationsController") VerificationsController
+## <a name="verifications_controller"></a>![Class: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/class.png "TruliooSDK.Standard.Controllers.VerificationsController") VerificationsController
 
 ### Get singleton instance
 

@@ -50,6 +50,8 @@ namespace TruliooSDK.Controllers
                     throw new APIException(@"Your request could not be processed, there should be more details in the response.", context);
                 case 401:
                     throw new APIException(@"The user name and password you provided is not valid or you are using an account not configured to be an API user.", context);
+                case 403:
+                    throw new APIException(@"The requested resource is forbidden.", context);
                 case 408:
                     throw new APIException(@"The request took longer to process than we waited.", context);
                 case 415:

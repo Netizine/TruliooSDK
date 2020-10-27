@@ -37,11 +37,10 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// This method enables you to check if your credentials are valid. You will need to use ApiKeyAuth authentication to ensure a successful response.
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <return>Returns the string response from the API call</return>
-        public string GetTestAuthentication(string mode)
+        public string GetTestAuthentication()
         {
-            var t = GetTestAuthenticationAsync(mode);
+            var t = GetTestAuthenticationAsync();
             APIHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -49,14 +48,9 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// This method enables you to check if your credentials are valid. You will need to use ApiKeyAuth authentication to ensure a successful response.
         /// </summary>
-        /// <param name="mode">Required parameter: free trial or live</param>
         /// <return>Returns the string response from the API call</return>
-        public async Task<string> GetTestAuthenticationAsync(string mode)
+        public async Task<string> GetTestAuthenticationAsync()
         {
-            //validating required parameters
-            if (null == mode)
-                throw new ArgumentNullException(nameof(mode), "The parameter \"mode\" is a required parameter and cannot be null.");
-
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
 
@@ -65,9 +59,10 @@ namespace TruliooSDK.Controllers
             queryBuilder.Append("/{mode}/connection/v1/testauthentication");
 
             //process optional template parameters
+
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
-                { "mode", mode }
+                { "mode", Configuration.Mode.ToFriendlyString() }
             });
 
 
