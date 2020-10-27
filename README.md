@@ -24,10 +24,10 @@ API client can be initialized as following.
 
 ```csharp
 // Configuration parameters and credentials
-Configuration.Environment hostingEnvironment = TruliooSDK.Configuration.Environment.Trial;
+Mode mode = Mode.Trial; // free trial or live
 string xTruliooApiKey = "xTruliooApiKey"; // Trulioo Api Key
 
-TruliooSDKClient client = new TruliooSDKClient(hostingEnvironment, xTruliooApiKey);
+TruliooSDKClient client = new TruliooSDK.TruliooSDKClient(mode, xTruliooApiKey);
 ```
 
 
@@ -56,22 +56,14 @@ IConnectionController connection = client.Connection;
 
 
 ```csharp
-Task<string> GetTestAuthentication(string mode)
+Task<string> GetTestAuthentication()
 ```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 
 
 #### Example Usage
 
 ```csharp
-string mode = "trial";
-
-string result = await connection.GetTestAuthentication(mode);
+string result = await connection.GetTestAuthentication();
 
 ```
 
@@ -111,17 +103,15 @@ Task<List<string>> GetCountryCodes(string mode, string configurationName)
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
 
 
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string configurationName = "Identity Verification";
 
-List<string> result = await configuration.GetCountryCodes(mode, configurationName);
+List<string> result = await configuration.GetCountryCodes(configurationName);
 
 ```
 
@@ -149,7 +139,6 @@ Task<List<Models.DataFields>> GetTestEntities(string mode, string configurationN
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
 | countryCode |  ``` Required ```  | Country alpha2 code |
 
@@ -157,11 +146,10 @@ Task<List<Models.DataFields>> GetTestEntities(string mode, string configurationN
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string configurationName = "Identity Verification";
 string countryCode = "countryCode";
 
-List<Models.DataFields> result = await configuration.GetTestEntities(mode, configurationName, countryCode);
+List<Models.DataFields> result = await configuration.GetTestEntities(configurationName, countryCode);
 
 ```
 
@@ -189,7 +177,6 @@ Task<object> GetFields(string mode, string countryCode, string configurationName
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | countryCode |  ``` Required ```  | Country alpha2 code |
 | configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
 
@@ -197,11 +184,10 @@ Task<object> GetFields(string mode, string countryCode, string configurationName
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string countryCode = "countryCode";
 string configurationName = "Identity Verification";
 
-object result = await configuration.GetFields(mode, countryCode, configurationName);
+object result = await configuration.GetFields(countryCode, configurationName);
 
 ```
 
@@ -231,7 +217,6 @@ Task<object> GetRecommendedFields(string mode, string countryCode, string config
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | countryCode |  ``` Required ```  | Country alpha2 code |
 | configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
 
@@ -239,11 +224,10 @@ Task<object> GetRecommendedFields(string mode, string countryCode, string config
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string countryCode = "countryCode";
 string configurationName = "Identity Verification";
 
-object result = await configuration.GetRecommendedFields(mode, countryCode, configurationName);
+object result = await configuration.GetRecommendedFields(countryCode, configurationName);
 
 ```
 
@@ -275,7 +259,6 @@ Task<List<string>> GetConsents(string mode, string countryCode, string configura
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | countryCode |  ``` Required ```  | Country alpha2 code |
 | configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
 
@@ -283,11 +266,10 @@ Task<List<string>> GetConsents(string mode, string countryCode, string configura
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string countryCode = "countryCode";
 string configurationName = "Identity Verification";
 
-List<string> result = await configuration.GetConsents(mode, countryCode, configurationName);
+List<string> result = await configuration.GetConsents(countryCode, configurationName);
 
 ```
 
@@ -321,7 +303,6 @@ Task<List<Models.Consent>> GetDetailedConsents(string mode, string countryCode, 
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | countryCode |  ``` Required ```  | Call CountryCodes to get the countries available to you. |
 | configurationName |  ``` Required ```  ``` DefaultValue ```  | Identity Verification |
 
@@ -329,11 +310,10 @@ Task<List<Models.Consent>> GetDetailedConsents(string mode, string countryCode, 
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string countryCode = "countryCode";
 string configurationName = "Identity Verification";
 
-List<Models.Consent> result = await configuration.GetDetailedConsents(mode, countryCode, configurationName);
+List<Models.Consent> result = await configuration.GetDetailedConsents(countryCode, configurationName);
 
 ```
 
@@ -361,17 +341,15 @@ Task<List<Models.CountrySubdivision>> GetCountrySubdivisions(string mode, string
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | countryCode |  ``` Required ```  | Country alpha2 code |
 
 
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string countryCode = "countryCode";
 
-List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisions(mode, countryCode);
+List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisions(countryCode);
 
 ```
 
@@ -399,7 +377,6 @@ Task<List<Models.NormalizedDatasourceGroupCountry>> GetDatasources(string mode, 
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
 | countryCode |  ``` Required ```  | Country alpha2 code |
 
@@ -407,11 +384,10 @@ Task<List<Models.NormalizedDatasourceGroupCountry>> GetDatasources(string mode, 
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string configurationName = "Identity Verification";
 string countryCode = "countryCode";
 
-List<Models.NormalizedDatasourceGroupCountry> result = await configuration.GetDatasources(mode, configurationName, countryCode);
+List<Models.NormalizedDatasourceGroupCountry> result = await configuration.GetDatasources(configurationName, countryCode);
 
 ```
 
@@ -455,17 +431,15 @@ Task<Models.VerifyResult> CreateVerify(string mode, Models.VerifyRequest body)
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | body |  ``` Required ```  | TODO: Add a parameter description |
 
 
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 var body = new Models.VerifyRequest();
 
-Models.VerifyResult result = await verifications.CreateVerify(mode, body);
+Models.VerifyResult result = await verifications.CreateVerify(body);
 
 ```
 
@@ -495,17 +469,15 @@ Task<Models.TransactionRecordResult> GetTransactionRecord(string mode, string id
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| mode |  ``` Required ```  ``` DefaultValue ```  | free trial or live |
 | id |  ``` Required ```  | The TransactionRecordID from the Verify response, this will be a GUID |
 
 
 #### Example Usage
 
 ```csharp
-string mode = "trial";
 string id = "id";
 
-Models.TransactionRecordResult result = await verifications.GetTransactionRecord(mode, id);
+Models.TransactionRecordResult result = await verifications.GetTransactionRecord(id);
 
 ```
 
