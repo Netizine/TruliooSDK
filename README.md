@@ -27,7 +27,7 @@ API client can be initialized as following.
 Mode mode = Mode.Trial; // free trial or live
 string xTruliooApiKey = "xTruliooApiKey"; // Trulioo Api Key
 
-TruliooSDKClient client = new TruliooSDK.TruliooSDKClient(mode, xTruliooApiKey);
+var client = new TruliooSDK.TruliooSDKClient(mode, xTruliooApiKey);
 ```
 
 
@@ -57,6 +57,7 @@ IConnectionController connection = client.Connection;
 
 ```csharp
 string GetTestAuthentication();
+//Async
 Task<string> GetTestAuthenticationAsync();
 ```
 
@@ -65,7 +66,6 @@ Task<string> GetTestAuthenticationAsync();
 
 ```csharp
 string result = await connection.GetTestAuthenticationAsync();
-
 ```
 
 [Back to List of Controllers](#list_of_controllers)
@@ -77,7 +77,7 @@ string result = await connection.GetTestAuthenticationAsync();
 The singleton instance of the ``` ConfigurationController ``` class can be accessed from the API Client.
 
 ```csharp
-IConfigurationController configuration = client.Configuration;
+var configuration = client.Configuration;
 ```
 
 ### <a name="get_country_codes"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetCountryCodes") GetCountryCodes
@@ -87,6 +87,7 @@ IConfigurationController configuration = client.Configuration;
 
 ```csharp
 List<Country> GetCountryCodes();
+//Async
 Task<List<Country>> GetCountryCodesAsync();
 ```
 
@@ -100,7 +101,7 @@ Task<List<Country>> GetCountryCodesAsync();
 #### Example Usage
 
 ```csharp
-List<string> result = await configuration.GetCountryCodesAsync();
+var result = await configuration.GetCountryCodesAsync();
 
 ```
 
@@ -111,6 +112,7 @@ List<string> result = await configuration.GetCountryCodesAsync();
 
 ```csharp
 List<Models.DataFields> GetTestEntities(Country.GreatBritain);
+//Async
 Task<List<Models.DataFields>> GetTestEntitiesAsync(Country.GreatBritain);
 ```
 
@@ -125,9 +127,7 @@ Task<List<Models.DataFields>> GetTestEntitiesAsync(Country.GreatBritain);
 #### Example Usage
 
 ```csharp
-
-List<Models.DataFields> result = await configuration.GetTestEntitiesAsync(Country.GreatBritain);
-
+var result = await configuration.GetTestEntitiesAsync(Country.GreatBritain);
 ```
 
 ### <a name="get_fields"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetFields") GetFields
@@ -137,6 +137,7 @@ List<Models.DataFields> result = await configuration.GetTestEntitiesAsync(Countr
 
 ```csharp
 object GetFields(Country.GreatBritain);
+//Async
 Task<object> GetFieldsAsync(Country.GreatBritain);
 ```
 
@@ -151,9 +152,7 @@ Task<object> GetFieldsAsync(Country.GreatBritain);
 #### Example Usage
 
 ```csharp
-
 object result = await configuration.GetFieldsAsync(Country.GreatBritain);
-
 ```
 
 ### <a name="get_recommended_fields"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetRecommendedFields") GetRecommendedFields
@@ -179,9 +178,7 @@ Task<object> GetRecommendedFieldsAsync(Country.GreatBritain);
 #### Example Usage
 
 ```csharp
-
-object result = await configuration.GetRecommendedFieldsAsync(Country.GreatBritain);
-
+var result = await configuration.GetRecommendedFieldsAsync(Country.GreatBritain);
 ```
 
 
@@ -196,6 +193,7 @@ object result = await configuration.GetRecommendedFieldsAsync(Country.GreatBrita
 
 ```csharp
 List<string> GetConsents(Country.GreatBritain);
+//Async
 Task<List<string>> GetConsentsAsync(Country.GreatBritain);
 ```
 
@@ -210,9 +208,7 @@ Task<List<string>> GetConsentsAsync(Country.GreatBritain);
 #### Example Usage
 
 ```csharp
-
-List<string> result = await configuration.GetConsentsAsync(Country.GreatBritain);
-
+var result = await configuration.GetConsentsAsync(Country.GreatBritain);
 ```
 
 ### <a name="get_detailed_consents"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetDetailedConsents") GetDetailedConsents
@@ -228,6 +224,7 @@ List<string> result = await configuration.GetConsentsAsync(Country.GreatBritain)
 
 ```csharp
 List<Models.Consent> GetDetailedConsents(Country.GreatBritain);
+//Async
 Task<List<Models.Consent>> GetDetailedConsentsAsync(Country.GreatBritain);
 ```
 
@@ -242,9 +239,7 @@ Task<List<Models.Consent>> GetDetailedConsentsAsync(Country.GreatBritain);
 #### Example Usage
 
 ```csharp
-
-List<Models.Consent> result = await configuration.GetDetailedConsentsAsync(Country.GreatBritain);
-
+var result = await configuration.GetDetailedConsentsAsync(Country.GreatBritain);
 ```
 
 
@@ -255,6 +250,7 @@ List<Models.Consent> result = await configuration.GetDetailedConsentsAsync(Count
 
 ```csharp
 List<Models.CountrySubdivision> GetCountrySubdivisions(Country.GreatBritain);
+//Async
 Task<List<Models.CountrySubdivision>> GetCountrySubdivisionsAsync(Country.GreatBritain);
 ```
 
@@ -268,9 +264,7 @@ Task<List<Models.CountrySubdivision>> GetCountrySubdivisionsAsync(Country.GreatB
 #### Example Usage
 
 ```csharp
-
-List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisionsAsync(Country.GreatBritain);
-
+var result = await configuration.GetCountrySubdivisionsAsync(Country.GreatBritain);
 ```
 
 ### <a name="get_datasources"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetDatasources") GetDatasources
@@ -280,6 +274,7 @@ List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisi
 
 ```csharp
 List<Models.NormalizedDatasourceGroupCountry> GetDataSources(Country.GreatBritain);
+//Async
 Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSourcesAsync(Country.GreatBritain);
 ```
 
@@ -294,9 +289,7 @@ Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSourcesAsync(Country.
 #### Example Usage
 
 ```csharp
-
-List<Models.NormalizedDatasourceGroupCountry> result = await configuration.GetDataSourcesAsync(Country.GreatBritain);
-
+var result = await configuration.GetDataSourcesAsync(Country.GreatBritain);
 ```
 
 [Back to List of Controllers](#list_of_controllers)
@@ -322,6 +315,7 @@ IVerificationsController verifications = client.Verifications;
 
 ```csharp
 Models.VerifyResult CreateVerify(VerifyRequest body);
+//Async
 Task<Models.VerifyResult> CreateVerifyAsync(VerifyRequest body);
 ```
 
@@ -371,7 +365,6 @@ verifyRequest.DataFields.Location.PoBox = null;
 verifyRequest.DataFields.Location.AdditionalFields = null;
 
 var result = await truliooClient.Verifications.CreateVerifyAsync(verifyRequest);
-
 ```
 
 ### <a name="get_transaction_record"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.VerificationsController.GetTransactionRecord") GetTransactionRecord
@@ -383,6 +376,7 @@ var result = await truliooClient.Verifications.CreateVerifyAsync(verifyRequest);
 
 ```csharp
 Models.TransactionRecordResult GetTransactionRecord(string id);
+//Async
 Task<Models.TransactionRecordResult> GetTransactionRecordAsync(string id);
 ```
 
@@ -398,7 +392,7 @@ Task<Models.TransactionRecordResult> GetTransactionRecordAsync(string id);
 ```csharp
 string id = "id";
 
-Models.TransactionRecordResult result = await verifications.GetTransactionRecordAsync(id);
+var result = await verifications.GetTransactionRecordAsync(id);
 
 ```
 #### Errors
