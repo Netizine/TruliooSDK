@@ -1,8 +1,8 @@
 # Getting started
 
-Unofficial Trulioo C# SDK
+Unofficial Trulioo C# SDK. 
 
-[Official SDK](https://github.com/Trulioo/sdk-csharp-v1 "Official SDK")
+This is the link to the [Official SDK](https://github.com/Trulioo/sdk-csharp-v1 "Official SDK")
 
 ## How to Use
 
@@ -15,7 +15,7 @@ In order to setup authentication and initialization of the API client, you need 
 
 | Parameter | Description |
 |-----------|-------------|
-| hostingEnvironment | Trulioo Hosting Environment |
+| mode | Trulioo Mode |
 | xTruliooApiKey | Trulioo Api Key |
 
 
@@ -92,26 +92,24 @@ IConfigurationController configuration = client.Configuration;
 
 ### <a name="get_country_codes"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetCountryCodes") GetCountryCodes
 
-> This method retrieves all the countries that are available to perform a verification. It returns an array of Alpha2 Country Codes
+> This method retrieves all the countries that are available to perform a verification. It returns a collection of the supported countries
 
 
 ```csharp
-Task<List<string>> GetCountryCodes(string mode, string configurationName)
+Task<List<string>> GetCountryCodes()
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
+| configurationName |  ``` Optional ```  ``` DefaultValue ```  | The product configuration. Currently defaults to "Identity Verification" for all products. |
 
 
 #### Example Usage
 
 ```csharp
-string configurationName = "Identity Verification";
-
-List<string> result = await configuration.GetCountryCodes(configurationName);
+List<string> result = await configuration.GetCountryCodes();
 
 ```
 
@@ -132,24 +130,22 @@ List<string> result = await configuration.GetCountryCodes(configurationName);
 
 
 ```csharp
-Task<List<Models.DataFields>> GetTestEntities(string mode, string configurationName, string countryCode)
+Task<List<Models.DataFields>> GetTestEntities(Country.GreatBritain)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
-| countryCode |  ``` Required ```  | Country alpha2 code |
+| configurationName |  ``` Optional ```  ``` DefaultValue ```  | The product configuration. Currently defaults to "Identity Verification" for all products. |
+| country|  ``` Required ```  | Country enum |
 
 
 #### Example Usage
 
 ```csharp
-string configurationName = "Identity Verification";
-string countryCode = "countryCode";
 
-List<Models.DataFields> result = await configuration.GetTestEntities(configurationName, countryCode);
+List<Models.DataFields> result = await configuration.GetTestEntities(Country.GreatBritain);
 
 ```
 
@@ -170,24 +166,22 @@ List<Models.DataFields> result = await configuration.GetTestEntities(configurati
 
 
 ```csharp
-Task<object> GetFields(string mode, string countryCode, string configurationName)
+Task<object> GetFields(Country.GreatBritain)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| countryCode |  ``` Required ```  | Country alpha2 code |
-| configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
+| country|  ``` Required ```  | Country enum |
+| configurationName |  ``` Optional ```  ``` DefaultValue ```  | The product configuration. Currently defaults to "Identity Verification" for all products. |
 
 
 #### Example Usage
 
 ```csharp
-string countryCode = "countryCode";
-string configurationName = "Identity Verification";
 
-object result = await configuration.GetFields(countryCode, configurationName);
+object result = await configuration.GetFields(Country.GreatBritain);
 
 ```
 
@@ -210,24 +204,22 @@ object result = await configuration.GetFields(countryCode, configurationName);
 
 
 ```csharp
-Task<object> GetRecommendedFields(string mode, string countryCode, string configurationName)
+Task<object> GetRecommendedFields(Country.GreatBritain)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| countryCode |  ``` Required ```  | Country alpha2 code |
-| configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
+| country |  ``` Required ```  | Country enum |
+| configurationName |  ``` Optional ```  ``` DefaultValue ```  | The product configuration. Currently defaults to "Identity Verification" for all products. |
 
 
 #### Example Usage
 
 ```csharp
-string countryCode = "countryCode";
-string configurationName = "Identity Verification";
 
-object result = await configuration.GetRecommendedFields(countryCode, configurationName);
+object result = await configuration.GetRecommendedFields(Country.GreatBritain);
 
 ```
 
@@ -252,24 +244,22 @@ object result = await configuration.GetRecommendedFields(countryCode, configurat
 
 
 ```csharp
-Task<List<string>> GetConsents(string mode, string countryCode, string configurationName)
+Task<List<string>> GetConsents(Country.GreatBritain)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| countryCode |  ``` Required ```  | Country alpha2 code |
-| configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
+| country|  ``` Required ```  | Country enum |
+| configurationName |  ``` Optional ```  ``` DefaultValue ```  | The product configuration. Currently defaults to "Identity Verification" for all products. |
 
 
 #### Example Usage
 
 ```csharp
-string countryCode = "countryCode";
-string configurationName = "Identity Verification";
 
-List<string> result = await configuration.GetConsents(countryCode, configurationName);
+List<string> result = await configuration.GetConsents(Country.GreatBritain);
 
 ```
 
@@ -296,24 +286,22 @@ List<string> result = await configuration.GetConsents(countryCode, configuration
 
 
 ```csharp
-Task<List<Models.Consent>> GetDetailedConsents(string mode, string countryCode, string configurationName)
+Task<List<Models.Consent>> GetDetailedConsents(Country.GreatBritain)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| countryCode |  ``` Required ```  | Call CountryCodes to get the countries available to you. |
-| configurationName |  ``` Required ```  ``` DefaultValue ```  | Identity Verification |
+| country |  ``` Required ```  | Call CountryCodes to get the countries available to you. |
+| configurationName |  ``` Optional ```  ``` DefaultValue ```  | Currentlt defailts to Identity Verification |
 
 
 #### Example Usage
 
 ```csharp
-string countryCode = "countryCode";
-string configurationName = "Identity Verification";
 
-List<Models.Consent> result = await configuration.GetDetailedConsents(countryCode, configurationName);
+List<Models.Consent> result = await configuration.GetDetailedConsents(Country.GreatBritain);
 
 ```
 
@@ -334,22 +322,21 @@ List<Models.Consent> result = await configuration.GetDetailedConsents(countryCod
 
 
 ```csharp
-Task<List<Models.CountrySubdivision>> GetCountrySubdivisions(string mode, string countryCode)
+Task<List<Models.CountrySubdivision>> GetCountrySubdivisions(Country.GreatBritain)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| countryCode |  ``` Required ```  | Country alpha2 code |
+| country |  ``` Required ```  | Country enum |
 
 
 #### Example Usage
 
 ```csharp
-string countryCode = "countryCode";
 
-List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisions(countryCode);
+List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisions(Country.GreatBritain);
 
 ```
 
@@ -370,24 +357,22 @@ List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisi
 
 
 ```csharp
-Task<List<Models.NormalizedDatasourceGroupCountry>> GetDatasources(string mode, string configurationName, string countryCode)
+Task<List<Models.NormalizedDatasourceGroupCountry>> GetDatasources(Country.GreatBritain)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| configurationName |  ``` Required ```  ``` DefaultValue ```  | The product configuration. Currently "Identity Verification" for all products. |
-| countryCode |  ``` Required ```  | Country alpha2 code |
+| configurationName |  ``` Optional ```  ``` DefaultValue ```  | The product configuration. Currently defaults to "Identity Verification" for all products. |
+| country |  ``` Required ```  | Country enum |
 
 
 #### Example Usage
 
 ```csharp
-string configurationName = "Identity Verification";
-string countryCode = "countryCode";
 
-List<Models.NormalizedDatasourceGroupCountry> result = await configuration.GetDatasources(configurationName, countryCode);
+List<Models.NormalizedDatasourceGroupCountry> result = await configuration.GetDatasources(Country.GreatBritain);
 
 ```
 
@@ -424,7 +409,7 @@ IVerificationsController verifications = client.Verifications;
 
 
 ```csharp
-Task<Models.VerifyResult> CreateVerify(string mode, Models.VerifyRequest body)
+Task<Models.VerifyResult> CreateVerify(VerifyRequest body)
 ```
 
 #### Parameters
@@ -437,7 +422,41 @@ Task<Models.VerifyResult> CreateVerify(string mode, Models.VerifyRequest body)
 #### Example Usage
 
 ```csharp
-var body = new Models.VerifyRequest();
+var verifyRequest = new VerifyRequest
+{
+    AcceptTruliooTermsAndConditions = true,
+    Country = Country.GreatBritain,
+    CustomerReferenceId = "Test",
+    DataFields = new DataFields
+    {
+        PersonInfo = new PersonInfo(),
+        Location = new Location(),
+        Communication = new Communication(),
+        Passport = new Passport()
+    }
+};
+verifyRequest.DataFields.PersonInfo.FirstGivenName = "Jim";
+verifyRequest.DataFields.PersonInfo.FirstSurName = "Bob";
+verifyRequest.DataFields.PersonInfo.MiddleName = "H";
+verifyRequest.DataFields.PersonInfo.DayOfBirth =13;
+verifyRequest.DataFields.PersonInfo.MonthOfBirth = 5;
+verifyRequest.DataFields.PersonInfo.YearOfBirth = 1990;
+verifyRequest.DataFields.PersonInfo.MinimumAge = 90;
+
+verifyRequest.DataFields.Location.BuildingNumber = "20";
+verifyRequest.DataFields.Location.BuildingName = "HHHH";
+verifyRequest.DataFields.Location.City = "FFFFF";
+verifyRequest.DataFields.Location.County = "GGGGG";
+verifyRequest.DataFields.Location.StateProvinceCode = "55555";
+verifyRequest.DataFields.Location.PostalCode = "PPPPP";
+verifyRequest.DataFields.Location.Country = "England";
+
+verifyRequest.DataFields.Communication.EmailAddress = "whatever@";
+verifyRequest.DataFields.Communication.MobileNumber = "+12345";
+
+verifyRequest.DataFields.Passport.Number = "123456";
+
+var verification = truliooClient.Verifications.CreateVerify(verifyRequest);
 
 Models.VerifyResult result = await verifications.CreateVerify(body);
 
