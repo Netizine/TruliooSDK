@@ -68,17 +68,6 @@ string result = await connection.GetTestAuthenticationAsync();
 
 ```
 
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
-
 [Back to List of Controllers](#list_of_controllers)
 
 ## <a name="configuration_controller"></a>![Class: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/class.png "TruliooSDK.Standard.Controllers.ConfigurationController") ConfigurationController
@@ -115,17 +104,6 @@ List<string> result = await configuration.GetCountryCodesAsync();
 
 ```
 
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
-
 ### <a name="get_test_entities"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetTestEntities") GetTestEntities
 
 > Gets the test entities configured for your product and country.
@@ -152,17 +130,6 @@ List<Models.DataFields> result = await configuration.GetTestEntitiesAsync(Countr
 
 ```
 
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
-
 ### <a name="get_fields"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetFields") GetFields
 
 > Generates json schema for the API, the schema is dynamic based on the country and configuration you are using json-schema.org
@@ -188,17 +155,6 @@ Task<object> GetFieldsAsync(Country.GreatBritain);
 object result = await configuration.GetFieldsAsync(Country.GreatBritain);
 
 ```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
 
 ### <a name="get_recommended_fields"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetRecommendedFields") GetRecommendedFields
 
@@ -227,16 +183,6 @@ Task<object> GetRecommendedFieldsAsync(Country.GreatBritain);
 object result = await configuration.GetRecommendedFieldsAsync(Country.GreatBritain);
 
 ```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
 
 
 ### <a name="get_consents"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png  "TruliooSDK.Standard.Controllers.ConfigurationController.GetConsents") GetConsents
@@ -268,17 +214,6 @@ Task<List<string>> GetConsentsAsync(Country.GreatBritain);
 List<string> result = await configuration.GetConsentsAsync(Country.GreatBritain);
 
 ```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
 
 ### <a name="get_detailed_consents"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetDetailedConsents") GetDetailedConsents
 
@@ -312,16 +247,6 @@ List<Models.Consent> result = await configuration.GetDetailedConsentsAsync(Count
 
 ```
 
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
 
 ### <a name="get_country_subdivisions"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetCountrySubdivisions") GetCountrySubdivisions
 
@@ -348,17 +273,6 @@ List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisi
 
 ```
 
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
-
 ### <a name="get_datasources"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetDatasources") GetDatasources
 
 > Gets datasource groups configured for your product and country.
@@ -384,17 +298,6 @@ Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSourcesAsync(Country.
 List<Models.NormalizedDatasourceGroupCountry> result = await configuration.GetDataSourcesAsync(Country.GreatBritain);
 
 ```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
 
 [Back to List of Controllers](#list_of_controllers)
 
@@ -426,7 +329,7 @@ Task<Models.VerifyResult> CreateVerifyAsync(VerifyRequest body);
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| body |  ``` Required ```  | TODO: Add a parameter description |
+| verifyRequest |  ``` Required ```  | The verify request body |
 
 
 #### Example Usage
@@ -471,17 +374,6 @@ var result = await truliooClient.Verifications.CreateVerifyAsync(verifyRequest);
 
 ```
 
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
-
 ### <a name="get_transaction_record"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.VerificationsController.GetTransactionRecord") GetTransactionRecord
 
 > This method is used to retrieve the request and results of a verification performed using the verify method. 
@@ -509,7 +401,6 @@ string id = "id";
 Models.TransactionRecordResult result = await verifications.GetTransactionRecordAsync(id);
 
 ```
-
 #### Errors
 
 | Error Code | Error Description |
