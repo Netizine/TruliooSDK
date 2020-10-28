@@ -1,3 +1,5 @@
+using System;
+
 namespace TruliooSDK.Enums
 {
     public static class ModeExtension
@@ -13,7 +15,7 @@ namespace TruliooSDK.Enums
                 case Mode.Trial:
                     return "trial";
                 default:
-                    return "free";
+                    throw new ArgumentOutOfRangeException(nameof(mode), mode, "Mode not mapped");
             }
         }
     }

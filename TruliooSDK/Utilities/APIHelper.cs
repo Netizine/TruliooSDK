@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +6,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
@@ -36,6 +34,11 @@ namespace TruliooSDK.Utilities
             };
 
             settings.Converters.Add(converter ?? new IsoDateTimeConverter());
+            var converters = new List<JsonConverter>
+            {
+                new CountryConverter(),
+                //new CountrySpecificFieldsConverter()
+            };
 
             return JsonConvert.SerializeObject(obj, Formatting.None, settings);
         }
@@ -45,16 +48,27 @@ namespace TruliooSDK.Utilities
         /// </summary>
         /// <param name="json">The json string to deserialize</param>
         /// <param name="converter">The converter to use for date time conversion</param>
-        /// <typeparam name="T">The type of the object to desialize into</typeparam>
+        /// <typeparam name="T">The type of the object to deserialize into</typeparam>
         /// <returns>The deserialized object</returns>
         public static T JsonDeserialize<T>(string json, JsonConverter converter = null)
         {
             if (string.IsNullOrWhiteSpace(json))
-                return default(T);
+                return default;
+            var converters = new List<JsonConverter>
+            {
+                new CountryConverter(),
+                //new CountrySpecificFieldsConverter()
+            };
             if (converter == null)
-                return JsonConvert.DeserializeObject<T>(json, new IsoDateTimeConverter());
+            {
+                converters.Add(new IsoDateTimeConverter());
+                return JsonConvert.DeserializeObject<T>(json, converters.ToArray());
+            }
             else
-                return JsonConvert.DeserializeObject<T>(json, converter);
+            {
+                converters.Add(converter);
+                return JsonConvert.DeserializeObject<T>(json, converters.ToArray());
+            }
         }
 
         /// <summary>

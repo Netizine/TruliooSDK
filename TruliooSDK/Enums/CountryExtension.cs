@@ -1,45 +1,43 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TruliooSDK.Enums
 {
     public static class CountryExtension
     {
-        public static string ToFriendlyString(this CountryCode mode)
+        public static string ToAlpha2CodeString(this Country code)
         {
-            switch (mode)
+            switch (code)
             {
-                case CountryCode.Australia:
+                case Country.Australia:
                     return "AU";
-                case CountryCode.Austria:
+                case Country.Austria:
                     return "AT";
-                case CountryCode.Denmark:
+                case Country.Denmark:
                     return "DK";
-                case CountryCode.Norway:
+                case Country.Norway:
                     return "NO";
-                case CountryCode.Sweden:
+                case Country.Sweden:
                     return "SE";
-                case CountryCode.Turkey:
+                case Country.Turkey:
                     return "TR";
-                case CountryCode.Brazil:
+                case Country.Brazil:
                     return "BR";
-                case CountryCode.Belgium:
+                case Country.Belgium:
                     return "BE";
-                case CountryCode.Germany:
+                case Country.Germany:
                     return "DE";
-                case CountryCode.Netherlands:
+                case Country.Netherlands:
                     return "NL";
-                case CountryCode.GreatBritain:
+                case Country.GreatBritain:
                     return "GB";
-                case CountryCode.UnitedStates:
+                case Country.UnitedStates:
                     return "US";
-                case CountryCode.Malaysia:
+                case Country.Malaysia:
                     return "MY";
-                case CountryCode.Russia:
+                case Country.Russia:
                     return "RU";
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
+                    throw new ArgumentOutOfRangeException(nameof(code), code, "Country code not mapped");
             }
         }
     }

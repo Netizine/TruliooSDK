@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using TruliooSDK.Enums;
 
 namespace TruliooSDK.Models
 {
@@ -11,7 +12,7 @@ namespace TruliooSDK.Models
         // These fields hold the values for the public properties.
         private string _transactionId;
         private DateTime? _uploadedDt;
-        private string _countryCode;
+        private Country _country;
         private string _productName;
         private Record _record;
         private string _customerReferenceId;
@@ -51,12 +52,12 @@ namespace TruliooSDK.Models
         /// Country Code
         /// </summary>
         [JsonProperty("CountryCode")]
-        public string CountryCode 
+        public Country Country 
         { 
-            get => _countryCode;
+            get => _country;
             set 
             {
-                _countryCode = value;
+                _country = value;
                 OnPropertyChanged("CountryCode");
             }
         }

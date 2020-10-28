@@ -12,7 +12,7 @@ namespace TruliooSDK.Models
         private DriverLicence _driverLicence;
         private List<NationalId> _nationalIds;
         private Passport _passport;
-        private Dictionary<string, string> _countrySpecific;
+        private CountrySpecific _countrySpecific;
 
         /// <summary>
         /// Personal Information
@@ -108,8 +108,8 @@ namespace TruliooSDK.Models
         /// } 
         /// Call <a class="link-to-api" href="#getfields-2">Get Fields</a> to get the list of fields that are valid for your configuration.
         /// </summary>
-        [JsonProperty("CountrySpecific")]
-        public Dictionary<string, string> CountrySpecific 
+        [JsonProperty("CountrySpecific", NullValueHandling = NullValueHandling.Ignore)]
+        public CountrySpecific CountrySpecific 
         { 
             get => _countrySpecific;
             set 

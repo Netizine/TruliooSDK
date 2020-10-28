@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using TruliooSDK.Enums;
 
 namespace TruliooSDK.Models
 {
@@ -13,7 +14,7 @@ namespace TruliooSDK.Models
         private bool? _cleansedAddress;
         private string _configurationName;
         private List<string> _consentForDataSources;
-        private string _countryCode;
+        private Country _country;
         private string _customerReferenceId;
         private DataFields _dataFields;
         private bool? _verboseMode;
@@ -80,9 +81,9 @@ namespace TruliooSDK.Models
         /// Default value will be "Identity Verification"
         /// </summary>
         [JsonProperty("ConfigurationName")]
-        public string ConfigurationName 
-        { 
-            get => _configurationName;
+        public string ConfigurationName
+        {
+            get => _configurationName ?? (_configurationName = "Identity Verification");
             set 
             {
                 _configurationName = value;
@@ -91,7 +92,7 @@ namespace TruliooSDK.Models
         }
 
         /// <summary>
-        /// Some datasources require your customer provide consent to access them. For each datasource that requires consent, send the requred string if your customer has provided it. A list of these required strings for a country can be gotten by the <a class="link-to-api" href="#get-consents">Get Consents</a> call. If consent is not provided the datasource will not be queried.
+        /// Some datasources require your customer provide consent to access them. For each data source that requires consent, send the required string if your customer has provided it. A list of these required strings for a country can be gotten by the <a class="link-to-api" href="#get-consents">Get Consents</a> call. If consent is not provided the datasource will not be queried.
         /// </summary>
         [JsonProperty("ConsentForDataSources")]
         public List<string> ConsentForDataSources 
@@ -108,12 +109,12 @@ namespace TruliooSDK.Models
         /// Country alpha2 code
         /// </summary>
         [JsonProperty("CountryCode")]
-        public string CountryCode 
+        public Country Country 
         { 
-            get => _countryCode;
+            get => _country;
             set 
             {
-                _countryCode = value;
+                _country = value;
                 OnPropertyChanged("CountryCode");
             }
         }

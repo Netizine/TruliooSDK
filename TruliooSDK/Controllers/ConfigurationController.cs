@@ -1,7 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using TruliooSDK.Enums;
 using TruliooSDK.Exceptions;
 using TruliooSDK.Http.Client;
 using TruliooSDK.Http.Request;
@@ -37,11 +41,11 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// This method retrieves all the countries that are available to perform a verification. It returns an array of Alpha2 Country Codes
         /// </summary>
-        /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
+        /// <param name="configurationName">Required parameter: The product configuration. Currently defaults to "Identity Verification" for all products.</param>
         /// <return>Returns the List{string} response from the API call</return>
-        public List<string> GetCountryCodes(string configurationName)
+        public List<Country> GetCountryCodes(string configurationName = "Identity Verification")
         {
-            Task<List<string>> t = GetCountryCodesAsync(configurationName);
+            Task<List<Country>> t = GetCountryCodesAsync(configurationName);
             TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -49,13 +53,10 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// This method retrieves all the countries that are available to perform a verification. It returns an array of Alpha2 Country Codes
         /// </summary>
-        /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
+        /// <param name="configurationName">Required parameter: The product configuration. Currently defaults to "Identity Verification" for all products.</param>
         /// <return>Returns the List{string} response from the API call</return>
-        public async Task<List<string>> GetCountryCodesAsync(string configurationName)
+        public async Task<List<Country>> GetCountryCodesAsync(string configurationName = "Identity Verification")
         {
-            //validating required parameters
-            if (null == configurationName)
-                throw new ArgumentNullException(nameof(configurationName), "The parameter \"configurationName\" is a required parameter and cannot be null.");
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
@@ -95,7 +96,7 @@ namespace TruliooSDK.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<List<string>>(response.Body);
+                return APIHelper.JsonDeserialize<List<Country>>(response.Body);
             }
             catch (Exception ex)
             {
@@ -106,12 +107,12 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Gets the test entities configured for your product and country.
         /// </summary>
-        /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
-        /// <param name="countryCode">Required parameter: Country alpha2 code</param>
+        /// <param name="country">The country which serializes to the country alpha2 code</param>
+        /// <param name="configurationName">Required parameter: The product configuration. Currently defaults to "Identity Verification" for all products.</param>
         /// <return>Returns the List{Models.DataFields} response from the API call</return>
-        public List<DataFields> GetTestEntities(string configurationName, string countryCode)
+        public List<DataFields> GetTestEntities(Country country, string configurationName = "Identity Verification")
         {
-            Task<List<DataFields>> t = GetTestEntitiesAsync(configurationName, countryCode);
+            Task<List<DataFields>> t = GetTestEntitiesAsync(country, configurationName);
             TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -119,17 +120,14 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Gets the test entities configured for your product and country.
         /// </summary>
-        /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
-        /// <param name="countryCode">Required parameter: Country alpha2 code</param>
+        /// <param name="country">The country which serializes to the country alpha2 code</param>
+        /// <param name="configurationName">Required parameter: The product configuration. Currently defaults to "Identity Verification" for all products.</param>
         /// <return>Returns the List{Models.DataFields} response from the API call</return>
-        public async Task<List<DataFields>> GetTestEntitiesAsync(string configurationName, string countryCode)
+        public async Task<List<DataFields>> GetTestEntitiesAsync(Country country, string configurationName = "Identity Verification")
         {
-            //validating required parameters
-            if (null == configurationName)
-                throw new ArgumentNullException(nameof(configurationName), "The parameter \"configurationName\" is a required parameter and cannot be null.");
-
-            if (null == countryCode)
-                throw new ArgumentNullException(nameof(countryCode), "The parameter \"countryCode\" is a required parameter and cannot be null.");
+            //validating country parameter
+            if (country == Country.NotSet)
+                throw new ArgumentException(nameof(country), "The parameter \"country\" is required and cannot have the value NotSet.");
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
@@ -143,7 +141,7 @@ namespace TruliooSDK.Controllers
             {
                 { "mode", Configuration.Mode.ToFriendlyString() },
                 { "configurationName", configurationName },
-                { "countryCode", countryCode }
+                { "countryCode", country.ToAlpha2CodeString() }
             });
 
 
@@ -181,12 +179,12 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Generates json schema for the API, the schema is dynamic based on the country and configuration you are using json-schema.org
         /// </summary>
-        /// <param name="countryCode">Required parameter: Country alpha2 code</param>
-        /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
+        /// <param name="country">The country which serializes to the country alpha2 code</param>
+        /// <param name="configurationName">Required parameter: The product configuration. Currently defaults to "Identity Verification" for all products.</param>
         /// <return>Returns the object response from the API call</return>
-        public object GetFields(string countryCode, string configurationName)
+        public object GetFields(Country country, string configurationName = "Identity Verification")
         {
-            Task<object> t = GetFieldsAsync(countryCode, configurationName);
+            Task<object> t = GetFieldsAsync(country, configurationName);
             TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -194,17 +192,14 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Generates json schema for the API, the schema is dynamic based on the country and configuration you are using json-schema.org
         /// </summary>
-        /// <param name="countryCode">Required parameter: Country alpha2 code</param>
-        /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
+        /// <param name="country">The country which serializes to the country alpha2 code</param>
+        /// <param name="configurationName">Required parameter: The product configuration. Currently defaults to "Identity Verification" for all products.</param>
         /// <return>Returns the object response from the API call</return>
-        public async Task<object> GetFieldsAsync(string countryCode, string configurationName)
+        public async Task<object> GetFieldsAsync(Country country, string configurationName = "Identity Verification")
         {
-            //validating required parameters
-            if (null == countryCode)
-                throw new ArgumentNullException(nameof(countryCode), "The parameter \"countryCode\" is a required parameter and cannot be null.");
-
-            if (null == configurationName)
-                throw new ArgumentNullException(nameof(configurationName), "The parameter \"configurationName\" is a required parameter and cannot be null.");
+            //validating country parameter
+            if (country == Country.NotSet)
+                throw new ArgumentException(nameof(country), "The parameter \"country\" is required and cannot have the value NotSet.");
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
@@ -217,7 +212,7 @@ namespace TruliooSDK.Controllers
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
                 { "mode", Configuration.Mode.ToFriendlyString() },
-                { "countryCode", countryCode },
+                { "countryCode", country.ToAlpha2CodeString() },
                 { "configurationName", configurationName }
             });
 
@@ -256,12 +251,12 @@ namespace TruliooSDK.Controllers
         /// Generates json schema for the API, the schema is dynamic based on the recommendedFields country and account you are using.
         /// http://json-schema.org/documentation.html
         /// </summary>
-        /// <param name="countryCode">Required parameter: Country alpha2 code</param>
-        /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
+        /// <param name="country">The country which serializes to the country alpha2 code</param>
+        /// <param name="configurationName">Required parameter: The product configuration. Currently defaults to "Identity Verification" for all products.</param>
         /// <return>Returns the object response from the API call</return>
-        public object GetRecommendedFields(string countryCode, string configurationName)
+        public object GetRecommendedFields(Country country, string configurationName = "Identity Verification")
         {
-            Task<object> t = GetRecommendedFieldsAsync(countryCode, configurationName);
+            Task<object> t = GetRecommendedFieldsAsync(country, configurationName);
             TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -270,17 +265,14 @@ namespace TruliooSDK.Controllers
         /// Generates json schema for the API, the schema is dynamic based on the recommendedFields country and account you are using.
         /// http://json-schema.org/documentation.html
         /// </summary>
-        /// <param name="countryCode">Required parameter: Country alpha2 code</param>
-        /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
+        /// <param name="country">The country which serializes to the country alpha2 code</param>
+        /// <param name="configurationName">Required parameter: The product configuration. Currently defaults to "Identity Verification" for all products.</param>
         /// <return>Returns the object response from the API call</return>
-        public async Task<object> GetRecommendedFieldsAsync(string countryCode, string configurationName)
+        public async Task<object> GetRecommendedFieldsAsync(Country country, string configurationName = "Identity Verification")
         {
-            //validating required parameters
-            if (null == countryCode)
-                throw new ArgumentNullException(nameof(countryCode), "The parameter \"countryCode\" is a required parameter and cannot be null.");
-
-            if (null == configurationName)
-                throw new ArgumentNullException(nameof(configurationName), "The parameter \"configurationName\" is a required parameter and cannot be null.");
+            //validating country parameter
+            if (country == Country.NotSet)
+                throw new ArgumentException(nameof(country), "The parameter \"country\" is required and cannot have the value NotSet.");
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
@@ -293,7 +285,7 @@ namespace TruliooSDK.Controllers
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
                 { "mode", Configuration.Mode.ToFriendlyString() },
-                { "countryCode", countryCode },
+                { "countryCode", country.ToAlpha2CodeString() },
                 { "configurationName", configurationName }
             });
 
@@ -333,12 +325,12 @@ namespace TruliooSDK.Controllers
         /// The response for this method contains a collection of string that Verify method's ConsentForDataSources field expects to perform a verification using those data sources. 
         /// Failure to provide an element from the string collection will lead to a 1005 service error
         /// </summary>
-        /// <param name="countryCode">Required parameter: Country alpha2 code</param>
-        /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
+        /// <param name="country">The country which serializes to the country alpha2 code</param>
+        /// <param name="configurationName">Required parameter: The product configuration. Currently defaults to "Identity Verification" for all products.</param>
         /// <return> Returns the List{string} response from the API call</return>
-        public List<string> GetConsents(string countryCode, string configurationName)
+        public List<string> GetConsents(Country country, string configurationName = "Identity Verification")
         {
-            Task<List<string>> t = GetConsentsAsync( countryCode, configurationName);
+            Task<List<string>> t = GetConsentsAsync( country, configurationName);
             TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -348,17 +340,14 @@ namespace TruliooSDK.Controllers
         /// The response for this method contains a collection of string that Verify method's ConsentForDataSources field expects to perform a verification using those data sources. 
         /// Failure to provide an element from the string collection will lead to a 1005 service error
         /// </summary>
-        /// <param name="countryCode">Required parameter: Country alpha2 code</param>
-        /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
+        /// <param name="country">The country which serializes to the country alpha2 code</param>
+        /// <param name="configurationName">Required parameter: The product configuration. Currently defaults to "Identity Verification" for all products.</param>
         /// <return> Returns the List{string} response from the API call</return>
-        public async Task<List<string>> GetConsentsAsync(string countryCode, string configurationName)
+        public async Task<List<string>> GetConsentsAsync(Country country, string configurationName = "Identity Verification")
         {
-            //validating required parameters
-            if (null == countryCode)
-                throw new ArgumentNullException(nameof(countryCode), "The parameter \"countryCode\" is a required parameter and cannot be null.");
-
-            if (null == configurationName)
-                throw new ArgumentNullException(nameof(configurationName), "The parameter \"configurationName\" is a required parameter and cannot be null.");
+            //validating country parameter
+            if (country == Country.NotSet)
+                throw new ArgumentException(nameof(country), "The parameter \"country\" is required and cannot have the value NotSet.");
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
@@ -371,7 +360,7 @@ namespace TruliooSDK.Controllers
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
                 { "mode", Configuration.Mode.ToFriendlyString() },
-                { "countryCode", countryCode },
+                { "countryCode", country.ToAlpha2CodeString() },
                 { "configurationName", configurationName }
             });
 
@@ -414,12 +403,12 @@ namespace TruliooSDK.Controllers
         /// Each object contains the Name of the data source, Text outlining what the user is consenting to, and optionally a Url where the user can find more information about how their data will be used.  
         /// Failure to provide a Name from the object collection will lead to a 1005 service error.
         /// </summary>
-        /// <param name="countryCode">Required parameter: Call CountryCodes to get the countries available to you.</param>
-        /// <param name="configurationName">Required parameter: Identity Verification</param>
+        /// <param name="country">The country which serializes to the country alpha2 code</param>
+        /// <param name="configurationName">Required parameter: Currently defaults to Identity Verification</param>
         /// <return>Returns the List{Models.Consent} response from the API call</return>
-        public List<Consent> GetDetailedConsents(string countryCode, string configurationName)
+        public List<Consent> GetDetailedConsents(Country country, string configurationName = "Identity Verification")
         {
-            Task<List<Consent>> t = GetDetailedConsentsAsync(countryCode, configurationName);
+            Task<List<Consent>> t = GetDetailedConsentsAsync(country, configurationName);
             TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -430,17 +419,14 @@ namespace TruliooSDK.Controllers
         /// Each object contains the Name of the data source, Text outlining what the user is consenting to, and optionally a Url where the user can find more information about how their data will be used.  
         /// Failure to provide a Name from the object collection will lead to a 1005 service error.
         /// </summary>
-        /// <param name="countryCode">Required parameter: Call CountryCodes to get the countries available to you.</param>
-        /// <param name="configurationName">Required parameter: Identity Verification</param>
+        /// <param name="country">The country which serializes to the country alpha2 code</param>
+        /// <param name="configurationName">Required parameter: Currently defaults to Identity Verification</param>
         /// <return> Returns the List{Models.Consent} response from the API call</return>
-        public async Task<List<Consent>> GetDetailedConsentsAsync(string countryCode, string configurationName)
+        public async Task<List<Consent>> GetDetailedConsentsAsync(Country country, string configurationName = "Identity Verification")
         {
-            //validating required parameters
-            if (null == countryCode)
-                throw new ArgumentNullException(nameof(countryCode), "The parameter \"countryCode\" is a required parameter and cannot be null.");
-
-            if (null == configurationName)
-                throw new ArgumentNullException(nameof(configurationName), "The parameter \"configurationName\" is a required parameter and cannot be null.");
+            //validating country parameter
+            if (country == Country.NotSet)
+                throw new ArgumentException(nameof(country), "The parameter \"country\" is required and cannot have the value NotSet.");
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
@@ -453,7 +439,7 @@ namespace TruliooSDK.Controllers
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
                 { "mode", Configuration.Mode.ToFriendlyString() },
-                { "countryCode", countryCode },
+                { "countryCode", country.ToAlpha2CodeString() },
                 { "configurationName", configurationName }
             });
 
@@ -492,11 +478,11 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Gets the provinces states or other subdivisions for a country, mostly matches ISO 3166-2
         /// </summary>
-        /// <param name="countryCode">Required parameter: Country alpha2 code</param>
+        /// <param name="country">The country which serializes to the country alpha2 code</param>
         /// <return>Returns the List{Models.CountrySubdivision} response from the API call</return>
-        public List<CountrySubdivision> GetCountrySubdivisions(string countryCode)
+        public List<CountrySubdivision> GetCountrySubdivisions(Country country)
         {
-            Task<List<CountrySubdivision>> t = GetCountrySubdivisionsAsync(countryCode);
+            Task<List<CountrySubdivision>> t = GetCountrySubdivisionsAsync(country);
             TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -504,13 +490,14 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Gets the provinces states or other subdivisions for a country, mostly matches ISO 3166-2
         /// </summary>
-        /// <param name="countryCode">Required parameter: Country alpha2 code</param>
+        /// <param name="country">The country which serializes to the country alpha2 code</param>
         /// <return>Returns the List{Models.CountrySubdivision} response from the API call</return>
-        public async Task<List<CountrySubdivision>> GetCountrySubdivisionsAsync(string countryCode)
+        public async Task<List<CountrySubdivision>> GetCountrySubdivisionsAsync(Country country)
         {
-            //validating required parameters
-            if (null == countryCode)
-                throw new ArgumentNullException(nameof(countryCode), "The parameter \"countryCode\" is a required parameter and cannot be null.");
+            //validating country parameter
+            if (country == Country.NotSet)
+                throw new ArgumentException(nameof(country), "The parameter \"country\" is required and cannot have the value NotSet.");
+            ;
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
@@ -523,7 +510,7 @@ namespace TruliooSDK.Controllers
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
                 { "mode", Configuration.Mode.ToFriendlyString() },
-                { "countryCode", countryCode }
+                { "countryCode", country.ToAlpha2CodeString() }
             });
 
 
@@ -561,12 +548,12 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Gets data source groups configured for your product and country.
         /// </summary>
-        /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
-        /// <param name="countryCode">Required parameter: Country alpha2 code</param>
+        /// <param name="country">The country which serializes to the country alpha2 code</param>
+        /// <param name="configurationName">Required parameter: The product configuration. Currently defaults to "Identity Verification" for all products.</param>
         /// <return>Returns the List{Models.NormalizedDataSourceGroupCountry} response from the API call</return>
-        public List<NormalizedDataSourceGroupCountry> GetDataSources(string configurationName, string countryCode)
+        public List<NormalizedDataSourceGroupCountry> GetDataSources(Country country, string configurationName = "Identity Verification")
         {
-            Task<List<NormalizedDataSourceGroupCountry>> t = GetDataSourcesAsync(configurationName, countryCode);
+            Task<List<NormalizedDataSourceGroupCountry>> t = GetDataSourcesAsync(country, configurationName);
             TaskHelper.RunTaskSynchronously(t);
             return t.GetAwaiter().GetResult();
         }
@@ -574,17 +561,14 @@ namespace TruliooSDK.Controllers
         /// <summary>
         /// Gets data source groups configured for your product and country.
         /// </summary>
-        /// <param name="configurationName">Required parameter: The product configuration. Currently "Identity Verification" for all products.</param>
-        /// <param name="countryCode">Required parameter: Country alpha2 code</param>
+        /// <param name="country">The country which serializes to the country alpha2 code</param>
+        /// <param name="configurationName">Required parameter: The product configuration. Currently defaults to "Identity Verification" for all products.</param>
         /// <return>Returns the List{Models.NormalizedDataSourceGroupCountry} response from the API call</return>
-        public async Task<List<NormalizedDataSourceGroupCountry>> GetDataSourcesAsync(string configurationName, string countryCode)
+        public async Task<List<NormalizedDataSourceGroupCountry>> GetDataSourcesAsync(Country country, string configurationName = "Identity Verification")
         {
-            //validating required parameters
-            if (null == configurationName)
-                throw new ArgumentNullException(nameof(configurationName), "The parameter \"configurationName\" is a required parameter and cannot be null.");
-
-            if (null == countryCode)
-                throw new ArgumentNullException(nameof(countryCode), "The parameter \"countryCode\" is a required parameter and cannot be null.");
+            //validating country parameter
+            if (country == Country.NotSet)
+                throw new ArgumentException(nameof(country), "The parameter \"country\" is required and cannot have the value NotSet.");
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
@@ -598,7 +582,7 @@ namespace TruliooSDK.Controllers
             {
                 { "mode", Configuration.Mode.ToFriendlyString() },
                 { "configurationName", configurationName },
-                { "countryCode", countryCode }
+                { "countryCode", country.ToAlpha2CodeString() }
             });
 
 
