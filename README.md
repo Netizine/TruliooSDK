@@ -56,7 +56,8 @@ IConnectionController connection = client.Connection;
 
 
 ```csharp
-Task<string> GetTestAuthentication()
+string GetTestAuthentication();
+Task<string> GetTestAuthenticationAsync();
 ```
 
 
@@ -96,7 +97,8 @@ IConfigurationController configuration = client.Configuration;
 
 
 ```csharp
-Task<List<string>> GetCountryCodes()
+List<Country> GetCountryCodes();
+Task<List<Country>> GetCountryCodesAsync();
 ```
 
 #### Parameters
@@ -130,7 +132,8 @@ List<string> result = await configuration.GetCountryCodesAsync();
 
 
 ```csharp
-Task<List<Models.DataFields>> GetTestEntities(Country.GreatBritain)
+List<Models.DataFields> GetTestEntities(Country.GreatBritain);
+Task<List<Models.DataFields>> GetTestEntitiesAsync(Country.GreatBritain);
 ```
 
 #### Parameters
@@ -166,7 +169,8 @@ List<Models.DataFields> result = await configuration.GetTestEntitiesAsync(Countr
 
 
 ```csharp
-Task<object> GetFields(Country.GreatBritain)
+object GetFields(Country.GreatBritain);
+Task<object> GetFieldsAsync(Country.GreatBritain);
 ```
 
 #### Parameters
@@ -204,7 +208,8 @@ object result = await configuration.GetFieldsAsync(Country.GreatBritain);
 
 
 ```csharp
-Task<object> GetRecommendedFields(Country.GreatBritain)
+object GetRecommendedFields(Country.GreatBritain);
+Task<object> GetRecommendedFieldsAsync(Country.GreatBritain);
 ```
 
 #### Parameters
@@ -244,7 +249,8 @@ object result = await configuration.GetRecommendedFieldsAsync(Country.GreatBrita
 
 
 ```csharp
-Task<List<string>> GetConsents(Country.GreatBritain)
+List<string> GetConsents(Country.GreatBritain);
+Task<List<string>> GetConsentsAsync(Country.GreatBritain);
 ```
 
 #### Parameters
@@ -286,7 +292,8 @@ List<string> result = await configuration.GetConsentsAsync(Country.GreatBritain)
 
 
 ```csharp
-Task<List<Models.Consent>> GetDetailedConsents(Country.GreatBritain)
+List<Models.Consent> GetDetailedConsents(Country.GreatBritain);
+Task<List<Models.Consent>> GetDetailedConsentsAsync(Country.GreatBritain);
 ```
 
 #### Parameters
@@ -322,7 +329,8 @@ List<Models.Consent> result = await configuration.GetDetailedConsentsAsync(Count
 
 
 ```csharp
-Task<List<Models.CountrySubdivision>> GetCountrySubdivisions(Country.GreatBritain)
+List<Models.CountrySubdivision> GetCountrySubdivisions(Country.GreatBritain);
+Task<List<Models.CountrySubdivision>> GetCountrySubdivisionsAsync(Country.GreatBritain);
 ```
 
 #### Parameters
@@ -357,7 +365,8 @@ List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisi
 
 
 ```csharp
-Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSources(Country.GreatBritain)
+List<Models.NormalizedDatasourceGroupCountry> GetDataSources(Country.GreatBritain);
+Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSourcesAsync(Country.GreatBritain);
 ```
 
 #### Parameters
@@ -409,7 +418,8 @@ IVerificationsController verifications = client.Verifications;
 
 
 ```csharp
-Task<Models.VerifyResult> CreateVerify(VerifyRequest body)
+Models.VerifyResult CreateVerify(VerifyRequest body);
+Task<Models.VerifyResult> CreateVerifyAsync(VerifyRequest body);
 ```
 
 #### Parameters
@@ -480,7 +490,8 @@ var result = await truliooClient.Verifications.CreateVerifyAsync(verifyRequest);
 
 
 ```csharp
-Task<Models.TransactionRecordResult> GetTransactionRecord(string mode, string id)
+Models.TransactionRecordResult GetTransactionRecord(string id);
+Task<Models.TransactionRecordResult> GetTransactionRecordAsync(string id);
 ```
 
 #### Parameters
