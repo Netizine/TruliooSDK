@@ -63,7 +63,7 @@ Task<string> GetTestAuthentication()
 #### Example Usage
 
 ```csharp
-string result = await connection.GetTestAuthentication();
+string result = await connection.GetTestAuthenticationAsync();
 
 ```
 
@@ -109,7 +109,7 @@ Task<List<string>> GetCountryCodes()
 #### Example Usage
 
 ```csharp
-List<string> result = await configuration.GetCountryCodes();
+List<string> result = await configuration.GetCountryCodesAsync();
 
 ```
 
@@ -145,7 +145,7 @@ Task<List<Models.DataFields>> GetTestEntities(Country.GreatBritain)
 
 ```csharp
 
-List<Models.DataFields> result = await configuration.GetTestEntities(Country.GreatBritain);
+List<Models.DataFields> result = await configuration.GetTestEntitiesAsync(Country.GreatBritain);
 
 ```
 
@@ -181,7 +181,7 @@ Task<object> GetFields(Country.GreatBritain)
 
 ```csharp
 
-object result = await configuration.GetFields(Country.GreatBritain);
+object result = await configuration.GetFieldsAsync(Country.GreatBritain);
 
 ```
 
@@ -219,7 +219,7 @@ Task<object> GetRecommendedFields(Country.GreatBritain)
 
 ```csharp
 
-object result = await configuration.GetRecommendedFields(Country.GreatBritain);
+object result = await configuration.GetRecommendedFieldsAsync(Country.GreatBritain);
 
 ```
 
@@ -259,7 +259,7 @@ Task<List<string>> GetConsents(Country.GreatBritain)
 
 ```csharp
 
-List<string> result = await configuration.GetConsents(Country.GreatBritain);
+List<string> result = await configuration.GetConsentsAsync(Country.GreatBritain);
 
 ```
 
@@ -301,7 +301,7 @@ Task<List<Models.Consent>> GetDetailedConsents(Country.GreatBritain)
 
 ```csharp
 
-List<Models.Consent> result = await configuration.GetDetailedConsents(Country.GreatBritain);
+List<Models.Consent> result = await configuration.GetDetailedConsentsAsync(Country.GreatBritain);
 
 ```
 
@@ -336,7 +336,7 @@ Task<List<Models.CountrySubdivision>> GetCountrySubdivisions(Country.GreatBritai
 
 ```csharp
 
-List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisions(Country.GreatBritain);
+List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisionsAsync(Country.GreatBritain);
 
 ```
 
@@ -357,7 +357,7 @@ List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisi
 
 
 ```csharp
-Task<List<Models.NormalizedDatasourceGroupCountry>> GetDatasources(Country.GreatBritain)
+Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSources(Country.GreatBritain)
 ```
 
 #### Parameters
@@ -372,7 +372,7 @@ Task<List<Models.NormalizedDatasourceGroupCountry>> GetDatasources(Country.Great
 
 ```csharp
 
-List<Models.NormalizedDatasourceGroupCountry> result = await configuration.GetDatasources(Country.GreatBritain);
+List<Models.NormalizedDatasourceGroupCountry> result = await configuration.GetDataSourcesAsync(Country.GreatBritain);
 
 ```
 
@@ -495,7 +495,7 @@ Task<Models.TransactionRecordResult> GetTransactionRecord(string mode, string id
 ```csharp
 string id = "id";
 
-Models.TransactionRecordResult result = await verifications.GetTransactionRecord(id);
+Models.TransactionRecordResult result = await verifications.GetTransactionRecordAsync(id);
 
 ```
 
