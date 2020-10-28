@@ -435,30 +435,29 @@ var verifyRequest = new VerifyRequest
         Passport = new Passport()
     }
 };
-verifyRequest.DataFields.PersonInfo.FirstGivenName = "Jim";
-verifyRequest.DataFields.PersonInfo.FirstSurName = "Bob";
-verifyRequest.DataFields.PersonInfo.MiddleName = "H";
-verifyRequest.DataFields.PersonInfo.DayOfBirth =13;
-verifyRequest.DataFields.PersonInfo.MonthOfBirth = 5;
-verifyRequest.DataFields.PersonInfo.YearOfBirth = 1990;
-verifyRequest.DataFields.PersonInfo.MinimumAge = 90;
+verifyRequest.DataFields.PersonInfo.FirstGivenName = "Julia";
+verifyRequest.DataFields.PersonInfo.FirstSurName = "Audi";
+verifyRequest.DataFields.PersonInfo.MiddleName = "Ronald";
+verifyRequest.DataFields.PersonInfo.DayOfBirth =26;
+verifyRequest.DataFields.PersonInfo.MonthOfBirth = 1;
+verifyRequest.DataFields.PersonInfo.YearOfBirth = 1979;
+verifyRequest.DataFields.PersonInfo.MinimumAge = null;
 
-verifyRequest.DataFields.Location.BuildingNumber = "20";
-verifyRequest.DataFields.Location.BuildingName = "HHHH";
-verifyRequest.DataFields.Location.City = "FFFFF";
-verifyRequest.DataFields.Location.County = "GGGGG";
-verifyRequest.DataFields.Location.StateProvinceCode = "55555";
-verifyRequest.DataFields.Location.PostalCode = "PPPPP";
-verifyRequest.DataFields.Location.Country = "England";
+verifyRequest.DataFields.Location.BuildingNumber = "12";
+verifyRequest.DataFields.Location.BuildingName = "Beck";
+verifyRequest.DataFields.Location.UnitNumber = 1;
+verifyRequest.DataFields.Location.StreetName = "Moorfoot";
+verifyRequest.DataFields.Location.StreetType = "Way";
+verifyRequest.DataFields.Location.City = null;
+verifyRequest.DataFields.Location.Suburb = null;
+verifyRequest.DataFields.Location.County = null;
+verifyRequest.DataFields.Location.StateProvinceCode = null;
+verifyRequest.DataFields.Location.Country = null;
+verifyRequest.DataFields.Location.PostalCode = "L33 1WZ";
+verifyRequest.DataFields.Location.PoBox = null;
+verifyRequest.DataFields.Location.AdditionalFields = null;
 
-verifyRequest.DataFields.Communication.EmailAddress = "whatever@";
-verifyRequest.DataFields.Communication.MobileNumber = "+12345";
-
-verifyRequest.DataFields.Passport.Number = "123456";
-
-var verification = truliooClient.Verifications.CreateVerify(verifyRequest);
-
-Models.VerifyResult result = await verifications.CreateVerify(body);
+var result = await truliooClient.Verifications.CreateVerifyAsync(verifyRequest);
 
 ```
 
