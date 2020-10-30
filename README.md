@@ -158,7 +158,6 @@ Task<object> GetRecommendedFieldsAsync(Country.GreatBritain);
 | country |  ``` Required ```  | Country enum |
 | configurationName |  ``` Optional ```  ``` DefaultValue ```  | The product configuration. Currently defaults to "Identity Verification" for all products. |
 
-
 #### Example Usage for GetRecommendedFieldsAsync
 
 ```csharp
@@ -178,7 +177,6 @@ List<string> GetConsents(Country.GreatBritain);
 //Async
 Task<List<string>> GetConsentsAsync(Country.GreatBritain);
 ```
-
 #### Parameters for GetConsentsAsync
 
 | Parameter | Tags | Description |
@@ -186,13 +184,11 @@ Task<List<string>> GetConsentsAsync(Country.GreatBritain);
 | country|  ``` Required ```  | Country enum |
 | configurationName |  ``` Optional ```  ``` DefaultValue ```  | The product configuration. Currently defaults to "Identity Verification" for all products. |
 
-
 #### Example Usage for GetConsentsAsync
 
 ```csharp
 var result = await configuration.GetConsentsAsync(Country.GreatBritain);
 ```
-
 ### <a name="get_detailed_consents"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetDetailedConsents") GetDetailedConsents
 
 > This method retrieves details about consents required for data sources currently configured in your account configuration. 
@@ -208,7 +204,6 @@ List<Models.Consent> GetDetailedConsents(Country.GreatBritain);
 //Async
 Task<List<Models.Consent>> GetDetailedConsentsAsync(Country.GreatBritain);
 ```
-
 #### Parameters for GetDetailedConsentsAsync
 
 | Parameter | Tags | Description |
@@ -288,13 +283,11 @@ IVerificationsController verifications = client.Verifications;
 > 
 > It is also possible to get sample requests from the customer portal. If you are configured for a sandbox account make sure to call Get Test Entities to get test data for a country you want to try. Sandbox accounts only use these test entities and so trying to verify with any other data will result in no matches being found.
 
-
 ```csharp
 Models.VerifyResult CreateVerify(VerifyRequest body);
 //Async
 Task<Models.VerifyResult> CreateVerifyAsync(VerifyRequest body);
 ```
-
 #### Parameters for CreateVerifyAsync
 
 | Parameter | Tags | Description |
