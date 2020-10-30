@@ -4,6 +4,8 @@ This is the link to the [Official SDK](https://github.com/Trulioo/sdk-csharp-v1 
 
 ## How to Use
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bd9ab305a4cf45a3bd52eb4d2587457e)](https://app.codacy.com/gh/Jayman1305/TruliooSDK?utm_source=github.com&utm_medium=referral&utm_content=Jayman1305/TruliooSDK&utm_campaign=Badge_Grade)
+
 The following section explains how to use the Trulioo C# SDK library in a C# project.
 
 ## Initialization
@@ -255,7 +257,6 @@ Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSourcesAsync(Country.
 |-----------|------|-------------|
 | configurationName |  ``` Optional ```  ``` DefaultValue ```  | The product configuration. Currently defaults to "Identity Verification" for all products. |
 | country |  ``` Required ```  | Country enum |
-
 
 #### Example Usage for GetDataSourcesAsync
 
