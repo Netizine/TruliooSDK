@@ -1,5 +1,3 @@
-# Getting started
-
 Unofficial Trulioo C# SDK. 
 
 This is the link to the [Official SDK](https://github.com/Trulioo/sdk-csharp-v1 "Official SDK")
