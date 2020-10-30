@@ -29,10 +29,9 @@ var client = new TruliooSDK.TruliooSDKClient(mode, xTruliooApiKey);
 # Class Reference
 
 ## <a name="list_of_controllers"></a>List of Controllers
-
-* [Connection Controller](#connection_controller)
-* [Configuration Controller](#configuration_controller)
-* [Verifications Controller](#verifications_controller)
+*[Connection Controller](#connection_controller)
+*[Configuration Controller](#configuration_controller)
+*[Verifications Controller](#verifications_controller)
 
 ## <a name="connection_controller"></a>![Class: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/class.png "TruliooSDK.Standard.Controllers.ConnectionController") ConnectionController
 
