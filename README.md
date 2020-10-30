@@ -18,8 +18,6 @@ In order to setup authentication and initialization of the API client, you need 
 | mode | Trulioo Mode |
 | xTruliooApiKey | Trulioo Api Key |
 
-
-
 API client can be initialized as following.
 
 ```csharp
@@ -29,8 +27,6 @@ string xTruliooApiKey = "xTruliooApiKey"; // Trulioo Api Key
 
 var client = new TruliooSDK.TruliooSDKClient(mode, xTruliooApiKey);
 ```
-
-
 
 # Class Reference
 
@@ -54,13 +50,11 @@ IConnectionController connection = client.Connection;
 
 > This method enables you to check if your credentials are valid. You will need to use ApiKeyAuth authentication to ensure a successful response.
 
-
 ```csharp
 string GetTestAuthentication();
 //Async
 Task<string> GetTestAuthenticationAsync();
 ```
-
 
 #### Example Usage
 
@@ -83,7 +77,6 @@ var configuration = client.Configuration;
 ### <a name="get_country_codes"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetCountryCodes") GetCountryCodes
 
 > This method retrieves all the countries that are available to perform a verification. It returns a collection of the supported countries
-
 
 ```csharp
 List<Country> GetCountryCodes();
@@ -181,7 +174,6 @@ Task<object> GetRecommendedFieldsAsync(Country.GreatBritain);
 var result = await configuration.GetRecommendedFieldsAsync(Country.GreatBritain);
 ```
 
-
 ### <a name="get_consents"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png  "TruliooSDK.Standard.Controllers.ConfigurationController.GetConsents") GetConsents
 
 > This method retrieves the consents required for the data sources currently configured in your account configuration. 
@@ -189,7 +181,6 @@ var result = await configuration.GetRecommendedFieldsAsync(Country.GreatBritain)
 > The response for this method contains a collection of string that Verify method's ConsentForDataSources field expects to perform a verification using those data sources. 
 > 
 > Failure to provide an element from the string collection will lead to a 1005 service error
-
 
 ```csharp
 List<string> GetConsents(Country.GreatBritain);
@@ -221,7 +212,6 @@ var result = await configuration.GetConsentsAsync(Country.GreatBritain);
 > 
 > Failure to provide a Name from the object collection will lead to a 1005 service error.
 
-
 ```csharp
 List<Models.Consent> GetDetailedConsents(Country.GreatBritain);
 //Async
@@ -235,18 +225,15 @@ Task<List<Models.Consent>> GetDetailedConsentsAsync(Country.GreatBritain);
 | country |  ``` Required ```  | Call CountryCodes to get the countries available to you. |
 | configurationName |  ``` Optional ```  ``` DefaultValue ```  | Currentlt defailts to Identity Verification |
 
-
 #### Example Usage
 
 ```csharp
 var result = await configuration.GetDetailedConsentsAsync(Country.GreatBritain);
 ```
 
-
 ### <a name="get_country_subdivisions"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetCountrySubdivisions") GetCountrySubdivisions
 
 > Gets the provinces states or other subdivisions for a country, mostly matches ISO 3166-2
-
 
 ```csharp
 List<Models.CountrySubdivision> GetCountrySubdivisions(Country.GreatBritain);
@@ -260,7 +247,6 @@ Task<List<Models.CountrySubdivision>> GetCountrySubdivisionsAsync(Country.GreatB
 |-----------|------|-------------|
 | country |  ``` Required ```  | Country enum |
 
-
 #### Example Usage
 
 ```csharp
@@ -270,7 +256,6 @@ var result = await configuration.GetCountrySubdivisionsAsync(Country.GreatBritai
 ### <a name="get_datasources"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetDatasources") GetDatasources
 
 > Gets datasource groups configured for your product and country.
-
 
 ```csharp
 List<Models.NormalizedDatasourceGroupCountry> GetDataSources(Country.GreatBritain);
@@ -325,7 +310,6 @@ Task<Models.VerifyResult> CreateVerifyAsync(VerifyRequest body);
 |-----------|------|-------------|
 | verifyRequest |  ``` Required ```  | The verify request body |
 
-
 #### Example Usage
 
 ```csharp
@@ -337,9 +321,7 @@ var verifyRequest = new VerifyRequest
     DataFields = new DataFields
     {
         PersonInfo = new PersonInfo(),
-        Location = new Location(),
-        Communication = new Communication(),
-        Passport = new Passport()
+        Location = new Location()
     }
 };
 verifyRequest.DataFields.PersonInfo.FirstGivenName = "Julia";
@@ -348,21 +330,13 @@ verifyRequest.DataFields.PersonInfo.MiddleName = "Ronald";
 verifyRequest.DataFields.PersonInfo.DayOfBirth =26;
 verifyRequest.DataFields.PersonInfo.MonthOfBirth = 1;
 verifyRequest.DataFields.PersonInfo.YearOfBirth = 1979;
-verifyRequest.DataFields.PersonInfo.MinimumAge = null;
 
 verifyRequest.DataFields.Location.BuildingNumber = "12";
 verifyRequest.DataFields.Location.BuildingName = "Beck";
 verifyRequest.DataFields.Location.UnitNumber = 1;
 verifyRequest.DataFields.Location.StreetName = "Moorfoot";
 verifyRequest.DataFields.Location.StreetType = "Way";
-verifyRequest.DataFields.Location.City = null;
-verifyRequest.DataFields.Location.Suburb = null;
-verifyRequest.DataFields.Location.County = null;
-verifyRequest.DataFields.Location.StateProvinceCode = null;
-verifyRequest.DataFields.Location.Country = null;
 verifyRequest.DataFields.Location.PostalCode = "L33 1WZ";
-verifyRequest.DataFields.Location.PoBox = null;
-verifyRequest.DataFields.Location.AdditionalFields = null;
 
 var result = await truliooClient.Verifications.CreateVerifyAsync(verifyRequest);
 ```
@@ -372,7 +346,6 @@ var result = await truliooClient.Verifications.CreateVerifyAsync(verifyRequest);
 > This method is used to retrieve the request and results of a verification performed using the verify method. 
 > 
 > The response for this method includes the same information as verify method's response, along with data present in the input fields of the verify request.
-
 
 ```csharp
 Models.TransactionRecordResult GetTransactionRecord(string id);
@@ -407,6 +380,3 @@ var result = await verifications.GetTransactionRecordAsync(id);
 
 
 [Back to List of Controllers](#list_of_controllers)
-
-
-
