@@ -95,11 +95,13 @@ namespace TruliooSDK.Utilities
         {
             //perform parameter validation
             if (null == queryBuilder)
+            {
                 throw new ArgumentNullException(nameof(queryBuilder));
-
+            }
             if (null == parameters)
+            {
                 return;
-
+            }
             //iterate and replace parameters
             foreach (KeyValuePair<string, object> pair in parameters)
             {
@@ -145,8 +147,9 @@ namespace TruliooSDK.Utilities
             //ensure that the urls are absolute
             Match match = Regex.Match(url, "^https?://[^/]+");
             if (!match.Success)
+            {
                 throw new ArgumentException("Invalid Url format.");
-
+            }
             //remove redundant forward slashes
             var index = url.IndexOf('?');
             var protocol = match.Value;
@@ -246,7 +249,9 @@ namespace TruliooSDK.Utilities
             }
 
             if (urlEncode)
+            {
                 elemValue = Uri.EscapeDataString(elemValue);
+            }
             return elemValue;
         }
 

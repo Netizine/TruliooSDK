@@ -10,7 +10,10 @@ namespace TruliooSDK.Utilities
         public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
         {
             if (reader.TokenType == JsonToken.Null)
+            {
                 return null;
+            }
+
             var value = serializer.Deserialize<string>(reader);
             return int.TryParse(value, out var l) ? l : throw new Exception("Cannot unmarshal type int");
         }

@@ -12,7 +12,9 @@ namespace TruliooSDK.Utilities
         public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
         {
             if (reader.TokenType == JsonToken.Null)
+            {
                 return null;
+            }
             var value = serializer.Deserialize<string>(reader);
             if (value != null)
             {
@@ -50,7 +52,7 @@ namespace TruliooSDK.Utilities
                         throw new APIException("Cannot unmarshal type Country", null);
                 }
             }
-            throw new Exception("Cannot unmarshal type CountryCode");
+            throw new APIException("Cannot unmarshal type CountryCode");
         }
 
         public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)

@@ -43,7 +43,7 @@ namespace TruliooSDK.Controllers
         #endregion shared http client instance
 
         internal ArrayDeserialization ArrayDeserializationFormat = ArrayDeserialization.Indexed;
-        internal static char ParameterSeparator = '&';
+        //internal static char ParameterSeparator = '&';
 
         /// <summary>
         /// Validates the response against HTTP errors defined at the API level

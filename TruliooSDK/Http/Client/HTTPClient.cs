@@ -276,13 +276,18 @@ namespace TruliooSDK.Http.Client
         private static Dictionary<string, string> GetCombinedResponseHeaders(HttpResponseMessage responseMessage)
         {
             var headers = responseMessage.Headers.ToDictionary(l => l.Key, k => k.Value.First());
-            if (responseMessage.Content == null) return headers;
+            if (responseMessage.Content == null)
+            {
+                return headers;
+            }
             foreach (KeyValuePair<string, IEnumerable<string>> contentHeader in responseMessage.Content.Headers)
             {
-                if (headers.ContainsKey(contentHeader.Key)) continue;
+                if (headers.ContainsKey(contentHeader.Key))
+                {
+                    continue;
+                }
                 headers.Add(contentHeader.Key, contentHeader.Value.First());
             }
-
             return headers;
         }
 

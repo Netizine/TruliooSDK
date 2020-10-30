@@ -14,8 +14,9 @@ namespace TruliooSDK.Utilities
             int times, TimeSpan delay, Func<Task> operation) where TException : Exception
         {
             if (times < 0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(times));
-
+            }
             var attempts = -1;
             do
             {
