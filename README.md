@@ -3,8 +3,9 @@ Unofficial Trulioo C# SDK.
 This is the link to the [Official SDK](https://github.com/Trulioo/sdk-csharp-v1 "Official SDK")
 
 |Code Quality|Nuget|
-| ------------------- | ------------------- | ------------------- | ------------------- |
+| ------------------- | ------------------- |
 |[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bd9ab305a4cf45a3bd52eb4d2587457e)](https://app.codacy.com/gh/Jayman1305/TruliooSDK?utm_source=github.com&utm_medium=referral&utm_content=Jayman1305/TruliooSDK&utm_campaign=Badge_Grade)|[![NuGet](https://buildstats.info/nuget/UnofficialTruliooSDK)](https://www.nuget.org/packages/UnofficialTruliooSDK/)|
+
 
 ## How to Use
 
