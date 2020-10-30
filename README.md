@@ -35,7 +35,7 @@ var client = new TruliooSDK.TruliooSDKClient(mode, xTruliooApiKey);
 
 ## <a name="connection_controller"></a>![Class: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/class.png "TruliooSDK.Standard.Controllers.ConnectionController") ConnectionController
 
-### Get singleton instance
+### Get singleton instance of the Connection Controller
 
 The singleton instance of the ``` ConnectionController ``` class can be accessed from the API Client.
 
@@ -53,7 +53,7 @@ string GetTestAuthentication();
 Task<string> GetTestAuthenticationAsync();
 ```
 
-#### Example Usage
+#### Example Usage for GetTestAuthenticationAsync
 
 ```csharp
 string result = await connection.GetTestAuthenticationAsync();
@@ -63,7 +63,7 @@ string result = await connection.GetTestAuthenticationAsync();
 
 ## <a name="configuration_controller"></a>![Class: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/class.png "TruliooSDK.Standard.Controllers.ConfigurationController") ConfigurationController
 
-### Get singleton instance
+### Get singleton instance of the Configuration Controller
 
 The singleton instance of the ``` ConfigurationController ``` class can be accessed from the API Client.
 
@@ -81,14 +81,13 @@ List<Country> GetCountryCodes();
 Task<List<Country>> GetCountryCodesAsync();
 ```
 
-#### Parameters
+#### Parameters for GetCountryCodesAsync
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | configurationName |  ``` Optional ```  ``` DefaultValue ```  | The product configuration. Currently defaults to "Identity Verification" for all products. |
 
-
-#### Example Usage
+#### Example Usage for GetCountryCodesAsync
 
 ```csharp
 var result = await configuration.GetCountryCodesAsync();
@@ -99,22 +98,20 @@ var result = await configuration.GetCountryCodesAsync();
 
 > Gets the test entities configured for your product and country.
 
-
 ```csharp
 List<Models.DataFields> GetTestEntities(Country.GreatBritain);
 //Async
 Task<List<Models.DataFields>> GetTestEntitiesAsync(Country.GreatBritain);
 ```
 
-#### Parameters
+#### Parameters for GetTestEntitiesAsync
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | configurationName |  ``` Optional ```  ``` DefaultValue ```  | The product configuration. Currently defaults to "Identity Verification" for all products. |
 | country|  ``` Required ```  | Country enum |
 
-
-#### Example Usage
+#### Example Usage for GetTestEntitiesAsync
 
 ```csharp
 var result = await configuration.GetTestEntitiesAsync(Country.GreatBritain);
@@ -124,22 +121,20 @@ var result = await configuration.GetTestEntitiesAsync(Country.GreatBritain);
 
 > Generates json schema for the API, the schema is dynamic based on the country and configuration you are using json-schema.org
 
-
 ```csharp
 object GetFields(Country.GreatBritain);
 //Async
 Task<object> GetFieldsAsync(Country.GreatBritain);
 ```
 
-#### Parameters
+#### Parameters for GetFieldsAsync
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | country|  ``` Required ```  | Country enum |
 | configurationName |  ``` Optional ```  ``` DefaultValue ```  | The product configuration. Currently defaults to "Identity Verification" for all products. |
 
-
-#### Example Usage
+#### Example Usage for GetFieldsAsync
 
 ```csharp
 object result = await configuration.GetFieldsAsync(Country.GreatBritain);
@@ -151,13 +146,12 @@ object result = await configuration.GetFieldsAsync(Country.GreatBritain);
 > 
 > http://json-schema.org/documentation.html
 
-
 ```csharp
 object GetRecommendedFields(Country.GreatBritain);
 Task<object> GetRecommendedFieldsAsync(Country.GreatBritain);
 ```
 
-#### Parameters
+#### Parameters for GetRecommendedFieldsAsync
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
@@ -165,7 +159,7 @@ Task<object> GetRecommendedFieldsAsync(Country.GreatBritain);
 | configurationName |  ``` Optional ```  ``` DefaultValue ```  | The product configuration. Currently defaults to "Identity Verification" for all products. |
 
 
-#### Example Usage
+#### Example Usage for GetRecommendedFieldsAsync
 
 ```csharp
 var result = await configuration.GetRecommendedFieldsAsync(Country.GreatBritain);
@@ -185,7 +179,7 @@ List<string> GetConsents(Country.GreatBritain);
 Task<List<string>> GetConsentsAsync(Country.GreatBritain);
 ```
 
-#### Parameters
+#### Parameters for GetConsentsAsync
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
@@ -193,7 +187,7 @@ Task<List<string>> GetConsentsAsync(Country.GreatBritain);
 | configurationName |  ``` Optional ```  ``` DefaultValue ```  | The product configuration. Currently defaults to "Identity Verification" for all products. |
 
 
-#### Example Usage
+#### Example Usage for GetConsentsAsync
 
 ```csharp
 var result = await configuration.GetConsentsAsync(Country.GreatBritain);
@@ -215,14 +209,14 @@ List<Models.Consent> GetDetailedConsents(Country.GreatBritain);
 Task<List<Models.Consent>> GetDetailedConsentsAsync(Country.GreatBritain);
 ```
 
-#### Parameters
+#### Parameters for GetDetailedConsentsAsync
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | country |  ``` Required ```  | Call CountryCodes to get the countries available to you. |
 | configurationName |  ``` Optional ```  ``` DefaultValue ```  | Currentlt defailts to Identity Verification |
 
-#### Example Usage
+#### Example Usage for GetDetailedConsentsAsync
 
 ```csharp
 var result = await configuration.GetDetailedConsentsAsync(Country.GreatBritain);
@@ -238,13 +232,13 @@ List<Models.CountrySubdivision> GetCountrySubdivisions(Country.GreatBritain);
 Task<List<Models.CountrySubdivision>> GetCountrySubdivisionsAsync(Country.GreatBritain);
 ```
 
-#### Parameters
+#### Parameters for GetCountrySubdivisionsAsync
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | country |  ``` Required ```  | Country enum |
 
-#### Example Usage
+#### Example Usage for GetCountrySubdivisionsAsync
 
 ```csharp
 var result = await configuration.GetCountrySubdivisionsAsync(Country.GreatBritain);
@@ -260,7 +254,7 @@ List<Models.NormalizedDatasourceGroupCountry> GetDataSources(Country.GreatBritai
 Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSourcesAsync(Country.GreatBritain);
 ```
 
-#### Parameters
+#### Parameters for GetDataSourcesAsync
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
@@ -268,7 +262,7 @@ Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSourcesAsync(Country.
 | country |  ``` Required ```  | Country enum |
 
 
-#### Example Usage
+#### Example Usage for GetDataSourcesAsync
 
 ```csharp
 var result = await configuration.GetDataSourcesAsync(Country.GreatBritain);
@@ -278,7 +272,7 @@ var result = await configuration.GetDataSourcesAsync(Country.GreatBritain);
 
 ## <a name="verifications_controller"></a>![Class: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/class.png "TruliooSDK.Standard.Controllers.VerificationsController") VerificationsController
 
-### Get singleton instance
+### Get singleton instance of the Verifications Controller
 
 The singleton instance of the ``` VerificationsController ``` class can be accessed from the API Client.
 
@@ -301,13 +295,13 @@ Models.VerifyResult CreateVerify(VerifyRequest body);
 Task<Models.VerifyResult> CreateVerifyAsync(VerifyRequest body);
 ```
 
-#### Parameters
+#### Parameters for CreateVerifyAsync
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | verifyRequest |  ``` Required ```  | The verify request body |
 
-#### Example Usage
+#### Example Usage for CreateVerifyAsync
 
 ```csharp
 var verifyRequest = new VerifyRequest
@@ -350,13 +344,13 @@ Models.TransactionRecordResult GetTransactionRecord(string id);
 Task<Models.TransactionRecordResult> GetTransactionRecordAsync(string id);
 ```
 
-#### Parameters
+#### Parameters for GetTransactionRecordAsync
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | id |  ``` Required ```  | The TransactionRecordID from the Verify response, this will be a GUID |
 
-#### Example Usage
+#### Example Usage for GetTransactionRecordAsync
 
 ```csharp
 string id = "id";
