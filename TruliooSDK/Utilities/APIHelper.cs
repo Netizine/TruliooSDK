@@ -11,7 +11,17 @@ namespace TruliooSDK.Utilities
     public static class APIHelper
     {
         //DateTime format to use for parsing and converting dates
-        public static string DateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public static string DateTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
+        /// <summary>
+        /// JSON Serialization of a given object.
+        /// </summary>
+        /// <param name="obj">The object to serialize into JSON</param>
+        /// <returns>The serialized Json string representation of the given object</returns>
+        public static string JsonSerialize(object obj)
+        {
+            return JsonSerialize(obj, null);
+        }
 
         /// <summary>
         /// JSON Serialization of a given object.
@@ -19,10 +29,12 @@ namespace TruliooSDK.Utilities
         /// <param name="obj">The object to serialize into JSON</param>
         /// <param name="converter">The converter to use for date time conversion</param>
         /// <returns>The serialized Json string representation of the given object</returns>
-        public static string JsonSerialize(object obj, JsonConverter converter = null)
+        public static string JsonSerialize(object obj, JsonConverter converter)
         {
             if (null == obj)
+            {
                 return null;
+            }
 
             var settings = new JsonSerializerSettings()
             {
@@ -38,13 +50,26 @@ namespace TruliooSDK.Utilities
         /// JSON Deserialization of the given json string.
         /// </summary>
         /// <param name="json">The json string to deserialize</param>
+        /// <typeparam name="T">The type of the object to deserialize into</typeparam>
+        /// <returns>The deserialized object</returns>
+        public static T JsonDeserialize<T>(string json)
+        {
+            return JsonDeserialize<T>(json, null);
+        }
+
+        /// <summary>
+        /// JSON Deserialization of the given json string.
+        /// </summary>
+        /// <param name="json">The json string to deserialize</param>
         /// <param name="converter">The converter to use for date time conversion</param>
         /// <typeparam name="T">The type of the object to deserialize into</typeparam>
         /// <returns>The deserialized object</returns>
-        public static T JsonDeserialize<T>(string json, JsonConverter converter = null)
+        public static T JsonDeserialize<T>(string json, JsonConverter converter)
         {
             if (string.IsNullOrWhiteSpace(json))
+            {
                 return default;
+            }
             var converters = new List<JsonConverter>
             {
                 new CountryConverter(),
@@ -142,10 +167,24 @@ namespace TruliooSDK.Utilities
         /// <param name="fmt">Format string to use for array flattening</param>
         /// <param name="separator">Separator to use for string concat</param>
         /// <param name="urlEncode">Url Encode</param>
+        /// <returns>Representative string made up of array elements</returns>
+        private static string FlattenCollection(ICollection array, ArrayDeserialization fmt, char separator,
+            bool urlEncode)
+        {
+            return FlattenCollection(array, fmt, separator, urlEncode, "");
+        }
+
+        /// <summary>
+        /// Used for flattening a collection of objects into a string 
+        /// </summary>
+        /// <param name="array">Array of elements to flatten</param>
+        /// <param name="fmt">Format string to use for array flattening</param>
+        /// <param name="separator">Separator to use for string concat</param>
+        /// <param name="urlEncode">Url Encode</param>
         /// <param name="key">Key</param>
         /// <returns>Representative string made up of array elements</returns>
         private static string FlattenCollection(ICollection array, ArrayDeserialization fmt, char separator,
-            bool urlEncode, string key = "")
+            bool urlEncode, string key)
         {
             var builder = new StringBuilder();
 
@@ -175,7 +214,9 @@ namespace TruliooSDK.Utilities
             //append all elements in the array into a string
             var index = 0;
             foreach (object element in array)
+            {
                 builder.AppendFormat(format, GetElementValue(element, urlEncode), separator, index++);
+            }
             //remove the last separator, if appended
             if ((builder.Length > 1) && (builder[builder.Length - 1] == separator))
             {
@@ -218,7 +259,10 @@ namespace TruliooSDK.Utilities
         /// <param name="dictionary2"></param>
         public static void Add(this Dictionary<string, object> dictionary, Dictionary<string, object> dictionary2)
         {
-            foreach (KeyValuePair<string, object> kvp in dictionary2) dictionary[kvp.Key] = kvp.Value;
+            foreach (KeyValuePair<string, object> kvp in dictionary2)
+            {
+                dictionary[kvp.Key] = kvp.Value;
+            }
         }
 
     }

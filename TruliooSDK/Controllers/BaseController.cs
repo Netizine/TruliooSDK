@@ -20,7 +20,10 @@ namespace TruliooSDK.Controllers
             {
                 lock(SyncObject)
                 {
-                    if (null != _clientInstance) return _clientInstance;
+                    if (null != _clientInstance)
+                    {
+                        return _clientInstance;
+                    }
                     _clientInstance = new HTTPClient();
                     _clientInstance.SetTimeout(TimeSpan.FromMilliseconds(30000));
                     return _clientInstance;
@@ -29,7 +32,12 @@ namespace TruliooSDK.Controllers
             set
             {
                 lock (SyncObject)
-                    if (value is IHttpClient client) _clientInstance = client;
+                {
+                    if (value is IHttpClient client)
+                    {
+                        _clientInstance = client;
+                    }
+                }
             }
         }
         #endregion shared http client instance
@@ -79,7 +87,9 @@ namespace TruliooSDK.Controllers
             }
 
             if ((response.StatusCode < 200) || (response.StatusCode > 208)) //[200,208] = HTTP OK
+            {
                 throw new APIException(@"HTTP Response Not OK", context);
+            }
         }
 
         internal class ErrorMessageData

@@ -6,8 +6,7 @@ namespace TruliooSDK
 {
     public class Configuration
     {
-
-        public Configuration()
+        protected Configuration()
         {
             Mode = Mode.Trial;
         }
@@ -24,12 +23,10 @@ namespace TruliooSDK
         /// <summary>
         /// Gets the URL for a particular alias in the current environment and appends it with template parameters
         /// </summary>
-        /// <return>Returns the baseurl</return>
+        /// <return>Returns the base url</return>
         internal static string GetBaseURI()
         {
-            var url = new StringBuilder("https://gateway.trulioo.com");
-            APIHelper.AppendUrlWithTemplateParameters(url, new List<KeyValuePair<string, object>>());
-            return url.ToString();        
+            return "https://gateway.trulioo.com";        
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using Newtonsoft.Json;
 using TruliooSDK.Enums;
+using TruliooSDK.Exceptions;
 
 namespace TruliooSDK.Utilities
 {
@@ -46,7 +47,7 @@ namespace TruliooSDK.Utilities
                     case "RU":
                         return Country.Russia;
                     default:
-                        throw new Exception("Cannot unmarshal type CountryCode");
+                        throw new APIException("Cannot unmarshal type Country", null);
                 }
             }
             throw new Exception("Cannot unmarshal type CountryCode");

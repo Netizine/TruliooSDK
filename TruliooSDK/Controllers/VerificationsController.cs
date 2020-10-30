@@ -27,10 +27,13 @@ namespace TruliooSDK.Controllers
             get
             {
                 lock (SyncObject)
+                {
                     if (null == _instance)
                     {
                         _instance = new VerificationsController();
                     }
+                }
+
                 return _instance;
             }
         }
@@ -73,11 +76,9 @@ namespace TruliooSDK.Controllers
             var queryBuilder = new StringBuilder(baseUri);
             queryBuilder.Append("/{mode}/verifications/v1/verify");
 
+            var parameters = new Dictionary<string, object>() {{"mode", Configuration.Mode.ToFriendlyString()}};
             //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "mode", Configuration.Mode.ToFriendlyString() }
-            });
+            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, parameters);
 
 
             //validate and preprocess url
@@ -138,7 +139,9 @@ namespace TruliooSDK.Controllers
         {
             //validating required parameters
             if (null == id)
+            {
                 throw new ArgumentNullException(nameof(id), "The parameter \"id\" is a required parameter and cannot be null.");
+            }
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
@@ -147,12 +150,9 @@ namespace TruliooSDK.Controllers
             var queryBuilder = new StringBuilder(baseUri);
             queryBuilder.Append("/{mode}/verifications/v1/transactionrecord/{id}");
 
+            var parameters = new Dictionary<string, object>() {{"mode", Configuration.Mode.ToFriendlyString()}, {"id", id}};
             //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "mode", Configuration.Mode.ToFriendlyString() },
-                { "id", id }
-            });
+            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, parameters);
 
 
             //validate and preprocess url

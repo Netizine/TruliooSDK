@@ -34,7 +34,11 @@ namespace TruliooSDK.Utilities
             JsonSerializer serializer)
         {
 
-            if (reader.TokenType != JsonToken.Integer) throw new JsonSerializationException("Unexpected token");
+            if (reader.TokenType != JsonToken.Integer)
+            {
+                throw new JsonSerializationException("Unexpected token");
+            }
+
             return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(double.Parse(reader.Value.ToString()));
         }
     }

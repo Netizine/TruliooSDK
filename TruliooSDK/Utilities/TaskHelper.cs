@@ -18,9 +18,13 @@ namespace TruliooSDK.Utilities
             catch (AggregateException ex)
             {
                 if (ex.InnerExceptions.Count > 0)
+                {
                     throw ex.InnerExceptions[0];
+                }
                 else
+                {
                     throw;
+                }
             }
         }
     }

@@ -165,7 +165,9 @@ namespace TruliooSDK.Controllers
         {
             //validating country parameter
             if (country == Country.NotSet)
+            {
                 throw new ArgumentException("The parameter \"country\" is required and cannot have the value NotSet.");
+            }
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
@@ -257,7 +259,9 @@ namespace TruliooSDK.Controllers
         {
             //validating country parameter
             if (country == Country.NotSet)
+            {
                 throw new ArgumentException("The parameter \"country\" is required and cannot have the value NotSet.");
+            }
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
@@ -352,7 +356,9 @@ namespace TruliooSDK.Controllers
         {
             //validating country parameter
             if (country == Country.NotSet)
+            {
                 throw new ArgumentException("The parameter \"country\" is required and cannot have the value NotSet.");
+            }
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
@@ -451,7 +457,9 @@ namespace TruliooSDK.Controllers
         {
             //validating country parameter
             if (country == Country.NotSet)
+            {
                 throw new ArgumentException("The parameter \"country\" is required and cannot have the value NotSet.");
+            }
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
@@ -556,7 +564,9 @@ namespace TruliooSDK.Controllers
         {
             //validating country parameter
             if (country == Country.NotSet)
+            {
                 throw new ArgumentException("The parameter \"country\" is required and cannot have the value NotSet.");
+            }
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
@@ -626,7 +636,9 @@ namespace TruliooSDK.Controllers
         {
             //validating country parameter
             if (country == Country.NotSet)
+            {
                 throw new ArgumentException("The parameter \"country\" is required and cannot have the value NotSet.");
+            }
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();
@@ -717,7 +729,9 @@ namespace TruliooSDK.Controllers
         {
             //validating country parameter
             if (country == Country.NotSet)
+            {
                 throw new ArgumentException("The parameter \"country\" is required and cannot have the value NotSet.");
+            }
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();

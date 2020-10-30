@@ -94,13 +94,17 @@ namespace TruliooSDK.Http.Client
         private void RaiseOnBeforeHttpRequestEvent(HttpRequest request)
         {
             if ((null != OnBeforeHttpRequestEvent) && (null != request))
+            {
                 OnBeforeHttpRequestEvent(this, request);
+            }
         }
 
         private void RaiseOnAfterHttpResponseEvent(HttpResponse response)
         {
             if ((null != OnAfterHttpResponseEvent) && (null != response))
+            {
                 OnAfterHttpResponseEvent(this, response);
+            }
         }
 
         #endregion
@@ -189,7 +193,10 @@ namespace TruliooSDK.Http.Client
                 RequestUri = new Uri(request.QueryUrl),
                 Method = request.HttpMethod,
             };
-            foreach (KeyValuePair<string, string> headers in request.Headers) requestMessage.Headers.TryAddWithoutValidation(headers.Key, headers.Value);
+            foreach (KeyValuePair<string, string> headers in request.Headers)
+            {
+                requestMessage.Headers.TryAddWithoutValidation(headers.Key, headers.Value);
+            }
 
             if (request.HttpMethod.Equals(HttpMethod.Delete) || request.HttpMethod.Equals(HttpMethod.Post) || request.HttpMethod.Equals(HttpMethod.Put) || request.HttpMethod.Equals(new HttpMethod("PATCH")))
             {
@@ -201,8 +208,10 @@ namespace TruliooSDK.Http.Client
                         requestMessage.Content.Headers.ContentType = !string.IsNullOrWhiteSpace(file.ContentType) ? new MediaTypeHeaderValue(file.ContentType) : new MediaTypeHeaderValue("application/octet-stream");
                     }
                     else if (request.Headers.Any(f => f.Key == "content-type" && f.Value == "application/json; charset=utf-8"))
+                    {
                         requestMessage.Content = new StringContent((string)request.Body ?? string.Empty, Encoding.UTF8,
                             "application/json");
+                    }
                     else if (request.Headers.ContainsKey("content-type"))
                     {
                         requestMessage.Content = new ByteArrayContent(
@@ -217,13 +226,16 @@ namespace TruliooSDK.Http.Client
                         }
                     }
                     else
+                    {
                         requestMessage.Content = new StringContent(request.Body.ToString() ?? string.Empty, Encoding.UTF8,
                             "text/plain");
+                    }
                 }
                 else if (request.FormParameters != null && request.FormParameters.Any(f => f.Value is FileStreamInfo))
                 {
                     var formContent = new MultipartFormDataContent();
                     foreach (KeyValuePair<string, object> param in request.FormParameters)
+                    {
                         if (param.Value is FileStreamInfo fileInfo)
                         {
                             var fileContent = new StreamContent(fileInfo.FileStream);
@@ -240,14 +252,21 @@ namespace TruliooSDK.Http.Client
                             formContent.Add(fileContent, param.Key);
                         }
                         else
+                        {
                             formContent.Add(new StringContent(param.Value.ToString()), param.Key);
+                        }
+                    }
 
                     requestMessage.Content = formContent;
                 }
                 else if (request.FormParameters != null)
                 {
                     var parameters = new List<KeyValuePair<string, string>>();
-                    foreach (KeyValuePair<string, object> param in request.FormParameters) parameters.Add(new KeyValuePair<string, string>(param.Key, param.Value.ToString()));
+                    foreach (KeyValuePair<string, object> param in request.FormParameters)
+                    {
+                        parameters.Add(new KeyValuePair<string, string>(param.Key, param.Value.ToString()));
+                    }
+
                     requestMessage.Content = new FormUrlEncodedContent(parameters);
                 }
             }
