@@ -357,7 +357,6 @@ Task<Models.TransactionRecordResult> GetTransactionRecordAsync(string id);
 |-----------|------|-------------|
 | id |  ``` Required ```  | The TransactionRecordID from the Verify response, this will be a GUID |
 
-
 #### Example Usage
 
 ```csharp
@@ -375,6 +374,5 @@ var result = await verifications.GetTransactionRecordAsync(id);
 | 408 | The request took longer to process than we waited. |
 | 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
 | 500 | An error happened on the server without a specific message. |
-
 
 [Back to List of Controllers](#list_of_controllers)
