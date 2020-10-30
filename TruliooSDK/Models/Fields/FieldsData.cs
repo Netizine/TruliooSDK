@@ -10,9 +10,6 @@ namespace TruliooSDK.Models.Fields
         [JsonProperty("title")]
         public string Title { get; set; }
 
-        //[JsonProperty("type")]
-        //public TypeEnum Type { get; set; }
-
         [JsonProperty("properties")]
         public FieldsDataProperties Properties { get; set; }
     }
@@ -68,12 +65,6 @@ namespace TruliooSDK.Models.Fields
         public Field Telephone2 { get; set; }
     }
 
-    //public class PropertiesProperties
-    //{
-    //    [JsonProperty("Address1")]
-    //    public Field Address1 { get; set; }
-    //}
-
     public class FieldProperties
     {
         [JsonProperty("title")]
@@ -81,9 +72,6 @@ namespace TruliooSDK.Models.Fields
 
         [JsonProperty("type")]
         public TypeEnum Type { get; set; }
-
-        //[JsonProperty("properties")]
-        //public PropertiesProperties Properties { get; set; }
 
         [JsonProperty("required")]
         public List<object> RequiredFields { get; set; }
@@ -155,7 +143,7 @@ namespace TruliooSDK.Models.Fields
         public Field IpAddress { get; set; }
     }
 
-    public partial class Belgium
+    public class Belgium
     {
         [JsonProperty("title")]
         public string Title { get; set; }
@@ -170,13 +158,13 @@ namespace TruliooSDK.Models.Fields
         public List<object> BeRequired { get; set; }
     }
 
-    public partial class BelgiumProperties
+    public class BelgiumProperties
     {
         [JsonProperty("HouseExtension")]
         public Field HouseExtension { get; set; }
     }
 
-    public partial class Netherlands
+    public class Netherlands
     {
         [JsonProperty("title")]
         public string Title { get; set; }
@@ -191,13 +179,13 @@ namespace TruliooSDK.Models.Fields
         public List<object> NetherlandsRequired { get; set; }
     }
 
-    public partial class NetherlandsProperties
+    public class NetherlandsProperties
     {
         [JsonProperty("HouseExtension")]
         public Field HouseExtension { get; set; }
     }
 
-    public partial class Russia
+    public class Russia
     {
         [JsonProperty("title")]
         public string Title { get; set; }
@@ -212,7 +200,7 @@ namespace TruliooSDK.Models.Fields
         public List<string> RussiaRequired { get; set; }
     }
 
-    public partial class RussiaProperties
+    public class RussiaProperties
     {
         [JsonProperty("DayOfIssue")]
         public Field DayOfIssue { get; set; }
