@@ -67,10 +67,8 @@ namespace TruliooSDK.Controllers
                         var errorData = ErrorMessageData.FromJson(messageBody);
                         throw new APIException(@"Your request could not be processed." + Environment.NewLine + errorData.Message, context);
                     }
-                    else
-                    {
-                        throw new APIException(@"Your request could not be processed, there should be more details in the response.", context);
-                    }
+
+                    throw new APIException(@"Your request could not be processed, there should be more details in the response.", context);
                 }
                 case 401:
                     throw new APIException(@"The user name and password you provided is not valid or you are using an account not configured to be an API user.",
@@ -84,11 +82,15 @@ namespace TruliooSDK.Controllers
                         context);
                 case 500:
                     throw new APIException(@"An error happened on the server without a specific message.", context);
-            }
+                default:
+                {
+                    if ((response.StatusCode < 200) || (response.StatusCode > 208)) //[200,208] = HTTP OK
+                    {
+                        throw new APIException(@"HTTP Response Not OK", context);
+                    }
 
-            if ((response.StatusCode < 200) || (response.StatusCode > 208)) //[200,208] = HTTP OK
-            {
-                throw new APIException(@"HTTP Response Not OK", context);
+                    break;
+                }
             }
         }
 

@@ -61,11 +61,8 @@ namespace TruliooSDK.Controllers
             queryBuilder.Append("/{mode}/connection/v1/testauthentication");
 
             //process optional template parameters
-
-            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "mode", Configuration.Mode.ToFriendlyString() }
-            });
+            var parameters = new Dictionary<string, object> {{"mode", Configuration.Mode.ToFriendlyString()}};
+            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, parameters);
 
 
             //validate and preprocess url

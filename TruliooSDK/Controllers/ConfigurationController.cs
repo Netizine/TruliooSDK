@@ -83,12 +83,9 @@ namespace TruliooSDK.Controllers
             var queryBuilder = new StringBuilder(baseUri);
             queryBuilder.Append("/{mode}/configuration/v1/countrycodes/{configurationName}");
 
+            var parameters = new Dictionary<string, object> {{"mode", Configuration.Mode.ToFriendlyString()}, {"configurationName", configurationName}};
             //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "mode", Configuration.Mode.ToFriendlyString() },
-                { "configurationName", configurationName }
-            });
+            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, parameters);
 
 
             //validate and preprocess url
@@ -177,7 +174,7 @@ namespace TruliooSDK.Controllers
             queryBuilder.Append("/{mode}/configuration/v1/testentities/{configurationName}/{countryCode}");
 
             //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>
             {
                 { "mode", Configuration.Mode.ToFriendlyString() },
                 { "configurationName", configurationName },
@@ -271,7 +268,7 @@ namespace TruliooSDK.Controllers
             queryBuilder.Append("/{mode}/configuration/v1/fields/{configurationName}/{countryCode}");
 
             //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>
             {
                 { "mode", Configuration.Mode.ToFriendlyString() },
                 { "countryCode", country.ToAlpha2CodeString() },
@@ -368,7 +365,7 @@ namespace TruliooSDK.Controllers
             queryBuilder.Append("/{mode}/configuration/v1/recommendedfields/{configurationName}/{countryCode}");
 
             //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>
             {
                 { "mode", Configuration.Mode.ToFriendlyString() },
                 { "countryCode", country.ToAlpha2CodeString() },
@@ -469,7 +466,7 @@ namespace TruliooSDK.Controllers
             queryBuilder.Append("/{mode}/configuration/v1/consents/{configurationName}/{countryCode}");
 
             //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>
             {
                 { "mode", Configuration.Mode.ToFriendlyString() },
                 { "countryCode", country.ToAlpha2CodeString() },
@@ -576,7 +573,7 @@ namespace TruliooSDK.Controllers
             queryBuilder.Append("/{mode}/configuration/v1/detailedConsents/{configurationName}/{countryCode}");
 
             //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>
             {
                 { "mode", Configuration.Mode.ToFriendlyString() },
                 { "countryCode", country.ToAlpha2CodeString() },
@@ -648,7 +645,7 @@ namespace TruliooSDK.Controllers
             queryBuilder.Append("/{mode}/configuration/v1/countrysubdivisions/{countryCode}");
 
             //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>
             {
                 { "mode", Configuration.Mode.ToFriendlyString() },
                 { "countryCode", country.ToAlpha2CodeString() }
@@ -741,7 +738,7 @@ namespace TruliooSDK.Controllers
             queryBuilder.Append("/{mode}/configuration/v1/datasources/{configurationName}/{countryCode}");
 
             //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>
             {
                 { "mode", Configuration.Mode.ToFriendlyString() },
                 { "configurationName", configurationName },

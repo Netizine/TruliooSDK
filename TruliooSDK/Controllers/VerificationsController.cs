@@ -76,7 +76,7 @@ namespace TruliooSDK.Controllers
             var queryBuilder = new StringBuilder(baseUri);
             queryBuilder.Append("/{mode}/verifications/v1/verify");
 
-            var parameters = new Dictionary<string, object>() {{"mode", Configuration.Mode.ToFriendlyString()}};
+            var parameters = new Dictionary<string, object> {{"mode", Configuration.Mode.ToFriendlyString()}};
             //process optional template parameters
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, parameters);
 
@@ -150,7 +150,7 @@ namespace TruliooSDK.Controllers
             var queryBuilder = new StringBuilder(baseUri);
             queryBuilder.Append("/{mode}/verifications/v1/transactionrecord/{id}");
 
-            var parameters = new Dictionary<string, object>() {{"mode", Configuration.Mode.ToFriendlyString()}, {"id", id}};
+            var parameters = new Dictionary<string, object> {{"mode", Configuration.Mode.ToFriendlyString()}, {"id", id}};
             //process optional template parameters
             APIHelper.AppendUrlWithTemplateParameters(queryBuilder, parameters);
 

@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using System.Text;
-using TruliooSDK.Utilities;
-
 namespace TruliooSDK
 {
     public class Configuration

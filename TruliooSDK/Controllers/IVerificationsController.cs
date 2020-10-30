@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using TruliooSDK.Models;
 
 namespace TruliooSDK.Controllers
 {
@@ -11,7 +12,7 @@ namespace TruliooSDK.Controllers
         /// </summary>
         /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the Models.VerifyResult response from the API call</return>
-        Models.VerifyResult CreateVerify(Models.VerifyRequest body);
+        VerifyResult CreateVerify(VerifyRequest body);
 
         /// <summary>
         /// Calling this method will perform a verification. If your account includes address cleansing set the CleansedAddress flag to get
@@ -20,7 +21,7 @@ namespace TruliooSDK.Controllers
         /// </summary>
         /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the Models.VerifyResult response from the API call</return>
-        Task<Models.VerifyResult> CreateVerifyAsync(Models.VerifyRequest body);
+        Task<VerifyResult> CreateVerifyAsync(VerifyRequest body);
 
         /// <summary>
         /// This method is used to retrieve the request and results of a verification performed using the verify method. 
@@ -28,7 +29,7 @@ namespace TruliooSDK.Controllers
         /// </summary>
         /// <param name="id">Required parameter: The TransactionRecordID from the Verify response, this will be a GUID</param>
         /// <return>Returns the Models.TransactionRecordResult response from the API call</return>
-        Models.TransactionRecordResult GetTransactionRecord(string id);
+        TransactionRecordResult GetTransactionRecord(string id);
 
         /// <summary>
         /// This method is used to retrieve the request and results of a verification performed using the verify method. 
@@ -36,7 +37,7 @@ namespace TruliooSDK.Controllers
         /// </summary>
         /// <param name="id">Required parameter: The TransactionRecordID from the Verify response, this will be a GUID</param>
         /// <return>Returns the Models.TransactionRecordResult response from the API call</return>
-        Task<Models.TransactionRecordResult> GetTransactionRecordAsync(string id);
+        Task<TransactionRecordResult> GetTransactionRecordAsync(string id);
 
     }
 } 

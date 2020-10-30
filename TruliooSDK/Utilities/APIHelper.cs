@@ -36,7 +36,7 @@ namespace TruliooSDK.Utilities
                 return null;
             }
 
-            var settings = new JsonSerializerSettings()
+            var settings = new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore
             };
@@ -80,11 +80,9 @@ namespace TruliooSDK.Utilities
                 converters.Add(new IsoDateTimeConverter());
                 return JsonConvert.DeserializeObject<T>(json, converters.ToArray());
             }
-            else
-            {
-                converters.Add(converter);
-                return JsonConvert.DeserializeObject<T>(json, converters.ToArray());
-            }
+
+            converters.Add(converter);
+            return JsonConvert.DeserializeObject<T>(json, converters.ToArray());
         }
 
         /// <summary>

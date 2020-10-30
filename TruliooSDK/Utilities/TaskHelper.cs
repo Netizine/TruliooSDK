@@ -21,10 +21,8 @@ namespace TruliooSDK.Utilities
                 {
                     throw ex.InnerExceptions[0];
                 }
-                else
-                {
-                    throw;
-                }
+
+                throw;
             }
         }
     }
