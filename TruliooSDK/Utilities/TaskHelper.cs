@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace TruliooSDK.Utilities
@@ -17,10 +15,10 @@ namespace TruliooSDK.Utilities
             {
                 Task.WaitAll(t);
             }
-            catch (AggregateException e)
+            catch (AggregateException ex)
             {
-                if (e.InnerExceptions.Count > 0)
-                    throw e.InnerExceptions[0];
+                if (ex.InnerExceptions.Count > 0)
+                    throw ex.InnerExceptions[0];
                 else
                     throw;
             }

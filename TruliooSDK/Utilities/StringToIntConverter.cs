@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Newtonsoft.Json;
 
 namespace TruliooSDK.Utilities
@@ -26,7 +24,6 @@ namespace TruliooSDK.Utilities
             }
             var value = (int)untypedValue;
             serializer.Serialize(writer, value.ToString());
-            return;
         }
     }
 }

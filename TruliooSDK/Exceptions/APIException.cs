@@ -38,7 +38,9 @@ namespace TruliooSDK.Exceptions
                 if (string.IsNullOrWhiteSpace(responseBody)) return;
                 try { JsonConvert.PopulateObject(responseBody, this); }
                 catch
-                {} //ignoring response body from deserailization
+                {
+                    //ignoring response body from deserailization
+                }
             }
         }
     }

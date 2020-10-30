@@ -14,7 +14,7 @@ namespace TruliooSDK.Models
         /// Raises event when a property is changed
         /// </summary>
         /// <param name="propertyName">Name of the changed property</param>
-        protected void OnPropertyChanged(System.String propertyName)
+        protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

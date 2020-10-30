@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using Newtonsoft.Json;
 using TruliooSDK.Exceptions;
 using TruliooSDK.Http.Client;
 using TruliooSDK.Http.Response;
@@ -45,21 +47,47 @@ namespace TruliooSDK.Controllers
             switch (response.StatusCode)
             {
                 case 400:
-                    throw new APIException(@"Your request could not be processed, there should be more details in the response.", context);
+                {
+                    string messageBody;
+                    using (var stream = new StreamReader(context.Response.RawBody))
+                    {
+                        messageBody = stream.ReadToEnd();
+                    }
+
+                    if (!string.IsNullOrEmpty(messageBody))
+                    {
+                        var errorData = ErrorMessageData.FromJson(messageBody);
+                        throw new APIException(@"Your request could not be processed." + Environment.NewLine + errorData.Message, context);
+                    }
+                    else
+                    {
+                        throw new APIException(@"Your request could not be processed, there should be more details in the response.", context);
+                    }
+                }
                 case 401:
-                    throw new APIException(@"The user name and password you provided is not valid or you are using an account not configured to be an API user.", context);
+                    throw new APIException(@"The user name and password you provided is not valid or you are using an account not configured to be an API user.",
+                        context);
                 case 403:
                     throw new APIException(@"The requested resource is forbidden.", context);
                 case 408:
                     throw new APIException(@"The request took longer to process than we waited.", context);
                 case 415:
-                    throw new APIException(@"You asked for a media type that we do not support. You should request application/json in the Content-Type header.", context);
+                    throw new APIException(@"You asked for a media type that we do not support. You should request application/json in the Content-Type header.",
+                        context);
                 case 500:
                     throw new APIException(@"An error happened on the server without a specific message.", context);
             }
 
             if ((response.StatusCode < 200) || (response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new APIException(@"HTTP Response Not OK", context);
+        }
+
+        internal class ErrorMessageData
+        {
+            internal static ErrorMessageData FromJson(string json) => JsonConvert.DeserializeObject<ErrorMessageData>(json);
+
+            [JsonProperty("Message")]
+            internal string Message { get; set; }
         }
     }
 } 

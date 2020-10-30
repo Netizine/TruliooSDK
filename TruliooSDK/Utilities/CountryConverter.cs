@@ -15,34 +15,39 @@ namespace TruliooSDK.Utilities
             var value = serializer.Deserialize<string>(reader);
             if (value != null)
             {
-                if (value == "AU")
-                    return Country.Australia;
-                else if (value == "AT")
-                    return Country.Austria;
-                else if (value == "DK")
-                    return Country.Denmark;
-                else if (value == "NO")
-                    return Country.Norway;
-                else if (value == "SE")
-                    return Country.Sweden;
-                else if (value == "TR")
-                    return Country.Turkey;
-                else if (value == "BR")
-                    return Country.Brazil;
-                else if (value == "BE")
-                    return Country.Belgium;
-                else if (value == "DE")
-                    return Country.Germany;
-                else if (value == "NL")
-                    return Country.Netherlands;
-                else if (value == "GB")
-                    return Country.GreatBritain;
-                else if (value == "US")
-                    return Country.UnitedStates;
-                else if (value == "MY")
-                    return Country.Malaysia;
-                else if (value == "RU")
-                    return Country.Russia;
+                switch (value)
+                {
+                    case "AU":
+                        return Country.Australia;
+                    case "AT":
+                        return Country.Austria;
+                    case "DK":
+                        return Country.Denmark;
+                    case "NO":
+                        return Country.Norway;
+                    case "SE":
+                        return Country.Sweden;
+                    case "TR":
+                        return Country.Turkey;
+                    case "BR":
+                        return Country.Brazil;
+                    case "BE":
+                        return Country.Belgium;
+                    case "DE":
+                        return Country.Germany;
+                    case "NL":
+                        return Country.Netherlands;
+                    case "GB":
+                        return Country.GreatBritain;
+                    case "US":
+                        return Country.UnitedStates;
+                    case "MY":
+                        return Country.Malaysia;
+                    case "RU":
+                        return Country.Russia;
+                    default:
+                        throw new Exception("Cannot unmarshal type CountryCode");
+                }
             }
             throw new Exception("Cannot unmarshal type CountryCode");
         }

@@ -108,9 +108,9 @@ namespace TruliooSDK.Http.Client
 
         #region Http methods
 
-        public HttpRequest Get(string queryUrl, Dictionary<string, string> headers, string username = null, string password = null)
+        public HttpRequest Get(string queryUrl, Dictionary<string, string> headers)
         {
-            return new HttpRequest(HttpMethod.Get, queryUrl, headers, username, password);
+            return new HttpRequest(HttpMethod.Get, queryUrl, headers);
         }
 
         public HttpRequest Get(string queryUrl)
@@ -138,48 +138,44 @@ namespace TruliooSDK.Http.Client
             return new HttpRequest(new HttpMethod("PATCH"), queryUrl);
         }
 
-        public HttpRequest Post(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, object>> formParameters, string username = null,
-            string password = null)
+        public HttpRequest Post(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, object>> formParameters)
         {
-            return new HttpRequest(HttpMethod.Post, queryUrl, headers, formParameters, username, password);
+            return new HttpRequest(HttpMethod.Post, queryUrl, headers, formParameters);
         }
 
-        public HttpRequest PostBody(string queryUrl, Dictionary<string, string> headers, object body, string username = null, string password = null)
+        public HttpRequest PostBody(string queryUrl, Dictionary<string, string> headers, object body)
         {
-            return new HttpRequest(HttpMethod.Post, queryUrl, headers, body, username, password);
+            return new HttpRequest(HttpMethod.Post, queryUrl, headers, body);
         }
 
-        public HttpRequest Put(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, object>> formParameters, string username = null,
-            string password = null)
+        public HttpRequest Put(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, object>> formParameters)
         {
-            return new HttpRequest(HttpMethod.Put, queryUrl, headers, formParameters, username, password);
+            return new HttpRequest(HttpMethod.Put, queryUrl, headers, formParameters);
         }
 
-        public HttpRequest PutBody(string queryUrl, Dictionary<string, string> headers, object body, string username = null, string password = null)
+        public HttpRequest PutBody(string queryUrl, Dictionary<string, string> headers, object body)
         {
-            return new HttpRequest(HttpMethod.Put, queryUrl, headers, body, username, password);
+            return new HttpRequest(HttpMethod.Put, queryUrl, headers, body);
         }
 
-        public HttpRequest Patch(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, object>> formParameters, string username = null,
-            string password = null)
+        public HttpRequest Patch(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, object>> formParameters)
         {
-            return new HttpRequest(new HttpMethod("PATCH"), queryUrl, headers, formParameters, username, password);
+            return new HttpRequest(new HttpMethod("PATCH"), queryUrl, headers, formParameters);
         }
 
-        public HttpRequest PatchBody(string queryUrl, Dictionary<string, string> headers, object body, string username = null, string password = null)
+        public HttpRequest PatchBody(string queryUrl, Dictionary<string, string> headers, object body)
         {
-            return new HttpRequest(new HttpMethod("PATCH"), queryUrl, headers, body, username, password);
+            return new HttpRequest(new HttpMethod("PATCH"), queryUrl, headers, body);
         }
 
-        public HttpRequest Delete(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, object>> formParameters, string username = null,
-            string password = null)
+        public HttpRequest Delete(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, object>> formParameters)
         {
-            return new HttpRequest(HttpMethod.Delete, queryUrl, headers, formParameters, username, password);
+            return new HttpRequest(HttpMethod.Delete, queryUrl, headers, formParameters);
         }
 
-        public HttpRequest DeleteBody(string queryUrl, Dictionary<string, string> headers, object body, string username = null, string password = null)
+        public HttpRequest DeleteBody(string queryUrl, Dictionary<string, string> headers, object body)
         {
-            return new HttpRequest(HttpMethod.Delete, queryUrl, headers, body, username, password);
+            return new HttpRequest(HttpMethod.Delete, queryUrl, headers, body);
         }
 
         #endregion
@@ -194,14 +190,6 @@ namespace TruliooSDK.Http.Client
                 Method = request.HttpMethod,
             };
             foreach (KeyValuePair<string, string> headers in request.Headers) requestMessage.Headers.TryAddWithoutValidation(headers.Key, headers.Value);
-
-
-            if (!string.IsNullOrEmpty(request.Username))
-            {
-                byte[] byteArray = Encoding.UTF8.GetBytes(request.Username + ":" + request.Password);
-                requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic",
-                    Convert.ToBase64String(byteArray));
-            }
 
             if (request.HttpMethod.Equals(HttpMethod.Delete) || request.HttpMethod.Equals(HttpMethod.Post) || request.HttpMethod.Equals(HttpMethod.Put) || request.HttpMethod.Equals(new HttpMethod("PATCH")))
             {
@@ -240,12 +228,14 @@ namespace TruliooSDK.Http.Client
                         {
                             var fileContent = new StreamContent(fileInfo.FileStream);
                             if (string.IsNullOrEmpty(fileInfo.FileName))
-                                fileInfo.FileName = "file";
-                            fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                             {
-                                Name = param.Key,
-                                FileName = fileInfo.FileName
-                            };
+                                fileInfo.FileName = "file";
+                                fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+                                {
+                                    Name = param.Key,
+                                    FileName = fileInfo.FileName
+                                };
+                            }
                             fileContent.Headers.ContentType = !string.IsNullOrWhiteSpace(fileInfo.ContentType) ? new MediaTypeHeaderValue(fileInfo.ContentType) : new MediaTypeHeaderValue("application/octet-stream");
                             formContent.Add(fileContent, param.Key);
                         }
