@@ -22,25 +22,13 @@ namespace TruliooSDK
 
 
         /// <summary>
-        /// Makes a list of the BaseURL parameters 
-        /// </summary>
-        /// <return>Returns the parameters list</return>
-        internal static List<KeyValuePair<string, object>> GetBaseURIParameters()
-        {
-            var kvpList = new List<KeyValuePair<string, object>>()
-            {
-            };
-            return kvpList; 
-        }
-
-        /// <summary>
         /// Gets the URL for a particular alias in the current environment and appends it with template parameters
         /// </summary>
         /// <return>Returns the baseurl</return>
         internal static string GetBaseURI()
         {
             var url = new StringBuilder("https://gateway.trulioo.com");
-            APIHelper.AppendUrlWithTemplateParameters(url, GetBaseURIParameters());
+            APIHelper.AppendUrlWithTemplateParameters(url, new List<KeyValuePair<string, object>>());
             return url.ToString();        
         }
     }

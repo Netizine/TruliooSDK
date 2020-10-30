@@ -7,28 +7,25 @@ namespace TruliooSDK.Utilities
 {
     public class UnixDateTimeConverter : DateTimeConverterBase
     {
-        private DateTimeStyles _dateTimeStyles = DateTimeStyles.RoundtripKind;
-
-        public DateTimeStyles DateTimeStyles
-        {
-            get => _dateTimeStyles;
-            set => _dateTimeStyles = value;
-        }
+        public DateTimeStyles DateTimeStyles { get; set; } = DateTimeStyles.RoundtripKind;
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             double text;
-            if (value is DateTime)
+            if (value is DateTime dateTime)
             {
-                var dateTime = (DateTime)value;
-
-                if ((_dateTimeStyles & DateTimeStyles.AdjustToUniversal) == DateTimeStyles.AdjustToUniversal
-                    || (_dateTimeStyles & DateTimeStyles.AssumeUniversal) == DateTimeStyles.AssumeUniversal)
+                if ((DateTimeStyles & DateTimeStyles.AdjustToUniversal) == DateTimeStyles.AdjustToUniversal
+                    || (DateTimeStyles & DateTimeStyles.AssumeUniversal) == DateTimeStyles.AssumeUniversal)
+                {
                     dateTime = dateTime.ToUniversalTime();
+                }
+
                 text = dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
             }
             else
+            {
                 throw new JsonSerializationException("Unexpected value when converting date. Expected DateTime.");
+            }
 
             writer.WriteValue(text);
         }

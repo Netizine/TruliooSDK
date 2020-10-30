@@ -27,7 +27,10 @@ namespace TruliooSDK.Controllers
             get
             {
                 lock (SyncObject)
-                    if (null == _instance) _instance = new VerificationsController();
+                    if (null == _instance)
+                    {
+                        _instance = new VerificationsController();
+                    }
                 return _instance;
             }
         }
@@ -59,7 +62,9 @@ namespace TruliooSDK.Controllers
         {
             //validating required parameters
             if (null == body)
+            {
                 throw new ArgumentNullException(nameof(body), "The parameter \"body\" is a required parameter and cannot be null.");
+            }
 
             //the base uri for api requests
             var baseUri = Configuration.GetBaseURI();

@@ -28,7 +28,10 @@ namespace TruliooSDK.Controllers
             get
             {
                 lock (SyncObject)
-                    if (null == _instance) _instance = new ConfigurationController();
+                    if (null == _instance)
+                    {
+                        _instance = new ConfigurationController();
+                    }
                 return _instance;
             }
         }

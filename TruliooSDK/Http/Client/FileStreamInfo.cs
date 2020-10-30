@@ -26,9 +26,18 @@ namespace TruliooSDK.Http.Client
         /// Constructor to initialize the object with optional file name
         /// </summary>
         /// <param name="stream">The stream object with read access to the file data</param>
+        public FileStreamInfo(Stream stream) : this(stream, null, null)
+        {
+            FileStream = stream;
+        }
+
+        /// <summary>
+        /// Constructor to initialize the object with optional file name
+        /// </summary>
+        /// <param name="stream">The stream object with read access to the file data</param>
         /// <param name="fileName">Optional file name associated with the stream</param>
         /// <param name="contentType">Optional file content type associated with the stream</param>
-        public FileStreamInfo(Stream stream, string fileName = null, string contentType = null)
+        public FileStreamInfo(Stream stream, string fileName, string contentType)
         {
             FileStream = stream;
             FileName = fileName;

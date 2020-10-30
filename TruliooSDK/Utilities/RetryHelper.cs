@@ -18,6 +18,7 @@ namespace TruliooSDK.Utilities
 
             var attempts = -1;
             do
+            {
                 try
                 {
                     attempts++;
@@ -27,11 +28,12 @@ namespace TruliooSDK.Utilities
                 catch (TException ex)
                 {
                     if (attempts == times)
+                    {
                         throw;
-
+                    }
                     await Task.Delay(delay).ConfigureAwait(false);
                 }
-            while (true);
+            } while (true);
         }
     }
 }
