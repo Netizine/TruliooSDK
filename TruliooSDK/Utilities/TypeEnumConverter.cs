@@ -26,6 +26,8 @@ namespace TruliooSDK.Utilities
                     return TypeEnum.String;
                 case "object":
                     return TypeEnum.Object;
+                default:
+                    throw new APIException("Cannot unmarshal type TypeEnum");
             }
             throw new APIException("Cannot unmarshal type TypeEnum");
         }
