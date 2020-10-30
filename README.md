@@ -256,7 +256,6 @@ Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSourcesAsync(Country.
 | configurationName |  ``` Optional ```  ``` DefaultValue ```  | The product configuration. Currently defaults to "Identity Verification" for all products. |
 | country |  ``` Required ```  | Country enum |
 
-
 #### Example Usage for GetDataSourcesAsync
 
 ```csharp
