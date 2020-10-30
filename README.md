@@ -6,7 +6,6 @@ This is the link to the [Official SDK](https://github.com/Trulioo/sdk-csharp-v1 
 | ------------------- | ------------------- |
 |[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bd9ab305a4cf45a3bd52eb4d2587457e)](https://app.codacy.com/gh/Jayman1305/TruliooSDK?utm_source=github.com&utm_medium=referral&utm_content=Jayman1305/TruliooSDK&utm_campaign=Badge_Grade)|[![NuGet](https://buildstats.info/nuget/UnofficialTruliooSDK)](https://www.nuget.org/packages/UnofficialTruliooSDK/)|
 
-
 ## How to Use
 
 The following section explains how to use the Trulioo C# SDK library in a C# project.
@@ -30,7 +29,6 @@ string xTruliooApiKey = "xTruliooApiKey"; // Trulioo Api Key
 
 var client = new TruliooSDK.TruliooSDKClient(mode, xTruliooApiKey);
 ```
-
 # Class Reference
 
 ## <a name="list_of_controllers"></a>List of Controllers
@@ -45,7 +43,7 @@ var client = new TruliooSDK.TruliooSDKClient(mode, xTruliooApiKey);
 The singleton instance of the ``` ConnectionController ``` class can be accessed from the API Client.
 
 ```csharp
-IConnectionController connection = client.Connection;
+var connection = client.Connection;
 ```
 
 ### <a name="get_test_authentication"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConnectionController.GetTestAuthentication") GetTestAuthentication
@@ -53,15 +51,13 @@ IConnectionController connection = client.Connection;
 > This method enables you to check if your credentials are valid. You will need to use ApiKeyAuth authentication to ensure a successful response.
 
 ```csharp
-string GetTestAuthentication();
-//Async
 Task<string> GetTestAuthenticationAsync();
 ```
 
 #### Example Usage for GetTestAuthenticationAsync
 
 ```csharp
-string result = await connection.GetTestAuthenticationAsync();
+var result = await connection.GetTestAuthenticationAsync();
 ```
 
 [Back to List of Controllers](#list_of_controllers)
@@ -81,8 +77,6 @@ var configuration = client.Configuration;
 > This method retrieves all the countries that are available to perform a verification. It returns a collection of the supported countries
 
 ```csharp
-List<Country> GetCountryCodes();
-//Async
 Task<List<Country>> GetCountryCodesAsync();
 ```
 
@@ -104,8 +98,6 @@ var result = await configuration.GetCountryCodesAsync();
 > Gets the test entities configured for your product and country.
 
 ```csharp
-List<Models.DataFields> GetTestEntities(Country.GreatBritain);
-//Async
 Task<List<Models.DataFields>> GetTestEntitiesAsync(Country.GreatBritain);
 ```
 
@@ -127,9 +119,7 @@ var result = await configuration.GetTestEntitiesAsync(Country.GreatBritain);
 > Generates json schema for the API, the schema is dynamic based on the country and configuration you are using json-schema.org
 
 ```csharp
-object GetFields(Country.GreatBritain);
-//Async
-Task<object> GetFieldsAsync(Country.GreatBritain);
+Task<FieldsData> GetFieldsAsync(Country.GreatBritain);
 ```
 
 #### Parameters for GetFieldsAsync
@@ -142,7 +132,7 @@ Task<object> GetFieldsAsync(Country.GreatBritain);
 #### Example Usage for GetFieldsAsync
 
 ```csharp
-object result = await configuration.GetFieldsAsync(Country.GreatBritain);
+var result = await configuration.GetFieldsAsync(Country.GreatBritain);
 ```
 
 ### <a name="get_recommended_fields"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetRecommendedFields") GetRecommendedFields
@@ -152,8 +142,7 @@ object result = await configuration.GetFieldsAsync(Country.GreatBritain);
 > http://json-schema.org/documentation.html
 
 ```csharp
-object GetRecommendedFields(Country.GreatBritain);
-Task<object> GetRecommendedFieldsAsync(Country.GreatBritain);
+Task<FieldsData> GetRecommendedFieldsAsync(Country.GreatBritain);
 ```
 
 #### Parameters for GetRecommendedFieldsAsync
@@ -178,8 +167,6 @@ var result = await configuration.GetRecommendedFieldsAsync(Country.GreatBritain)
 > Failure to provide an element from the string collection will lead to a 1005 service error
 
 ```csharp
-List<string> GetConsents(Country.GreatBritain);
-//Async
 Task<List<string>> GetConsentsAsync(Country.GreatBritain);
 ```
 #### Parameters for GetConsentsAsync
@@ -205,8 +192,6 @@ var result = await configuration.GetConsentsAsync(Country.GreatBritain);
 > Failure to provide a Name from the object collection will lead to a 1005 service error.
 
 ```csharp
-List<Models.Consent> GetDetailedConsents(Country.GreatBritain);
-//Async
 Task<List<Models.Consent>> GetDetailedConsentsAsync(Country.GreatBritain);
 ```
 #### Parameters for GetDetailedConsentsAsync
@@ -227,8 +212,6 @@ var result = await configuration.GetDetailedConsentsAsync(Country.GreatBritain);
 > Gets the provinces states or other subdivisions for a country, mostly matches ISO 3166-2
 
 ```csharp
-List<Models.CountrySubdivision> GetCountrySubdivisions(Country.GreatBritain);
-//Async
 Task<List<Models.CountrySubdivision>> GetCountrySubdivisionsAsync(Country.GreatBritain);
 ```
 
@@ -249,8 +232,6 @@ var result = await configuration.GetCountrySubdivisionsAsync(Country.GreatBritai
 > Gets datasource groups configured for your product and country.
 
 ```csharp
-List<Models.NormalizedDatasourceGroupCountry> GetDataSources(Country.GreatBritain);
-//Async
 Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSourcesAsync(Country.GreatBritain);
 ```
 
@@ -288,8 +269,6 @@ IVerificationsController verifications = client.Verifications;
 > It is also possible to get sample requests from the customer portal. If you are configured for a sandbox account make sure to call Get Test Entities to get test data for a country you want to try. Sandbox accounts only use these test entities and so trying to verify with any other data will result in no matches being found.
 
 ```csharp
-Models.VerifyResult CreateVerify(VerifyRequest body);
-//Async
 Task<Models.VerifyResult> CreateVerifyAsync(VerifyRequest body);
 ```
 #### Parameters for CreateVerifyAsync
@@ -336,8 +315,6 @@ var result = await truliooClient.Verifications.CreateVerifyAsync(verifyRequest);
 > The response for this method includes the same information as verify method's response, along with data present in the input fields of the verify request.
 
 ```csharp
-Models.TransactionRecordResult GetTransactionRecord(string id);
-//Async
 Task<Models.TransactionRecordResult> GetTransactionRecordAsync(string id);
 ```
 
