@@ -18,8 +18,6 @@ In order to setup authentication and initialization of the API client, you need 
 | mode | Trulioo Mode |
 | xTruliooApiKey | Trulioo Api Key |
 
-
-
 API client can be initialized as following.
 
 ```csharp
@@ -27,18 +25,16 @@ API client can be initialized as following.
 Mode mode = Mode.Trial; // free trial or live
 string xTruliooApiKey = "xTruliooApiKey"; // Trulioo Api Key
 
-TruliooSDKClient client = new TruliooSDK.TruliooSDKClient(mode, xTruliooApiKey);
+var client = new TruliooSDK.TruliooSDKClient(mode, xTruliooApiKey);
 ```
-
-
 
 # Class Reference
 
 ## <a name="list_of_controllers"></a>List of Controllers
 
-* [ConnectionController](#connection_controller)
-* [ConfigurationController](#configuration_controller)
-* [VerificationsController](#verifications_controller)
+* [Connection Controller](#connection_controller)
+* [Configuration Controller](#configuration_controller)
+* [Verifications Controller](#verifications_controller)
 
 ## <a name="connection_controller"></a>![Class: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/class.png "TruliooSDK.Standard.Controllers.ConnectionController") ConnectionController
 
@@ -54,30 +50,17 @@ IConnectionController connection = client.Connection;
 
 > This method enables you to check if your credentials are valid. You will need to use ApiKeyAuth authentication to ensure a successful response.
 
-
 ```csharp
 string GetTestAuthentication();
+//Async
 Task<string> GetTestAuthenticationAsync();
 ```
-
 
 #### Example Usage
 
 ```csharp
 string result = await connection.GetTestAuthenticationAsync();
-
 ```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
 
 [Back to List of Controllers](#list_of_controllers)
 
@@ -88,16 +71,16 @@ string result = await connection.GetTestAuthenticationAsync();
 The singleton instance of the ``` ConfigurationController ``` class can be accessed from the API Client.
 
 ```csharp
-IConfigurationController configuration = client.Configuration;
+var configuration = client.Configuration;
 ```
 
 ### <a name="get_country_codes"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetCountryCodes") GetCountryCodes
 
 > This method retrieves all the countries that are available to perform a verification. It returns a collection of the supported countries
 
-
 ```csharp
 List<Country> GetCountryCodes();
+//Async
 Task<List<Country>> GetCountryCodesAsync();
 ```
 
@@ -111,20 +94,9 @@ Task<List<Country>> GetCountryCodesAsync();
 #### Example Usage
 
 ```csharp
-List<string> result = await configuration.GetCountryCodesAsync();
+var result = await configuration.GetCountryCodesAsync();
 
 ```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
 
 ### <a name="get_test_entities"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetTestEntities") GetTestEntities
 
@@ -133,6 +105,7 @@ List<string> result = await configuration.GetCountryCodesAsync();
 
 ```csharp
 List<Models.DataFields> GetTestEntities(Country.GreatBritain);
+//Async
 Task<List<Models.DataFields>> GetTestEntitiesAsync(Country.GreatBritain);
 ```
 
@@ -147,21 +120,8 @@ Task<List<Models.DataFields>> GetTestEntitiesAsync(Country.GreatBritain);
 #### Example Usage
 
 ```csharp
-
-List<Models.DataFields> result = await configuration.GetTestEntitiesAsync(Country.GreatBritain);
-
+var result = await configuration.GetTestEntitiesAsync(Country.GreatBritain);
 ```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
 
 ### <a name="get_fields"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetFields") GetFields
 
@@ -170,6 +130,7 @@ List<Models.DataFields> result = await configuration.GetTestEntitiesAsync(Countr
 
 ```csharp
 object GetFields(Country.GreatBritain);
+//Async
 Task<object> GetFieldsAsync(Country.GreatBritain);
 ```
 
@@ -184,21 +145,8 @@ Task<object> GetFieldsAsync(Country.GreatBritain);
 #### Example Usage
 
 ```csharp
-
 object result = await configuration.GetFieldsAsync(Country.GreatBritain);
-
 ```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
 
 ### <a name="get_recommended_fields"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetRecommendedFields") GetRecommendedFields
 
@@ -223,21 +171,8 @@ Task<object> GetRecommendedFieldsAsync(Country.GreatBritain);
 #### Example Usage
 
 ```csharp
-
-object result = await configuration.GetRecommendedFieldsAsync(Country.GreatBritain);
-
+var result = await configuration.GetRecommendedFieldsAsync(Country.GreatBritain);
 ```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
 
 ### <a name="get_consents"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png  "TruliooSDK.Standard.Controllers.ConfigurationController.GetConsents") GetConsents
 
@@ -247,9 +182,9 @@ object result = await configuration.GetRecommendedFieldsAsync(Country.GreatBrita
 > 
 > Failure to provide an element from the string collection will lead to a 1005 service error
 
-
 ```csharp
 List<string> GetConsents(Country.GreatBritain);
+//Async
 Task<List<string>> GetConsentsAsync(Country.GreatBritain);
 ```
 
@@ -264,21 +199,8 @@ Task<List<string>> GetConsentsAsync(Country.GreatBritain);
 #### Example Usage
 
 ```csharp
-
-List<string> result = await configuration.GetConsentsAsync(Country.GreatBritain);
-
+var result = await configuration.GetConsentsAsync(Country.GreatBritain);
 ```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
 
 ### <a name="get_detailed_consents"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetDetailedConsents") GetDetailedConsents
 
@@ -290,9 +212,9 @@ List<string> result = await configuration.GetConsentsAsync(Country.GreatBritain)
 > 
 > Failure to provide a Name from the object collection will lead to a 1005 service error.
 
-
 ```csharp
 List<Models.Consent> GetDetailedConsents(Country.GreatBritain);
+//Async
 Task<List<Models.Consent>> GetDetailedConsentsAsync(Country.GreatBritain);
 ```
 
@@ -303,33 +225,19 @@ Task<List<Models.Consent>> GetDetailedConsentsAsync(Country.GreatBritain);
 | country |  ``` Required ```  | Call CountryCodes to get the countries available to you. |
 | configurationName |  ``` Optional ```  ``` DefaultValue ```  | Currentlt defailts to Identity Verification |
 
-
 #### Example Usage
 
 ```csharp
-
-List<Models.Consent> result = await configuration.GetDetailedConsentsAsync(Country.GreatBritain);
-
+var result = await configuration.GetDetailedConsentsAsync(Country.GreatBritain);
 ```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
 
 ### <a name="get_country_subdivisions"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetCountrySubdivisions") GetCountrySubdivisions
 
 > Gets the provinces states or other subdivisions for a country, mostly matches ISO 3166-2
 
-
 ```csharp
 List<Models.CountrySubdivision> GetCountrySubdivisions(Country.GreatBritain);
+//Async
 Task<List<Models.CountrySubdivision>> GetCountrySubdivisionsAsync(Country.GreatBritain);
 ```
 
@@ -339,33 +247,19 @@ Task<List<Models.CountrySubdivision>> GetCountrySubdivisionsAsync(Country.GreatB
 |-----------|------|-------------|
 | country |  ``` Required ```  | Country enum |
 
-
 #### Example Usage
 
 ```csharp
-
-List<Models.CountrySubdivision> result = await configuration.GetCountrySubdivisionsAsync(Country.GreatBritain);
-
+var result = await configuration.GetCountrySubdivisionsAsync(Country.GreatBritain);
 ```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
 
 ### <a name="get_datasources"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.ConfigurationController.GetDatasources") GetDatasources
 
 > Gets datasource groups configured for your product and country.
 
-
 ```csharp
 List<Models.NormalizedDatasourceGroupCountry> GetDataSources(Country.GreatBritain);
+//Async
 Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSourcesAsync(Country.GreatBritain);
 ```
 
@@ -380,21 +274,8 @@ Task<List<Models.NormalizedDatasourceGroupCountry>> GetDataSourcesAsync(Country.
 #### Example Usage
 
 ```csharp
-
-List<Models.NormalizedDatasourceGroupCountry> result = await configuration.GetDataSourcesAsync(Country.GreatBritain);
-
+var result = await configuration.GetDataSourcesAsync(Country.GreatBritain);
 ```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
 
 [Back to List of Controllers](#list_of_controllers)
 
@@ -419,6 +300,7 @@ IVerificationsController verifications = client.Verifications;
 
 ```csharp
 Models.VerifyResult CreateVerify(VerifyRequest body);
+//Async
 Task<Models.VerifyResult> CreateVerifyAsync(VerifyRequest body);
 ```
 
@@ -426,8 +308,7 @@ Task<Models.VerifyResult> CreateVerifyAsync(VerifyRequest body);
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| body |  ``` Required ```  | TODO: Add a parameter description |
-
+| verifyRequest |  ``` Required ```  | The verify request body |
 
 #### Example Usage
 
@@ -440,9 +321,7 @@ var verifyRequest = new VerifyRequest
     DataFields = new DataFields
     {
         PersonInfo = new PersonInfo(),
-        Location = new Location(),
-        Communication = new Communication(),
-        Passport = new Passport()
+        Location = new Location()
     }
 };
 verifyRequest.DataFields.PersonInfo.FirstGivenName = "Julia";
@@ -451,36 +330,16 @@ verifyRequest.DataFields.PersonInfo.MiddleName = "Ronald";
 verifyRequest.DataFields.PersonInfo.DayOfBirth =26;
 verifyRequest.DataFields.PersonInfo.MonthOfBirth = 1;
 verifyRequest.DataFields.PersonInfo.YearOfBirth = 1979;
-verifyRequest.DataFields.PersonInfo.MinimumAge = null;
 
 verifyRequest.DataFields.Location.BuildingNumber = "12";
 verifyRequest.DataFields.Location.BuildingName = "Beck";
 verifyRequest.DataFields.Location.UnitNumber = 1;
 verifyRequest.DataFields.Location.StreetName = "Moorfoot";
 verifyRequest.DataFields.Location.StreetType = "Way";
-verifyRequest.DataFields.Location.City = null;
-verifyRequest.DataFields.Location.Suburb = null;
-verifyRequest.DataFields.Location.County = null;
-verifyRequest.DataFields.Location.StateProvinceCode = null;
-verifyRequest.DataFields.Location.Country = null;
 verifyRequest.DataFields.Location.PostalCode = "L33 1WZ";
-verifyRequest.DataFields.Location.PoBox = null;
-verifyRequest.DataFields.Location.AdditionalFields = null;
 
 var result = await truliooClient.Verifications.CreateVerifyAsync(verifyRequest);
-
 ```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Your request could not be processed, there should be more details in the response. |
-| 401 | The user name and password you provided is not valid or you are using an account not configured to be an API user. |
-| 408 | The request took longer to process than we waited. |
-| 415 | You asked for a media type that we do not support. You should request application/json in the Content-Type header. |
-| 500 | An error happened on the server without a specific message. |
-
 
 ### <a name="get_transaction_record"></a>![Method: ](https://raw.githubusercontent.com/Jayman1305/TruliooSDK/master/TruliooSDK/method.png "TruliooSDK.Standard.Controllers.VerificationsController.GetTransactionRecord") GetTransactionRecord
 
@@ -488,9 +347,9 @@ var result = await truliooClient.Verifications.CreateVerifyAsync(verifyRequest);
 > 
 > The response for this method includes the same information as verify method's response, along with data present in the input fields of the verify request.
 
-
 ```csharp
 Models.TransactionRecordResult GetTransactionRecord(string id);
+//Async
 Task<Models.TransactionRecordResult> GetTransactionRecordAsync(string id);
 ```
 
@@ -506,10 +365,9 @@ Task<Models.TransactionRecordResult> GetTransactionRecordAsync(string id);
 ```csharp
 string id = "id";
 
-Models.TransactionRecordResult result = await verifications.GetTransactionRecordAsync(id);
+var result = await verifications.GetTransactionRecordAsync(id);
 
 ```
-
 #### Errors
 
 | Error Code | Error Description |
@@ -522,6 +380,3 @@ Models.TransactionRecordResult result = await verifications.GetTransactionRecord
 
 
 [Back to List of Controllers](#list_of_controllers)
-
-
-
