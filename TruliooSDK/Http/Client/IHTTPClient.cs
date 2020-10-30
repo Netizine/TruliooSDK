@@ -28,20 +28,6 @@ namespace TruliooSDK.Http.Client
         event OnAfterHttpResponseEventHandler OnAfterHttpResponseEvent;
 
         /// <summary>
-        /// Execute a given HttpRequest to get string response back
-        /// </summary>
-        /// <param name="request">The given HttpRequest to execute</param>
-        /// <returns> HttpResponse containing raw information</returns>
-        HttpResponse ExecuteAsString(HttpRequest request);
-
-        /// <summary>
-        /// Execute a given HttpRequest to get binary response back
-        /// </summary>
-        /// <param name="request">The given HttpRequest to execute</param>
-        /// <returns> HttpResponse containing raw information</returns>
-        HttpResponse ExecuteAsBinary(HttpRequest request);
-
-        /// <summary>
         /// Execute a given HttpRequest to get async string response back
         /// </summary>
         /// <param name="request">The given HttpRequest to execute</param>

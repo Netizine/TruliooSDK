@@ -40,17 +40,6 @@ namespace TruliooSDK.Controllers
         /// This method enables you to check if your credentials are valid. You will need to use ApiKeyAuth authentication to ensure a successful response.
         /// </summary>
         /// <return>Returns the string response from the API call</return>
-        public string GetTestAuthentication()
-        {
-            Task<string> t = GetTestAuthenticationAsync();
-            TaskHelper.RunTaskSynchronously(t);
-            return t.GetAwaiter().GetResult();
-        }
-
-        /// <summary>
-        /// This method enables you to check if your credentials are valid. You will need to use ApiKeyAuth authentication to ensure a successful response.
-        /// </summary>
-        /// <return>Returns the string response from the API call</return>
         public async Task<string> GetTestAuthenticationAsync()
         {
             //the base uri for api requests

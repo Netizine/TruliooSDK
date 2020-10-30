@@ -72,8 +72,8 @@ namespace TruliooSDK.Utilities
             }
             var converters = new List<JsonConverter>
             {
-                new CountryConverter(),
-                //new CountrySpecificFieldsConverter()
+                CountryConverter.Singleton,
+                TypeEnumConverter.Singleton
             };
             if (converter == null)
             {

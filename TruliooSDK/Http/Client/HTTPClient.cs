@@ -30,13 +30,6 @@ namespace TruliooSDK.Http.Client
 
         #region Execute methods
 
-        public HttpResponse ExecuteAsString(HttpRequest request)
-        {
-            Task<HttpResponse> t = ExecuteAsStringAsync(request);
-            TaskHelper.RunTaskSynchronously(t);
-            return t.GetAwaiter().GetResult();
-        }
-
         public async Task<HttpResponse> ExecuteAsStringAsync(HttpRequest request)
         {
             //raise the on before request event
@@ -55,13 +48,6 @@ namespace TruliooSDK.Http.Client
             //raise the on after response event
             RaiseOnAfterHttpResponseEvent(response);
             return response;
-        }
-
-        public HttpResponse ExecuteAsBinary(HttpRequest request)
-        {
-            Task<HttpResponse> t = ExecuteAsBinaryAsync(request);
-            TaskHelper.RunTaskSynchronously(t);
-            return t.GetAwaiter().GetResult();
         }
 
         public async Task<HttpResponse> ExecuteAsBinaryAsync(HttpRequest request)

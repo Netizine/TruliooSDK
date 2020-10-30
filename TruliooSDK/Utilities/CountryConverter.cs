@@ -65,5 +65,7 @@ namespace TruliooSDK.Utilities
             var value = (Country)untypedValue;
             serializer.Serialize(writer, value.ToAlpha2CodeString());
         }
+
+        public static readonly CountryConverter Singleton = new CountryConverter();
     }
 }
